@@ -2,15 +2,14 @@ package main
 
 import (
 	"github.com/deeper-x/goship/lib/webserver"
-	"github.com/deeper-x/goship/services"
 )
 
-func main() {
-	var app webserver.Instance
+var app webserver.Instance
 
+func main() {
 	webserver.StartInstance(&app)
-	app.ManageRequest("/", services.DemoCall)
+
+	app.PatternConfigurator()
 
 	webserver.Run(&app)
-
 }
