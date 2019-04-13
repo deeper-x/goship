@@ -8,8 +8,6 @@ var app webserver.Instance
 
 func main() {
 	webserver.StartInstance(&app)
-
-	app.PatternConfigurator()
-
+	app.URLLoader()
 	webserver.Run(&app)
 }
