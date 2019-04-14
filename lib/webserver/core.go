@@ -10,9 +10,9 @@ type Instance struct {
 	app *iris.Application
 }
 
-// ManageRequest router method on app
-func (objInstance Instance) ManageRequest(passedPath string, resHandler context.Handler) {
-	objInstance.app.Handle("GET", passedPath, resHandler)
+// URLRequest router method on app
+func (objInstance Instance) URLRequest(passedPath string, resHandler context.Handler) {
+	objInstance.app.Get(passedPath, resHandler)
 }
 
 // StartInstance prepare instance data, before running
