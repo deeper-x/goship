@@ -5,8 +5,8 @@ import (
 	"github.com/kataras/iris"
 )
 
-// DemoCall demo call
-func (objPortinformer Portinformer) DemoCall(ctx iris.Context) {
+// MooredNow demo call
+func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
 	allMoored := ldb.GetAllMoored(idPortinformer)
 	ctx.JSON(allMoored)

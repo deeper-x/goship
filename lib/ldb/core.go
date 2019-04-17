@@ -15,7 +15,7 @@ var objConn connection
 
 //Connect to db
 func Connect() *sql.DB {
-	objConn.dsn = "postgres://lims_cn_user:********@127.0.0.1/lims_cn_sw"
+	objConn.dsn = "postgres://<USER>:<PASSWORD>@127.0.0.1/<DBNAME>"
 	db, err := sql.Open("postgres", objConn.dsn)
 
 	if err != nil {

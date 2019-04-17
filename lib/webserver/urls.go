@@ -6,5 +6,5 @@ var objPortinformer services.Portinformer
 
 //URLLoader todo description
 func (objInstance Instance) URLLoader() {
-	objInstance.URLRequest("/moored/{id_portinformer:string}", objPortinformer.DemoCall)
+	objInstance.URLRequest("/moored/{id_portinformer:string}", objPortinformer.MooredNow)
 }
