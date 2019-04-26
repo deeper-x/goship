@@ -1,6 +1,6 @@
 # WIP - goship
 
-Note: calls marked w/ PC are _"Porting Complete"_
+Note: calls marked w/ *PC are _"Porting Complete"_
 
 ## A - LIVE DATA SERVICES:
 
@@ -9,15 +9,17 @@ Note: calls marked w/ PC are _"Porting Complete"_
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-2. __Roadstead now__ (PC):
+2. __Roadstead now__:
 ```
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
+Note: *PC
 
 3. __Moored now__:
 ```
-http://<REMOTE_IP>:8000/mooredNow?id_portinformer=<id_portinformer>&id_activity=5
+http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
+Note: *PC
 
 4. __Arrivals now__:
 ```

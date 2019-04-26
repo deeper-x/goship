@@ -72,19 +72,25 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 //GetAllMoored todo doc
 func GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
-	var shipName, mooringTime, currentActivity sql.NullString
+	var shipName, mooringTime, currentActivity, quay sql.NullString
 	var result []map[string]string
 
 	connector := Connect()
 
 	query := fmt.Sprintf(`SELECT id_control_unit_data, ship_description, 
-						  ts_last_ship_activity, ship_current_activities.description AS current_activity 
+						  ts_last_ship_activity, ship_current_activities.description AS current_activity, quays.description AS quay  
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
 						  INNER JOIN ship_current_activities
 						  ON fk_ship_current_activity = id_activity
-						  WHERE fk_ship_current_activity = 5 AND fk_portinformer = %s`, idPortinformer)
+						  INNER JOIN latest_maneuverings
+						  ON latest_maneuverings.fk_control_unit_data = id_control_unit_data
+						  INNER JOIN quays
+						  ON latest_maneuverings.fk_stop_quay = id_quay
+						  WHERE fk_ship_current_activity = 5
+						  AND control_unit_data.is_active = true 
+						  AND control_unit_data.fk_portinformer = %s`, idPortinformer)
 
 	rows, err := connector.Query(query)
 
@@ -99,7 +105,9 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			&idControlUnitData,
 			&shipName,
 			&mooringTime,
-			&currentActivity)
+			&currentActivity,
+			&quay,
+		)
 
 		if err != nil {
 			log.Fatal(err)
@@ -112,6 +120,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			"ship":             shipName.String,
 			"mooring_time":     mooringTime.String,
 			"current_activity": currentActivity.String,
+			"quay":             quay.String,
 		}
 		result = append(result, tmpDict)
 	}
