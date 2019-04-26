@@ -151,4 +151,20 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
 
+# WIP - Install and run 
+```
+$ go get github.com/deeper-x/goship
+$ cd goship
+$ export GOPATH=${HOME}/go
+$ export GOBIN=${GOPATH}/bin
+$ export PATH=${PATH}:${GOBIN}
+$ go install src/goship.go 
+$ ./goship # RUN FOR TEST
+Now listening on: http://localhost:8000
+Application started. Press CTRL+C to shut down.
+
+#TODO - service install instructions
+
+```
+
 
