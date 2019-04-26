@@ -5,9 +5,16 @@ import (
 	"github.com/kataras/iris"
 )
 
-// MooredNow demo call
+// MooredNow todo description
 func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
 	allMoored := ldb.GetAllMoored(idPortinformer)
 	ctx.JSON(allMoored)
+}
+
+// RoadsteadNow todo description
+func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	allAnchoring := ldb.GetAllRoadstead(idPortinformer)
+	ctx.JSON(allAnchoring)
 }
