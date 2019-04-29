@@ -196,20 +196,23 @@ $ touch /usr/lib/systemd/system/goship.service
 
 This is a service file template: 
 $ vim /usr/lib/systemd/system/goship.service
-</div></code></pre>
-<p>[Unit]
+
+```bash
+[Unit]
 Description=Shipreporting service middleware
 Documentation=https://github.com/deeper-x/goship
-After=network.target</p>
-<p>[Service]
+After=network.target
+
+[Service]
 Type=simple
 User=&lt;YOUR_USER&gt;
 WorkingDirectory=&lt;YOUR_GOPATH&gt;/bin/
 ExecStart=&lt;YOUR_GOBIN&gt;/goship
-Restart=on-failure</p>
-<p>[Install]
-WantedBy=multi-user.target</p>
-<pre><code><div>
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
 
 </div></code></pre>
 
