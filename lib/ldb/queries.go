@@ -84,7 +84,7 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	query := `SELECT ship_description, ts_arrival_prevision,
+	query := fmt.Sprintf(`SELECT ship_description, ts_arrival_prevision,
 			  ship_types.type_acronym AS ship_type,  
 			  countries.iso3 AS ship_flag,
 			  ships.width AS ship_width,
@@ -118,7 +118,8 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 			  ON planned_arrivals.fk_stop_anchorage_point = anchorage_points.id_anchorage_point	
 			  WHERE LENGTH(planned_arrivals.ts_arrival_prevision) > 0 
 			  AND planned_arrivals.ts_arrival_prevision::DATE = current_date
-			  AND planned_arrivals.has_a_trip = true`
+			  AND planned_arrivals.has_a_trip = true
+			  AND planned_arrivals.fk_portinformer = %s`, idPortinformer)
 
 	rows, err := connector.Query(query)
 
