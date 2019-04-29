@@ -191,13 +191,15 @@ Application started. Press CTRL+C to shut down.
 # Close test instance
 $ &lt;CTRL+C&gt;  
 
-# Service install instructions
+</div></code></pre>
+<pre><code class="language-bash"><div><span class="hljs-comment"># Service install instructions</span>
 $ touch /usr/lib/systemd/system/goship.service
+
+
 
 This is a service file template: 
 $ vim /usr/lib/systemd/system/goship.service
 
-```bash
 [Unit]
 Description=Shipreporting service middleware
 Documentation=https://github.com/deeper-x/goship
@@ -212,7 +214,6 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-
 
 </div></code></pre>
 
