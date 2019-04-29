@@ -72,7 +72,7 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 //GetAllArrivals todo doc
 func GetAllArrivals(idPortinformer string) []map[string]string {
 	var idControlUnitData, shipName sql.NullString
-	var shipDescription, tsArrivalPrevision, shipType sql.NullString
+	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
 	var netTonnage, draftAft, draftFwd sql.NullString
 	var agency sql.NullString
@@ -84,7 +84,7 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	query := fmt.Sprintf(`SELECT ship_description, ts_arrival_prevision,
+	query := fmt.Sprintf(`SELECT ship_description AS ship, ts_arrival_prevision,
 			  ship_types.type_acronym AS ship_type,  
 			  countries.iso3 AS ship_flag,
 			  ships.width AS ship_width,
@@ -156,7 +156,6 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 		tmpDict := map[string]string{
 			"id_trip":                idControlUnitDataStr.String,
 			"ship":                   shipName.String,
-			"ship_description":       shipDescription.String,
 			"ts_arrival_prevision":   tsArrivalPrevision.String,
 			"ship_type":              shipType.String,
 			"ship_flag":              shipFlag.String,
