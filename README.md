@@ -177,9 +177,8 @@ $ <CTRL+C>
 # Systemd configuration
 
 ```bash
-# Service install instructions
-
-This is a service file template you can start from: 
+# Service install instructions: 
+# This is a service file template you can start from 
 $ sudo cat > /usr/lib/systemd/system/goship.service <<HEREDOC
 
 [Unit]
