@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>WIP - goship</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="wip---goship">WIP - goship</h1>
+<p>Note: calls marked w/ *PC are <em>&quot;Porting Complete&quot;</em></p>
+<h2 id="a---live-data-services">A - LIVE DATA SERVICES:</h2>
+<ol>
+<li><strong>Active trips</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/activeTripsNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="2">
+<li><strong>Roadstead now</strong> [*PC]:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/anchored/&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="3">
+<li><strong>Moored now</strong> [*PC]:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/moored/&lt;id_portinformer&gt;
+</div></code></pre>
+<ol>
+<li><strong>Arrivals now</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/arrivalsNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="5">
+<li><strong>Departures now</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/departuresNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="6">
+<li><strong>Arrival previsions</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/arrivalPrevisionsNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="7">
+<li><strong>Shipped goods</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/shippedGoodsNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="8">
+<li><strong>RO/RO + RO/PAX</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/trafficListNow?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<h2 id="b---archive-data-services">B - ARCHIVE DATA SERVICES:</h2>
+<ol>
+<li><strong>Trips archive [global recap, one row per trip]</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/tripsArchive?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="2">
+<li><strong>Trips archive [global recap, one row per commercial operation]</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/tripsArchiveMultiRows?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="3">
+<li><strong>Trip data archive</strong> [shipreport core]:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/shipReportList?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="4">
+<li><strong>Trip data archive detailed</strong> [shipreport]:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/shipReportDetails?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="5">
+<li><strong>Arrivals archive</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/arrivalsArchive?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="6">
+<li><strong>Departures archive</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/departuresArchive?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="7">
+<li><strong>Shipped goods archive</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/shippedGoodsArchive?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<ol start="8">
+<li><strong>Traffic list archive</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/trafficListArchive?id_portinformer=&lt;id_portinformer&gt;
+</div></code></pre>
+<h2 id="c---daily-register-services">C - DAILY REGISTER SERVICES:</h2>
+<ol>
+<li><strong>Arrivals:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerArrivals?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="2">
+<li><strong>Moored:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerMoored?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="3">
+<li><strong>Roadstead:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerRoadstead?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="4">
+<li><strong>Departures:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerDepartures?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="5">
+<li><strong>Shiftings:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerShiftings?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="6">
+<li><strong>Arrival previsions:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerPlannedArrivals?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="7">
+<li><strong>Shipped goods:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerShippedGoods?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="8">
+<li><strong>RO/RO + RO/PAX:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/registerTrafficList?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<h2 id="d---business-intelligence-services">D - BUSINESS INTELLIGENCE SERVICES:</h2>
+<ol>
+<li><strong>Shiftings/maneuverings [per quay/berth]:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/tripsManeuverings?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="2">
+<li><strong>Shipped goods recap:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/shippedGoodsRecap?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<ol start="3">
+<li><strong>RO/RO + RO/PAX recap:</strong></li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/trafficListRecap?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<h2 id="e---meteo-data">E - METEO DATA</h2>
+<ol>
+<li><strong>Meteo data archive</strong>:</li>
+</ol>
+<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/meteoArchive?id_portinformer=&lt;ID_PORTINFORMER&gt;
+</div></code></pre>
+<h1 id="wip---install-and-run">WIP - Install and run</h1>
+<pre><code><div># Install Go 1.11.9 and verify version
+# ref. https://golang.org/doc/install?download=go1.11.9.linux-386.tar.gz
+$ go version
+go version go1.11.9 linux/386
+
+# Get goship and deploy
+$ go get github.com/deeper-x/goship
+# Pass vars at runtime or add to .bash_profile
+$ export PATH=${PATH}:/usr/local/go/bin/ # FIX w/ your installation path
+$ export GOPATH=${HOME}/go
+$ export GOBIN=${GOPATH}/bin
+$ export PATH=${PATH}:${GOBIN}
+$ cd ${GOPATH}/src/github.com/deeper-x/goship
+$ go get -d ./...    
+$ go install src/goship.go 
+$ goship # RUN FOR TEST
+Now listening on: http://localhost:8000
+Application started. Press CTRL+C to shut down.
+
+# Close test instance
+$ &lt;CTRL+C&gt;  
+
+# Service install instructions
+$ touch /usr/lib/systemd/system/goship.service
+
+This is a service file template: 
+$ vim /usr/lib/systemd/system/goship.service
+</div></code></pre>
+<p>[Unit]
+Description=Shipreporting service middleware
+Documentation=https://github.com/deeper-x/goship
+After=network.target</p>
+<p>[Service]
+Type=simple
+User=&lt;YOUR_USER&gt;
+WorkingDirectory=&lt;YOUR_GOPATH&gt;/bin/
+ExecStart=&lt;YOUR_GOBIN&gt;/goship
+Restart=on-failure</p>
+<p>[Install]
+WantedBy=multi-user.target</p>
+<pre><code><div>
+
+</div></code></pre>
+
+    </body>
+    </html>

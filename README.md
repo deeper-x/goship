@@ -9,19 +9,17 @@ Note: calls marked w/ *PC are _"Porting Complete"_
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-2. __Roadstead now__:
+2. __Roadstead now__ [*PC]:
 ```
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
-Note: *PC
 
-3. __Moored now__:
+3. __Moored now__ [*PC]:
 ```
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
-Note: *PC
 
-4. __Arrivals now__:
+1. __Arrivals now__:
 ```
 http://<REMOTE_IP>:8000/arrivalsNow?id_portinformer=<id_portinformer>
 ```
@@ -153,18 +151,48 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 
 # WIP - Install and run 
 ```
+# Install Go 1.11.9 and verify version
+# ref. https://golang.org/doc/install?download=go1.11.9.linux-386.tar.gz
+$ go version
+go version go1.11.9 linux/386
+
+# Get goship and deploy
 $ go get github.com/deeper-x/goship
+# Pass vars at runtime or add to .bash_profile
+$ export PATH=${PATH}:/usr/local/go/bin/ # FIX w/ your installation path
 $ export GOPATH=${HOME}/go
 $ export GOBIN=${GOPATH}/bin
 $ export PATH=${PATH}:${GOBIN}
 $ cd ${GOPATH}/src/github.com/deeper-x/goship
 $ go get -d ./...    
 $ go install src/goship.go 
-$ ./goship # RUN FOR TEST
+$ goship # RUN FOR TEST
 Now listening on: http://localhost:8000
 Application started. Press CTRL+C to shut down.
 
-#TODO - service install instructions
+# Close test instance
+$ <CTRL+C>  
+
+# Service install instructions
+$ touch /usr/lib/systemd/system/goship.service
+
+This is a service file template: 
+$ vim /usr/lib/systemd/system/goship.service
+```
+[Unit]
+Description=Shipreporting service middleware
+Documentation=https://github.com/deeper-x/goship
+After=network.target
+
+[Service]
+Type=simple
+User=<YOUR_USER>
+WorkingDirectory=<YOUR_GOPATH>/bin/
+ExecStart=<YOUR_GOBIN>/goship
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 
 ```
 
