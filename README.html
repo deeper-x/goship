@@ -192,13 +192,11 @@ Application started. Press CTRL+C to shut down.
 $ &lt;CTRL+C&gt;  
 
 </div></code></pre>
+<h1 id="systemd-configuration">Systemd configuration</h1>
 <pre><code class="language-bash"><div><span class="hljs-comment"># Service install instructions</span>
-$ touch /usr/lib/systemd/system/goship.service
 
-
-
-This is a service file template: 
-$ vim /usr/lib/systemd/system/goship.service
+This is a service file template you can start from: 
+$ sudo cat &gt; /usr/lib/systemd/system/goship.service &lt;&lt;HEREDOC
 
 [Unit]
 Description=Shipreporting service middleware
@@ -215,6 +213,7 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 
+HEREDOC
 </div></code></pre>
 
     </body>
