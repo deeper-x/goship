@@ -22,32 +22,32 @@
     </head>
     <body>
         <h1 id="wip---goship">WIP - goship</h1>
-<p>Note: calls marked w/ *PC are <em>&quot;Porting Complete&quot;</em></p>
+<p>Note: calls marked w/ *PC are available (because are <em>&quot;Porting Complete&quot;</em>)</p>
 <h2 id="a---live-data-services">A - LIVE DATA SERVICES:</h2>
 <ol>
 <li><strong>Active trips</strong>:</li>
 </ol>
-<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/activeTripsNow?id_portinformer=&lt;id_portinformer&gt;
+<pre><code class="language-bash"><div>http://&lt;REMOTE_IP&gt;:8000/activeTripsNow?id_portinformer=&lt;id_portinformer&gt;
 </div></code></pre>
 <ol start="2">
-<li><strong>Roadstead now</strong> [*PC]:</li>
+<li><strong>At roadstead</strong> [*PC]:</li>
 </ol>
-<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/anchored/&lt;id_portinformer&gt;
+<pre><code class="language-bash"><div>http://&lt;REMOTE_IP&gt;:8000/anchored/&lt;id_portinformer&gt;
 </div></code></pre>
 <ol start="3">
-<li><strong>Moored now</strong> [*PC]:</li>
+<li><strong>Moored</strong> [*PC]:</li>
 </ol>
-<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/moored/&lt;id_portinformer&gt;
+<pre><code class="language-bash"><div>http://&lt;REMOTE_IP&gt;:8000/moored/&lt;id_portinformer&gt;
 </div></code></pre>
-<ol>
-<li><strong>Arrivals now</strong>:</li>
+<ol start="4">
+<li><strong>Arrivals now</strong> [*PC]:</li>
 </ol>
-<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/arrivalsNow?id_portinformer=&lt;id_portinformer&gt;
+<pre><code class="language-bash"><div>http://&lt;REMOTE_IP&gt;:8000/arrivals/&lt;id_portinformer&gt;
 </div></code></pre>
 <ol start="5">
 <li><strong>Departures now</strong>:</li>
 </ol>
-<pre><code><div>http://&lt;REMOTE_IP&gt;:8000/departuresNow?id_portinformer=&lt;id_portinformer&gt;
+<pre><code class="language-bash"><div>http://&lt;REMOTE_IP&gt;:8000/departuresNow?id_portinformer=&lt;id_portinformer&gt;
 </div></code></pre>
 <ol start="6">
 <li><strong>Arrival previsions</strong>:</li>
