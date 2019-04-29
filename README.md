@@ -149,7 +149,7 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
 
-# WIP - Install and run 
+# Install and (first) run 
 ```
 # Install Go 1.11.9 and verify version
 # ref. https://golang.org/doc/install?download=go1.11.9.linux-386.tar.gz
