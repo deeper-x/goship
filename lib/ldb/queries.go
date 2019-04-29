@@ -69,8 +69,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	return result
 }
 
-//GetAllArrivals todo doc
-func GetAllArrivals(idPortinformer string) []map[string]string {
+//GetAllArrivalPrevisions todo doc
+func GetAllArrivalPrevisions(idPortinformer string) []map[string]string {
 	var idControlUnitData, shipName sql.NullString
 	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
@@ -116,10 +116,7 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 			  ON planned_arrivals.fk_stop_berth = berths.id_berth
 			  LEFT JOIN anchorage_points
 			  ON planned_arrivals.fk_stop_anchorage_point = anchorage_points.id_anchorage_point	
-			  WHERE LENGTH(planned_arrivals.ts_arrival_prevision) > 0 
-			  AND planned_arrivals.ts_arrival_prevision::DATE = current_date
-			  AND planned_arrivals.has_a_trip = true
-			  AND planned_arrivals.fk_portinformer = %s`, idPortinformer)
+			  WHERE planned_arrivals.fk_portinformer = %s`, idPortinformer)
 
 	rows, err := connector.Query(query)
 

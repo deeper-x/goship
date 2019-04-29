@@ -22,7 +22,7 @@ http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
-4. __Arrivals now__ [*PC]:
+4. __Arrivals now__ :
 
 ```bash
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
@@ -34,7 +34,7 @@ http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
 http://<REMOTE_IP>:8000/departuresNow?id_portinformer=<id_portinformer>
 ```
 
-6. __Arrival previsions__:
+6. __Arrival previsions__ [*PC]:
 
 ```bash
 http://<REMOTE_IP>:8000/arrivalPrevisionsNow?id_portinformer=<id_portinformer>
