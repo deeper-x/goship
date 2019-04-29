@@ -80,7 +80,7 @@ func GetAllArrivals(idPortinformer string) []map[string]string {
 	var destinationQuayBerth sql.NullString
 	var destinationRoadstead sql.NullString
 
-	var result []map[string]string
+	var result []map[string]string = []map[string]string{}
 
 	connector := Connect()
 
