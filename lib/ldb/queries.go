@@ -236,7 +236,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 }
 
 //GetTodayArrivals todo doc
-func GetTodayArrivals(idPortinformer string, idArrivalPrevision string) []map[string]string {
+func GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[string]string {
 	var idTrip, shipName, shipType, tsSighting, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
 	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
@@ -272,7 +272,7 @@ func GetTodayArrivals(idPortinformer string, idArrivalPrevision string) []map[st
 		ON ships.fk_country_flag = countries.id_country
 		INNER JOIN maneuverings
 		ON maneuverings.fk_control_unit_data = control_unit_data.id_control_unit_data
-		AND maneuverings.fk_state = %s
+		AND maneuverings.fk_state = %d
 		INNER JOIN agencies
 		ON data_avvistamento_nave.fk_agency = agencies.id_agency
 		INNER JOIN shipping_details
@@ -289,13 +289,13 @@ func GetTodayArrivals(idPortinformer string, idArrivalPrevision string) []map[st
 		ON shipping_details.fk_port_destination = port_destination.id_port
 		LEFT JOIN quays
 		ON maneuverings.fk_stop_quay = quays.id_quay
-		AND maneuverings.fk_state = %s
+		AND maneuverings.fk_state = %d
 		LEFT JOIN berths
 		ON maneuverings.fk_stop_berth = berths.id_berth
-		AND maneuverings.fk_state = %s
+		AND maneuverings.fk_state = %d
 		LEFT JOIN anchorage_points
 		ON maneuverings.fk_stop_anchorage_point = anchorage_points.id_anchorage_point
-		AND maneuverings.fk_state = %s
+		AND maneuverings.fk_state = %d
 		WHERE control_unit_data.fk_portinformer = %s
 		AND LENGTH(ts_avvistamento) > 0
 		AND ts_avvistamento::DATE = current_date`, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer)
