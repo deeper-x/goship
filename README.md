@@ -52,6 +52,18 @@ http://<REMOTE_IP>:8000/shippedGoodsNow?id_portinformer=<id_portinformer>
 http://<REMOTE_IP>:8000/trafficListNow?id_portinformer=<id_portinformer>
 ```
 
+9. __Shifting previsions__:
+
+```bash
+http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
+```
+
+10. __Departure previsions__ [*PC]:
+ 
+```bash
+http://<REMOTE_IP>:8000/departurePrevisions/<id_portinformer>
+```
+
 ## B - ARCHIVE DATA SERVICES:
 
 1. __Trips archive [global recap, one row per trip]__:

@@ -69,8 +69,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	return result
 }
 
-//GetActiveArrivalPrevisions todo doc
-func GetActiveArrivalPrevisions(idPortinformer string) []map[string]string {
+//GetTodayArrivalPrevisions todo doc
+func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 	var idControlUnitData, shipName sql.NullString
 	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
@@ -168,6 +168,107 @@ func GetActiveArrivalPrevisions(idPortinformer string) []map[string]string {
 			"last_port_of_call":      lastPortOfCall.String,
 			"destination_quay_berth": destinationQuayBerth.String,
 			"destination_roadstead":  destinationRoadstead.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
+
+//GetTodayDeparturePrevisions todo doc
+func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
+	var ship, tsDeparturePrevision, shipType, shipFlag, shipWidth sql.NullString
+	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
+	var agency, destinationPort, startingQuayBerth, startingRoadstead sql.NullString
+
+	var result []map[string]string = []map[string]string{}
+
+	query := fmt.Sprintf(`SELECT ship_description AS ship, ts_departure_prevision,
+			  ship_types.type_acronym AS ship_type,  
+			  countries.iso3 AS ship_flag,
+			  ships.width AS ship_width,
+			  ships.length AS ship_length,
+			  ships.gross_tonnage AS gross_tonnage,
+			  ships.net_tonnage AS net_tonnage,
+			  planned_departures.draft_aft, planned_departures.draft_fwd,
+			  agencies.description AS agency,
+			  destination_port.port_name||'('||destination_port.port_country||')' AS destination_port,
+			  quays.description AS starting_quay_berth,
+			  anchorage_points.description AS starting_roadstead
+			  FROM planned_departures
+			  INNER JOIN planned_arrivals
+			  ON planned_departures.fk_planned_arrival = planned_arrivals.id_planned_arrival
+			  INNER JOIN ships
+			  ON ships.id_ship = planned_arrivals.fk_ship
+			  INNER JOIN ship_types
+			  ON ships.fk_ship_type = ship_types.id_ship_type
+			  INNER JOIN countries
+			  ON ships.fk_country_flag = countries.id_country
+			  INNER JOIN agencies
+			  ON planned_departures.fk_agency = agencies.id_agency
+			  INNER JOIN (
+					SELECT id_port, ports.name AS port_name, ports.country AS port_country
+					FROM ports
+			  ) AS destination_port
+			  ON planned_departures.fk_destination_port = destination_port.id_port
+			  LEFT JOIN quays
+			  ON planned_departures.fk_start_quay = quays.id_quay
+			  LEFT JOIN berths
+			  ON planned_departures.fk_start_berth = berths.id_berth
+			  LEFT JOIN anchorage_points
+			  ON planned_departures.fk_start_anchorage_point = anchorage_points.id_anchorage_point	
+			  WHERE LENGTH(planned_departures.ts_departure_prevision) > 0 
+			  AND planned_departures.is_active = true
+			  AND planned_departures.fk_portinformer = %s`, idPortinformer)
+
+	connector := Connect()
+
+	rows, err := connector.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&ship,
+			&tsDeparturePrevision,
+			&shipType,
+			&shipFlag,
+			&shipWidth,
+			&shipLength,
+			&grossTonnage,
+			&netTonnage,
+			&draftAft,
+			&draftFwd,
+			&agency,
+			&destinationPort,
+			&startingQuayBerth,
+			&startingRoadstead,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"ship":                   ship.String,
+			"ts_departure_prevision": tsDeparturePrevision.String,
+			"ship_type":              shipType.String,
+			"ship_flag":              shipFlag.String,
+			"ship_width":             shipWidth.String,
+			"ship_length":            shipLength.String,
+			"gross_tonnage":          grossTonnage.String,
+			"net_tonnage":            netTonnage.String,
+			"draft_aft":              draftAft.String,
+			"draft_fwd":              draftFwd.String,
+			"agency":                 agency.String,
+			"destination_port":       destinationPort.String,
+			"starting_quay_berth":    startingQuayBerth.String,
+			"starting_roadstead":     startingRoadstead.String,
 		}
 
 		result = append(result, tmpDict)
