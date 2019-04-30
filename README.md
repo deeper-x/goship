@@ -28,7 +28,7 @@ http://<REMOTE_IP>:8000/moored/<id_portinformer>
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
 ```
 
-5. __Departures now__:
+5. __Departures now__ [*PC]:
 
 ```bash
 http://<REMOTE_IP>:8000/departuresNow?id_portinformer=<id_portinformer>

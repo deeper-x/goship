@@ -10,4 +10,5 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/anchored/{id_portinformer:string}", objPortinformer.RoadsteadNow)
 	objInstance.URLRequest("/arrivalPrevisions/{id_portinformer:string}", objPortinformer.ArrivalPrevisions)
 	objInstance.URLRequest("/arrivals/{id_portinformer:string}", objPortinformer.Arrivals)
+	objInstance.URLRequest("/departures/{id_portinformer:string}", objPortinformer.Departures)
 }
