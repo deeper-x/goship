@@ -22,7 +22,7 @@ http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
-4. __Arrivals now__ :
+4. __Arrivals now__ [*PC]:
 
 ```bash
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
@@ -37,7 +37,7 @@ http://<REMOTE_IP>:8000/departuresNow?id_portinformer=<id_portinformer>
 6. __Arrival previsions__ [*PC]:
 
 ```bash
-http://<REMOTE_IP>:8000/arrivalPrevisionsNow?id_portinformer=<id_portinformer>
+http://<REMOTE_IP>:8000/arrivalPrevisions/<id_portinformer>
 ```
 
 7. __Shipped goods__:
@@ -174,16 +174,19 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```bash
 # Install Go 1.11.9 and verify version
 # ref. https://golang.org/doc/install?download=go1.11.9.linux-386.tar.gz
+$ export PATH=${PATH}:/usr/local/go/bin/ # FIX w/ your installation path
+
+# Pass vars at runtime or add to .bash_profile
+$ export GOPATH=${HOME}/go
+$ export GOBIN=${GOPATH}/bin
+$ export PATH=${PATH}:${GOBIN}
+
 $ go version
 go version go1.11.9 linux/386
 
 # Get goship and deploy
 $ go get github.com/deeper-x/goship
-# Pass vars at runtime or add to .bash_profile
-$ export PATH=${PATH}:/usr/local/go/bin/ # FIX w/ your installation path
-$ export GOPATH=${HOME}/go
-$ export GOBIN=${GOPATH}/bin
-$ export PATH=${PATH}:${GOBIN}
+
 $ cd ${GOPATH}/src/github.com/deeper-x/goship
 $ go get -d ./...    
 $ go install src/goship.go 
@@ -195,6 +198,7 @@ Application started. Press CTRL+C to shut down.
 $ <CTRL+C>  
 
 ```
+
 # Systemd configuration
 
 ```bash

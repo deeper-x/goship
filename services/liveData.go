@@ -22,6 +22,13 @@ func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
 // ArrivalPrevisions todo description
 func (objPortinformer Portinformer) ArrivalPrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allArrivals := ldb.GetAllArrivalPrevisions(idPortinformer)
+	allArrivals := ldb.GetActiveArrivalPrevisions(idPortinformer)
 	ctx.JSON(allArrivals)
+}
+
+// Arrivals todo description
+func (objPortinformer Portinformer) Arrivals(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	arrivals := ldb.GetTodayArrivals(idPortinformer, "10")
+	ctx.JSON(arrivals)
 }
