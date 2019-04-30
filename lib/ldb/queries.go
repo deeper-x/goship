@@ -176,6 +176,119 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 	return result
 }
 
+//GetTodayShiftingPrevisions todo doc
+func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
+	var ship, tsShiftingPrevision, shipType, shipFlag, shipWidth sql.NullString
+	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
+	var agency, destinationPort, startingQuayBerth, startingRoadstead sql.NullString
+
+	var result []map[string]string = []map[string]string{}
+
+	query := fmt.Sprintf(`SELECT ship_description AS ship, ts_shifting_prevision,
+			ship_types.type_acronym AS ship_type,  
+			countries.iso3 AS ship_flag,
+			ships.width AS ship_width,
+			ships.length AS ship_length,
+			ships.gross_tonnage AS gross_tonnage,
+			ships.net_tonnage AS net_tonnage,
+			planned_shiftings.draft_aft, planned_shiftings.draft_fwd,
+			agencies.description AS agency,
+			start_quay.description AS starting_quay_berth,
+			start_anchorage_point.description AS starting_roadstead,
+			stop_quay.description AS stop_quay_berth,
+			stop_anchorage_point.description AS stop_roadstead
+			FROM planned_shiftings
+			INNER JOIN planned_arrivals
+			ON planned_shiftings.fk_planned_arrival = planned_arrivals.id_planned_arrival
+			INNER JOIN ships
+			ON ships.id_ship = planned_arrivals.fk_ship
+			INNER JOIN ship_types
+			ON ships.fk_ship_type = ship_types.id_ship_type
+			INNER JOIN countries
+			ON ships.fk_country_flag = countries.id_country
+			INNER JOIN agencies
+			ON planned_shiftings.fk_agency = agencies.id_agency
+			LEFT JOIN (
+				select id_quay, description from quays
+			) as start_quay
+			ON planned_shiftings.fk_start_quay = start_quay.id_quay
+			LEFT JOIN (
+				select id_quay, description from quays
+			) as stop_quay
+			ON planned_shiftings.fk_stop_quay = stop_quay.id_quay
+			LEFT JOIN (
+				select id_berth, description from berths
+			) as start_berth
+			ON planned_shiftings.fk_start_berth = start_berth.id_berth
+			LEFT JOIN (
+				select id_berth, description from berths
+			) as stop_berth
+			ON planned_shiftings.fk_stop_berth = stop_berth.id_berth
+			LEFT JOIN (
+				select id_anchorage_point, description from anchorage_points
+			) as start_anchorage_point
+			ON planned_shiftings.fk_start_anchorage_point = start_anchorage_point.id_anchorage_point
+			LEFT JOIN (
+				select id_anchorage_point, description from anchorage_points
+			) as stop_anchorage_point
+			ON planned_shiftings.fk_stop_anchorage_point = stop_anchorage_point.id_anchorage_point	
+			WHERE LENGTH(planned_shiftings.ts_shifting_prevision) > 0 
+			AND planned_shiftings.is_active = true
+			AND planned_shiftings.fk_portinformer = %s`, idPortinformer)
+
+	connector := Connect()
+
+	rows, err := connector.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&ship,
+			&tsShiftingPrevision,
+			&shipType,
+			&shipFlag,
+			&shipWidth,
+			&shipLength,
+			&grossTonnage,
+			&netTonnage,
+			&draftAft,
+			&draftFwd,
+			&agency,
+			&destinationPort,
+			&startingQuayBerth,
+			&startingRoadstead,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"ship":                 ship.String,
+			"tsDeparturePrevision": tsShiftingPrevision.String,
+			"shipType":             shipType.String,
+			"shipFlag":             shipFlag.String,
+			"shipWidth":            shipWidth.String,
+			"shipLength":           shipLength.String,
+			"grossTonnage":         grossTonnage.String,
+			"netTonnage":           netTonnage.String,
+			"draftAft":             draftAft.String,
+			"draftFwd":             draftFwd.String,
+			"agency":               agency.String,
+			"destinationPort":      destinationPort.String,
+			"startingQuayBerth":    startingQuayBerth.String,
+			"startingRoadstead":    startingRoadstead.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
+
 //GetTodayDeparturePrevisions todo doc
 func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 	var ship, tsDeparturePrevision, shipType, shipFlag, shipWidth sql.NullString

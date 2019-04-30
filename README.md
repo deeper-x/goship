@@ -52,7 +52,7 @@ http://<REMOTE_IP>:8000/shippedGoodsNow?id_portinformer=<id_portinformer>
 http://<REMOTE_IP>:8000/trafficListNow?id_portinformer=<id_portinformer>
 ```
 
-9. __Shifting previsions__:
+9. __Shifting previsions__ [*PC]:
 
 ```bash
 http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
