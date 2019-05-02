@@ -1,6 +1,6 @@
 # WIP - goship
 
-Note: calls marked w/ *PC are available (because are _"Porting Complete"_)
+Note: calls marked w/ *PC are available for production (_"Porting Complete"_)
 
 ## A - LIVE DATA SERVICES:
 
