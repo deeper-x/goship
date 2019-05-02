@@ -75,7 +75,7 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
 	var netTonnage, draftAft, draftFwd sql.NullString
-	var agency sql.NullString
+	var agency, cargoOnBoard sql.NullString
 	var lastPortOfCall sql.NullString
 	var destinationQuayBerth sql.NullString
 	var destinationRoadstead sql.NullString
@@ -95,7 +95,8 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 			  agencies.description AS agency,
 			  last_port_of_call.port_name||'('||last_port_of_call.port_country||')' AS last_port_of_call,
 			  quays.description AS destination_quay_berth,
-			  anchorage_points.description AS destination_roadstead
+			  anchorage_points.description AS destination_roadstead,
+			  cargo_on_board
 			  FROM planned_arrivals
 			  INNER JOIN ships
 			  ON ships.id_ship = planned_arrivals.fk_ship
@@ -144,6 +145,7 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 			&lastPortOfCall,
 			&destinationQuayBerth,
 			&destinationRoadstead,
+			&cargoOnBoard,
 		)
 
 		if err != nil {
@@ -168,6 +170,7 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 			"last_port_of_call":      lastPortOfCall.String,
 			"destination_quay_berth": destinationQuayBerth.String,
 			"destination_roadstead":  destinationRoadstead.String,
+			"cargo_on_board":         cargoOnBoard.String,
 		}
 
 		result = append(result, tmpDict)
@@ -180,7 +183,7 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 	var ship, tsShiftingPrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
-	var agency, destinationPort, startingQuayBerth, startingRoadstead sql.NullString
+	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
@@ -196,7 +199,8 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 			start_quay.description AS starting_quay_berth,
 			start_anchorage_point.description AS starting_roadstead,
 			stop_quay.description AS stop_quay_berth,
-			stop_anchorage_point.description AS stop_roadstead
+			stop_anchorage_point.description AS stop_roadstead,
+			planned_shiftings.cargo_on_board
 			FROM planned_shiftings
 			INNER JOIN planned_arrivals
 			ON planned_shiftings.fk_planned_arrival = planned_arrivals.id_planned_arrival
@@ -260,6 +264,7 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 			&destinationPort,
 			&startingQuayBerth,
 			&startingRoadstead,
+			&cargoOnBoard,
 		)
 
 		if err != nil {
@@ -281,6 +286,7 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 			"destinationPort":      destinationPort.String,
 			"startingQuayBerth":    startingQuayBerth.String,
 			"startingRoadstead":    startingRoadstead.String,
+			"cargoOnBoard":         cargoOnBoard.String,
 		}
 
 		result = append(result, tmpDict)
@@ -293,7 +299,7 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 	var ship, tsDeparturePrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
-	var agency, destinationPort, startingQuayBerth, startingRoadstead sql.NullString
+	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
@@ -308,7 +314,8 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 			  agencies.description AS agency,
 			  destination_port.port_name||'('||destination_port.port_country||')' AS destination_port,
 			  quays.description AS starting_quay_berth,
-			  anchorage_points.description AS starting_roadstead
+			  anchorage_points.description AS starting_roadstead,
+			  planned_departures.cargo_on_board
 			  FROM planned_departures
 			  INNER JOIN planned_arrivals
 			  ON planned_departures.fk_planned_arrival = planned_arrivals.id_planned_arrival
@@ -361,6 +368,7 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 			&destinationPort,
 			&startingQuayBerth,
 			&startingRoadstead,
+			&cargoOnBoard,
 		)
 
 		if err != nil {
@@ -382,6 +390,7 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 			"destination_port":       destinationPort.String,
 			"starting_quay_berth":    startingQuayBerth.String,
 			"starting_roadstead":     startingRoadstead.String,
+			"cargo_on_board":         cargoOnBoard.String,
 		}
 
 		result = append(result, tmpDict)
