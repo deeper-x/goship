@@ -1,4 +1,4 @@
-# Goship SW - Shipreporting Webservice 
+# GSW - Goship [Shipreporting Webservice] 
 
 Note: calls marked w/ *PC are available for production (_"Porting Complete"_)
 
