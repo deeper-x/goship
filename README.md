@@ -37,7 +37,7 @@ http://<REMOTE_IP>:8000/departuresNow?id_portinformer=<id_portinformer>
 6. __Arrival previsions__ [*PC]:
 
 ```bash
-http://<REMOTE_IP>:8000/arrivalPrevisions/<id_portinformer>
+http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 ```
 
 7. __Shipped goods__:
@@ -55,13 +55,13 @@ http://<REMOTE_IP>:8000/trafficListNow?id_portinformer=<id_portinformer>
 9. __Shifting previsions__ [*PC]:
 
 ```bash
-http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
+http://<REMOTE_IP>:8000/shiftingPrevisionsToday/<id_portinformer>
 ```
 
 10. __Departure previsions__ [*PC]:
  
 ```bash
-http://<REMOTE_IP>:8000/departurePrevisions/<id_portinformer>
+http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
 ```
 
 ## B - ARCHIVE DATA SERVICES:
