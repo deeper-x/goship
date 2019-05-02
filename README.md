@@ -10,55 +10,55 @@ Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-2. __At roadstead__ [*OK]:
+2. __At roadstead__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
 
-3. __Moored__ [*OK]:
+3. __Moored__: [*OK]
     
 ```bash
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
-4. __Arrivals now__ [*OK]:
+4. __Arrivals__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
 ```
 
-5. __Departures now__ [*OK]:
+5. __Departures__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/departures/<id_portinformer>
 ```
 
-6. __Arrival previsions__ [*OK]:
+6. __Arrival previsions__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 ```
 
-7. __Shipped goods__:[*MP]
+7. __Shipped goods__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsNow?id_portinformer=<id_portinformer>
 ```
 
-8. __RO/RO + RO/PAX__:[*MP]
+8. __RO/RO + RO/PAX__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/trafficListNow?id_portinformer=<id_portinformer>
 ```
 
-9. __Shifting previsions__ [*OK]:
+9. __Shifting previsions__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/shiftingPrevisionsToday/<id_portinformer>
 ```
 
-10. __Departure previsions__ [*OK]:
+10. __Departure previsions__: [*OK]
  
 ```bash
 http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
@@ -66,49 +66,49 @@ http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
 
 ## B - ARCHIVE DATA SERVICES:
 
-1. __Trips archive [global recap, one row per trip]__ [*MP]:
+1. __Trips archive [global recap, one row per trip]__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-2. __Trips archive [global recap, one row per commercial operation]__ [*MP]:
+2. __Trips archive [global recap, one row per commercial operation]__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
-3. __Trip data archive__ [shipreport core] [*SB]:
+3. __Trip data archive__ [shipreport core]: [*SB]
 
 ```bash
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
-4. __Trip data archive detailed__ [shipreport] [*SB]:
+4. __Trip data archive detailed__ [shipreport]: [*SB]
 
 ```bash   
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-5. __Arrivals archive__ [*MP]:
+5. __Arrivals archive__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>
 ```
 
-6. __Departures archive__ [*MP]:
+6. __Departures archive__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/departuresArchive?id_portinformer=<id_portinformer>
 ```
 
-7. __Shipped goods archive__ [*MP]:
+7. __Shipped goods archive__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsArchive?id_portinformer=<id_portinformer>
 ```
 
-8. __Traffic list archive__ [*MP]:
+8. __Traffic list archive__: [*MP]
 
 ```bash
 http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
