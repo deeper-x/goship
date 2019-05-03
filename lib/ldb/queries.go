@@ -778,3 +778,92 @@ func GetTodayShippedGoods(idPortinformer string) []map[string]string {
 
 	return result
 }
+
+//GetTodayTrafficList todo doc
+func GetTodayTrafficList(idPortinformer string) []map[string]string {
+	var idTrip, shipName sql.NullString
+	var numContainer, numPassengers, numCamion sql.NullString
+	var numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons sql.NullString
+	var numBus, numMinibus, mvntType, description sql.NullString
+	var quay sql.NullString
+
+	result := []map[string]string{}
+
+	query := fmt.Sprintf(`SELECT
+		control_unit_data.id_control_unit_data AS id_trip,
+		ships.ship_description AS ship_name, 
+		num_container, num_passengers, num_camion, 
+		num_furgoni, num_rimorchi, num_auto, num_moto, num_camper, tons,
+		num_bus, num_minibus, traffic_list_mvnt_type, traffic_list_categories.description,
+		quays.description AS quay
+		FROM traffic_list INNER JOIN control_unit_data
+		ON fk_control_unit_data = id_control_unit_data
+		INNER JOIN traffic_list_categories
+		ON fk_traffic_list_category = id_traffic_list_category
+		INNER JOIN ships
+		ON control_unit_data.fk_ship = id_ship
+		INNER JOIN maneuverings
+		ON maneuverings.fk_control_unit_data = control_unit_data.id_control_unit_data
+		AND maneuverings.fk_state = 17
+		INNER JOIN quays
+		ON maneuverings.fk_stop_quay = quays.id_quay
+		WHERE control_unit_data.fk_portinformer = %s
+		AND control_unit_data.is_active = true`, idPortinformer)
+
+	connector := Connect()
+
+	rows, err := connector.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&shipName,
+			&numContainer,
+			&numPassengers,
+			&numCamion,
+			&numFurgoni,
+			&numRimorchi,
+			&numAuto,
+			&numMoto,
+			&numCamper,
+			&tons,
+			&numBus,
+			&numMinibus,
+			&mvntType,
+			&description,
+			&quay,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":        idTrip.String,
+			"ship_name":      shipName.String,
+			"num_container":  numContainer.String,
+			"num_passengers": numPassengers.String,
+			"num_camion":     numCamion.String,
+			"num_furgoni":    numFurgoni.String,
+			"num_rimorchi":   numRimorchi.String,
+			"num_auto":       numAuto.String,
+			"num_moto":       numMoto.String,
+			"num_camper":     numCamper.String,
+			"tons":           tons.String,
+			"num_bus":        numBus.String,
+			"num_minibus":    numMinibus.String,
+			"mvnt_type":      mvntType.String,
+			"description":    description.String,
+			"quay":           quay.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+
+}
