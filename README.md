@@ -40,10 +40,10 @@ http://<REMOTE_IP>:8000/departures/<id_portinformer>
 http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 ```
 
-7. __Shipped goods__: [*MP]
+7. __Shipped goods__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/shippedGoodsNow?id_portinformer=<id_portinformer>
+http://<REMOTE_IP>:8000/shippedGoodToday?id_portinformer=<id_portinformer>
 ```
 
 8. __RO/RO + RO/PAX__: [*MP]

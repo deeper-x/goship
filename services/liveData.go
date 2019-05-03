@@ -32,3 +32,10 @@ func (objPortinformer Portinformer) Departures(ctx iris.Context) {
 	departures := ldb.GetTodayDepartures(idPortinformer, 26)
 	ctx.JSON(departures)
 }
+
+// ShippedGoods todo description
+func (objPortinformer Portinformer) ShippedGoods(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	shippedGoods := ldb.GetTodayShippedGoods(idPortinformer)
+	ctx.JSON(shippedGoods)
+}

@@ -688,3 +688,93 @@ func GetTodayDepartures(idPortinformer string, idDepartureState int) []map[strin
 
 	return result
 }
+
+// GetTodayShippedGoods todo doc
+func GetTodayShippedGoods(idPortinformer string) []map[string]string {
+	var idTrip, shipName, quantity sql.NullString
+	var unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength sql.NullString
+	var grossTonnage, netTonnage, groupCategory, macroCategory sql.NullString
+
+	result := []map[string]string{}
+
+	query := fmt.Sprintf(`SELECT
+		fk_control_unit_data AS id_trip,
+		ships.ship_description AS ship_name, 
+		CASE WHEN quantity = '' THEN '0' ELSE quantity END, 
+		unit, 
+		goods_categories.description AS goods_category,
+		ship_types.type_acronym AS ship_type,  
+		countries.iso3 AS ship_flag,
+		ships.width AS ship_width,
+		ships.length AS ship_length,
+		ships.gross_tonnage AS gross_tonnage,
+		ships.net_tonnage AS net_tonnage,
+		groups_categories.description AS group_category,
+		macro_categories.description AS macro_category                 
+		FROM shipped_goods INNER JOIN control_unit_data
+		ON fk_control_unit_data = id_control_unit_data
+		INNER JOIN goods_categories
+		ON fk_goods_category = id_goods_category
+		INNER JOIN ships
+		ON control_unit_data.fk_ship = id_ship
+		INNER JOIN countries
+		ON ships.fk_country_flag = id_country
+		INNER JOIN ship_types
+		ON ships.fk_ship_type = ship_types.id_ship_type
+		INNER JOIN groups_categories
+		ON goods_categories.fk_group_category = groups_categories.id_group
+		INNER JOIN macro_categories
+		ON groups_categories.fk_macro_category = macro_categories.id_macro_category     
+		WHERE control_unit_data.fk_portinformer = %s
+		AND control_unit_data.is_active = true`, idPortinformer)
+
+	connector := Connect()
+
+	rows, err := connector.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&shipName,
+			&quantity,
+			&unit,
+			&goodsCategory,
+			&shipType,
+			&shipFlag,
+			&shipWidth,
+			&shipLength,
+			&grossTonnage,
+			&netTonnage,
+			&groupCategory,
+			&macroCategory,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":        idTrip.String,
+			"ship_name":      shipName.String,
+			"quantity":       quantity.String,
+			"unit":           unit.String,
+			"goods_category": goodsCategory.String,
+			"ship_type":      shipType.String,
+			"ship_flag":      shipFlag.String,
+			"ship_width":     shipWidth.String,
+			"shipLength":     shipLength.String,
+			"grossTonnage":   grossTonnage.String,
+			"netTonnage":     netTonnage.String,
+			"groupCategory":  groupCategory.String,
+			"macroCategory":  macroCategory.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
