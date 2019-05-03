@@ -43,13 +43,13 @@ http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 7. __Shipped goods__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/shippedGoodToday?id_portinformer=<id_portinformer>
+http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
 ```
 
-8. __RO/RO + RO/PAX__: [*MP]
+8. __RO/RO + RO/PAX__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/trafficListNow?id_portinformer=<id_portinformer>
+http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 ```
 
 9. __Shifting previsions__: [*OK]
