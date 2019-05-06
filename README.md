@@ -39,6 +39,13 @@ Result set:
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
 ```
 
+Result set:
+```bash
+[ship, tsArrivalPrevision, shipType, country, width, length, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead,
+cargoOnBoard]
+```
+
+
 5. __Departures__: [*OK]
 
 ```bash
