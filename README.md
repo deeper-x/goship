@@ -22,6 +22,12 @@ http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
+Result set:
+```bash
+[idControlUnitData, shipName, mooringTime, currentActivity, quay, shippedGoods, iso3, grossTonnage, length, width, shipType, agency]
+```
+
+
 4. __Arrivals__: [*OK]
 
 ```bash
