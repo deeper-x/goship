@@ -401,8 +401,9 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 
 //GetAllMoored todo doc
 func GetAllMoored(idPortinformer string) []map[string]string {
-	var idControlUnitData sql.NullString
+	var idControlUnitData, iso3, grossTonnage, length, width sql.NullString
 	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
+
 	var result []map[string]string
 
 	connector := Connect()
@@ -411,7 +412,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 						  ts_last_ship_activity, 
 						  ship_current_activities.description AS current_activity, 
 						  quays.description AS quay,
-						  shipped_goods_data.shipped_goods_row AS shipped_goods_data  
+						  shipped_goods_data.shipped_goods_row AS shipped_goods_data,
+						  iso3, gross_tonnage, ships.length, ships.width  
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
@@ -431,6 +433,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 							GROUP BY fk_control_unit_data        
 						  ) as shipped_goods_data
 						  ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
+						  INNER JOIN countries
+        				  ON countries.id_country = ships.fk_country_flag 
 						  WHERE fk_ship_current_activity = 5
 						  AND control_unit_data.is_active = true 
 						  AND control_unit_data.fk_portinformer = %s`, idPortinformer)
@@ -451,6 +455,10 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			&currentActivity,
 			&quay,
 			&shippedGoods,
+			&iso3,
+			&grossTonnage,
+			&length,
+			&width,
 		)
 
 		if err != nil {
@@ -466,6 +474,10 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			"current_activity": currentActivity.String,
 			"quay":             quay.String,
 			"shipped_goods":    shippedGoods.String,
+			"iso3":             iso3.String,
+			"gross_tonnage":    grossTonnage.String,
+			"ships_length":     length.String,
+			"ships_width":      width.String,
 		}
 		result = append(result, tmpDict)
 	}
