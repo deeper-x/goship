@@ -63,6 +63,11 @@ Result set:
 http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 ```
 
+Result set:
+```bash
+[ship, tsArrivalPrevision, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
+```
+
 7. __Shipped goods__: [*OK]
 
 ```bash
@@ -81,10 +86,22 @@ http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 http://<REMOTE_IP>:8000/shiftingPrevisionsToday/<id_portinformer>
 ```
 
+Result set:
+```bash
+
+[ship, ts_shifting_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage,net_tonnage, draft_aft, draft_fwd, agency, starting_quay_berth, starting_roadstead, stop_quay_berth, stop_roadstead, cargo_on_board]
+```
+
+
 10. __Departure previsions__: [*OK]
  
 ```bash
 http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
+```
+
+Result set:
+```bash
+[ship, ts_departure_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage, net_tonnage, draft_aft, draft_fwd, agency, destination_port, starting_quay_berth, starting_roadstead, cargo_on_board]
 ```
 
 ## B - ARCHIVE DATA SERVICES:
