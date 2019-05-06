@@ -401,8 +401,9 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 
 //GetAllMoored todo doc
 func GetAllMoored(idPortinformer string) []map[string]string {
-	var idControlUnitData, iso3, grossTonnage, length, width sql.NullString
+	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
 	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
+	var agency sql.NullString
 
 	var result []map[string]string
 
@@ -413,7 +414,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 						  ship_current_activities.description AS current_activity, 
 						  quays.description AS quay,
 						  shipped_goods_data.shipped_goods_row AS shipped_goods_data,
-						  iso3, gross_tonnage, ships.length, ships.width  
+						  iso3, gross_tonnage, ships.length, ships.width, type_acronym,
+						  agencies.description AS agency  
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
@@ -433,11 +435,22 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 							GROUP BY fk_control_unit_data        
 						  ) as shipped_goods_data
 						  ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
+						  INNER JOIN (  
+							SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
+							FROM trips_logs
+							WHERE fk_portinformer = %s
+							GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
+							) AS RES
+						  ON id_control_unit_data = RES.fk_control_unit_data 
 						  INNER JOIN countries
-        				  ON countries.id_country = ships.fk_country_flag 
+						  ON countries.id_country = ships.fk_country_flag
+						  INNER JOIN ship_types
+						  ON ships.fk_ship_type = ship_types.id_ship_type
+						  INNER JOIN agencies
+						  ON RES.fk_agency = agencies.id_agency 
 						  WHERE fk_ship_current_activity = 5
 						  AND control_unit_data.is_active = true 
-						  AND control_unit_data.fk_portinformer = %s`, idPortinformer)
+						  AND control_unit_data.fk_portinformer = %s`, idPortinformer, idPortinformer)
 
 	rows, err := connector.Query(query)
 
@@ -459,6 +472,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			&grossTonnage,
 			&length,
 			&width,
+			&shipType,
+			&agency,
 		)
 
 		if err != nil {
@@ -478,6 +493,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			"gross_tonnage":    grossTonnage.String,
 			"ships_length":     length.String,
 			"ships_width":      width.String,
+			"ship_type":        shipType.String,
+			"agency":           agency.String,
 		}
 		result = append(result, tmpDict)
 	}
