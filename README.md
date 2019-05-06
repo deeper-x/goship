@@ -85,6 +85,11 @@ Result set:
 http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 ```
 
+Result set:
+```bash
+[idTrip, shipName, numContainer, numPassengers, numCamion, numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons, numBus, numMinibus, trafficListMvntType, trafficListCategories, quay]
+```
+
 9. __Shifting previsions__: [*OK]
 
 ```bash
