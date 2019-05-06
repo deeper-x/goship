@@ -10,7 +10,7 @@ import (
 func GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
 	var shipName, anchoringTime, currentActivity sql.NullString
-	var anchoragePoint sql.NullString
+	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency sql.NullString
 	var result []map[string]string
 
 	connector := Connect()
@@ -18,7 +18,10 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	query := fmt.Sprintf(`SELECT id_control_unit_data, ship_description, 
 						  ts_last_ship_activity, 
 						  ship_current_activities.description AS current_activity,
-						  anchorage_points.description AS anchorage_point
+						  anchorage_points.description AS anchorage_point,
+						  type_acronym as ship_type, iso3, gross_tonnage, 
+						  ships.length, ships.width,
+        				  agencies.description as agency
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
@@ -28,9 +31,22 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 						  ON latest_maneuverings.fk_control_unit_data = id_control_unit_data
 						  INNER JOIN anchorage_points
 						  ON latest_maneuverings.fk_stop_anchorage_point = id_anchorage_point
+						  INNER JOIN ship_types
+        				  ON ships.fk_ship_type = ship_types.id_ship_type
+						  INNER JOIN countries
+						  ON countries.id_country = ships.fk_country_flag
+						  INNER JOIN (  
+							SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
+							FROM trips_logs
+							WHERE fk_portinformer = %s
+							GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
+							) AS RES
+						  ON id_control_unit_data = RES.fk_control_unit_data
+						  INNER JOIN agencies
+						  ON RES.fk_agency = agencies.id_agency
 						  WHERE fk_ship_current_activity = 2
 						  AND is_active = true 
-						  AND control_unit_data.fk_portinformer = %s`, idPortinformer)
+						  AND control_unit_data.fk_portinformer = %s`, idPortinformer, idPortinformer)
 
 	rows, err := connector.Query(query)
 
@@ -47,6 +63,12 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 			&anchoringTime,
 			&currentActivity,
 			&anchoragePoint,
+			&shipType,
+			&iso3,
+			&grossTonnage,
+			&length,
+			&width,
+			&agency,
 		)
 
 		if err != nil {
@@ -58,9 +80,15 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 		tmpDict := map[string]string{
 			"id_trip":          idControlUnitDataStr.String,
 			"ship":             shipName.String,
+			"ship_type":        shipType.String,
 			"anchoring_time":   anchoringTime.String,
 			"current_activity": currentActivity.String,
 			"anchorage_point":  anchoragePoint.String,
+			"iso3":             iso3.String,
+			"gross_tonnage":    grossTonnage.String,
+			"length":           length.String,
+			"width":            width.String,
+			"agency":           agency.String,
 		}
 
 		result = append(result, tmpDict)
@@ -810,11 +838,11 @@ func GetTodayShippedGoods(idPortinformer string) []map[string]string {
 			"ship_type":      shipType.String,
 			"ship_flag":      shipFlag.String,
 			"ship_width":     shipWidth.String,
-			"shipLength":     shipLength.String,
-			"grossTonnage":   grossTonnage.String,
-			"netTonnage":     netTonnage.String,
-			"groupCategory":  groupCategory.String,
-			"macroCategory":  macroCategory.String,
+			"ship_length":    shipLength.String,
+			"gross_tonnage":  grossTonnage.String,
+			"net_tonnage":    netTonnage.String,
+			"group_category": groupCategory.String,
+			"macro_category": macroCategory.String,
 		}
 
 		result = append(result, tmpDict)
