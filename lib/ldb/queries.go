@@ -402,13 +402,16 @@ func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
 //GetAllMoored todo doc
 func GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
-	var shipName, mooringTime, currentActivity, quay sql.NullString
+	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
 	var result []map[string]string
 
 	connector := Connect()
 
 	query := fmt.Sprintf(`SELECT id_control_unit_data, ship_description, 
-						  ts_last_ship_activity, ship_current_activities.description AS current_activity, quays.description AS quay  
+						  ts_last_ship_activity, 
+						  ship_current_activities.description AS current_activity, 
+						  quays.description AS quay,
+						  shipped_goods_data.shipped_goods_row AS shipped_goods_data  
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
@@ -418,6 +421,16 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 						  ON latest_maneuverings.fk_control_unit_data = id_control_unit_data
 						  INNER JOIN quays
 						  ON latest_maneuverings.fk_stop_quay = id_quay
+						  LEFT JOIN (
+							SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description, ', ') AS shipped_goods_row
+							FROM shipped_goods
+							INNER JOIN goods_categories
+							ON goods_categories.id_goods_category = shipped_goods.fk_goods_category
+							INNER JOIN groups_categories
+							ON groups_categories.id_group = goods_categories.fk_group_category
+							GROUP BY fk_control_unit_data        
+						  ) as shipped_goods_data
+						  ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
 						  WHERE fk_ship_current_activity = 5
 						  AND control_unit_data.is_active = true 
 						  AND control_unit_data.fk_portinformer = %s`, idPortinformer)
@@ -437,6 +450,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			&mooringTime,
 			&currentActivity,
 			&quay,
+			&shippedGoods,
 		)
 
 		if err != nil {
@@ -451,6 +465,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			"mooring_time":     mooringTime.String,
 			"current_activity": currentActivity.String,
 			"quay":             quay.String,
+			"shipped_goods":    shippedGoods.String,
 		}
 		result = append(result, tmpDict)
 	}
