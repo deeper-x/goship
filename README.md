@@ -74,6 +74,11 @@ Result set:
 http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
 ```
 
+Result set:
+```bash
+[idTrip, shipName, quantity, unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, groupCategory, macroCategory]
+```
+
 8. __RO/RO + RO/PAX__: [*OK]
 
 ```bash
