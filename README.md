@@ -18,7 +18,7 @@ http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 
 Result set:
 ```bash
-[idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency]
+# data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency]
 
 res := map[string]string{
 			"id_trip":          idControlUnitDataStr.String,
