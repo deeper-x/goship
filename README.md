@@ -51,6 +51,11 @@ cargoOnBoard]
 ```bash
 http://<REMOTE_IP>:8000/departures/<id_portinformer>
 ```
+Result set:
+```
+[idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, portDestination]
+```
+
 
 6. __Arrival previsions__: [*OK]
 
