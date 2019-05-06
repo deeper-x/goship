@@ -16,6 +16,11 @@ http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
 
+Result set:
+```bash
+[idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency]
+```
+
 3. __Moored__: [*OK]
     
 ```bash
@@ -24,7 +29,7 @@ http://<REMOTE_IP>:8000/moored/<id_portinformer>
 
 Result set:
 ```bash
-[idControlUnitData, shipName, mooringTime, currentActivity, quay, shippedGoods, iso3, grossTonnage, length, width, shipType, agency]
+[idTrip, shipName, shipType, mooringTime, currentActivity, quay, shippedGoods, country, grossTonnage, length, width,  agency]
 ```
 
 
