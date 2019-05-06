@@ -106,6 +106,24 @@ http://<REMOTE_IP>:8000/departures/<id_portinformer>
 Result set:
 ```
 [idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, portDestination]
+
+
+res := map[string]string{
+			"id_trip":           idTrip.String,
+			"ship_name":         shipName.String,
+			"ship_type":         shipType.String,
+			"ts_out_of_sight":   tsOutOfSight.String,
+			"ship_flag":         shipFlag.String,
+			"ship_width":        shipWidth.String,
+			"ship_length":       shipLength.String,
+			"gross_tonnage":     grossTonnage.String,
+			"net_tonnage":       netTonnage.String,
+			"draft_aft":         draftAft.String,
+			"draft_fwd":         draftFwd.String,
+			"agency":            agency.String,
+			"last_port_of_call": lastPortOfCall.String,
+			"port_destination":  portDestination.String,
+		}
 ```
 
 
