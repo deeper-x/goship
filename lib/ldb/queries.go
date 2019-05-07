@@ -9,7 +9,7 @@ import (
 // GetAllRoadstead todo doc
 func GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
-	var shipName, anchoringTime, currentActivity sql.NullString
+	var shipName, anchoringTime, currentActivity, shippedGoods sql.NullString
 	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency sql.NullString
 	var result []map[string]string
 
@@ -21,7 +21,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 						  anchorage_points.description AS anchorage_point,
 						  type_acronym as ship_type, iso3, gross_tonnage, 
 						  ships.length, ships.width,
-        				  agencies.description as agency
+						  agencies.description as agency,
+						  shipped_goods_data.shipped_goods_row AS shipped_goods_data
 						  FROM control_unit_data 
 						  INNER JOIN ships
 						  ON fk_ship = id_ship
@@ -44,6 +45,16 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 						  ON id_control_unit_data = RES.fk_control_unit_data
 						  INNER JOIN agencies
 						  ON RES.fk_agency = agencies.id_agency
+						  LEFT JOIN (
+							SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description, ', ') AS shipped_goods_row
+							FROM shipped_goods
+							INNER JOIN goods_categories
+							ON goods_categories.id_goods_category = shipped_goods.fk_goods_category
+							INNER JOIN groups_categories
+							ON groups_categories.id_group = goods_categories.fk_group_category
+							GROUP BY fk_control_unit_data        
+						  ) as shipped_goods_data
+						  ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
 						  WHERE fk_ship_current_activity = 2
 						  AND is_active = true 
 						  AND control_unit_data.fk_portinformer = %s`, idPortinformer, idPortinformer)
@@ -69,6 +80,7 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 			&length,
 			&width,
 			&agency,
+			&shippedGoods,
 		)
 
 		if err != nil {
@@ -89,6 +101,7 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 			"length":           length.String,
 			"width":            width.String,
 			"agency":           agency.String,
+			"shipped_goods":    shippedGoods.String,
 		}
 
 		result = append(result, tmpDict)

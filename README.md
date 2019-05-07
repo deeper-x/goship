@@ -18,7 +18,7 @@ http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 
 Result set:
 ```bash
-# data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency]
+# data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency, shippedGoods]
 
 res := map[string]string{
 			"id_trip":          idControlUnitDataStr.String,
@@ -32,6 +32,7 @@ res := map[string]string{
 			"length":           length.String,
 			"width":            width.String,
 			"agency":           agency.String,
+			"shipped_goods":    shipped_goods.String,
 		}
 
 ```
