@@ -11,7 +11,7 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
 	var shipName, anchoringTime, currentActivity, shippedGoods sql.NullString
 	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency sql.NullString
-	var result []map[string]string
+	var result []map[string]string = []map[string]string{}
 
 	connector := Connect()
 
