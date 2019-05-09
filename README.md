@@ -307,7 +307,7 @@ http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-5. __Arrivals archive__: [*MP]
+5. __Arrivals archive__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>

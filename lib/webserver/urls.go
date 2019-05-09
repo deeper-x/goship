@@ -6,6 +6,7 @@ var objPortinformer services.Portinformer
 
 //URLLoader todo description
 func (objInstance Instance) URLLoader() {
+	// LIVE DATA CALLS:
 	objInstance.URLRequest("/moored/{id_portinformer:string}", objPortinformer.MooredNow)
 	objInstance.URLRequest("/anchored/{id_portinformer:string}", objPortinformer.RoadsteadNow)
 	objInstance.URLRequest("/arrivalPrevisionsToday/{id_portinformer:string}", objPortinformer.ArrivalPrevisionsToday)
@@ -15,4 +16,7 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/departures/{id_portinformer:string}", objPortinformer.Departures)
 	objInstance.URLRequest("/shippedGoodsToday/{id_portinformer:string}", objPortinformer.ShippedGoods)
 	objInstance.URLRequest("/trafficListToday/{id_portinformer:string}", objPortinformer.TrafficListToday)
+
+	//ARCHIVE DATA CALLS
+	objInstance.URLRequest("/arrivalsArchive/{id_portinformer:string}", objPortinformer.ArrivalsArchive)
 }
