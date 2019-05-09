@@ -289,7 +289,7 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-2. __Trips archive [global recap, one row per commercial operation]__: [*MP]
+2. __Trips archive [global recap, one row per commercial operation]__: [*OK]
 
 ```bash
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
