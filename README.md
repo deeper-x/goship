@@ -2,6 +2,12 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
+
+## WIP: List of verified&active services:
+```
+A.2; A.3; A.4; A.5; A.6; A.9; A.10
+```
+
 ## A - LIVE DATA SERVICES:
 
 1. __Active trips__: [*SB]
@@ -464,7 +470,7 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 
 
 # Install Go and (first) run 
-### ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz ###
+ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz
 
 ```bash
 $ go version
