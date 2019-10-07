@@ -110,8 +110,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	return result
 }
 
-//GetTodayArrivalPrevisions todo doc
-func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
+//GetArrivalPrevisions todo doc
+func GetArrivalPrevisions(idPortinformer string) []map[string]string {
 	var idControlUnitData, shipName sql.NullString
 	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
@@ -220,15 +220,17 @@ func GetTodayArrivalPrevisions(idPortinformer string) []map[string]string {
 	return result
 }
 
-//GetTodayShiftingPrevisions todo doc
-func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
+//GetShiftingPrevisions todo doc
+func GetShiftingPrevisions(idPortinformer string) []map[string]string {
 	var ship, tsShiftingPrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
-	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString
+	var agency, destinationPort, startingQuayBerth, startingRoadstead, stopQuayBerth, stopRoadstead, cargoOnBoard sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	query := fmt.Sprintf(`SELECT ship_description AS ship, ts_shifting_prevision,
+	query := fmt.Sprintf(`SELECT 
+			ship_description AS ship, 
+			ts_shifting_prevision,
 			ship_types.type_acronym AS ship_type,  
 			countries.iso3 AS ship_flag,
 			ships.width AS ship_width,
@@ -277,7 +279,7 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 				select id_anchorage_point, description from anchorage_points
 			) as stop_anchorage_point
 			ON planned_shiftings.fk_stop_anchorage_point = stop_anchorage_point.id_anchorage_point	
-			WHERE LENGTH(planned_shiftings.ts_shifting_prevision) > 0 
+			WHERE LENGTH(planned_shiftings.ts_shifting_prevision) > 0
 			AND planned_shiftings.is_active = true
 			AND planned_shiftings.fk_portinformer = %s`, idPortinformer)
 
@@ -302,9 +304,10 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 			&draftAft,
 			&draftFwd,
 			&agency,
-			&destinationPort,
 			&startingQuayBerth,
+			&stopQuayBerth,
 			&startingRoadstead,
+			&stopRoadstead,
 			&cargoOnBoard,
 		)
 
@@ -336,8 +339,8 @@ func GetTodayShiftingPrevisions(idPortinformer string) []map[string]string {
 	return result
 }
 
-//GetTodayDeparturePrevisions todo doc
-func GetTodayDeparturePrevisions(idPortinformer string) []map[string]string {
+//GetDeparturePrevisions todo doc
+func GetDeparturePrevisions(idPortinformer string) []map[string]string {
 	var ship, tsDeparturePrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
 	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString

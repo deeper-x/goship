@@ -138,7 +138,7 @@ res := map[string]string{
 6. __Arrival previsions__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
+http://<REMOTE_IP>:8000/arrivalPrevisions/<id_portinformer>
 ```
 
 Response:
@@ -236,7 +236,7 @@ res := map[string]string{
 9. __Shifting previsions__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/shiftingPrevisionsToday/<id_portinformer>
+http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
 ```
 
 Response:
@@ -244,6 +244,7 @@ Response:
 # Content-Type: application/json; charset=UTF-8
 
 # data := [ship, ts_shifting_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage,net_tonnage, draft_aft, draft_fwd, agency, starting_quay_berth, starting_roadstead, stop_quay_berth, stop_roadstead, cargo_on_board]
+
 
 res := map[string]string{
 			"ship":                 ship.String,
@@ -259,7 +260,9 @@ res := map[string]string{
 			"agency":               agency.String,
 			"destinationPort":      destinationPort.String,
 			"startingQuayBerth":    startingQuayBerth.String,
-			"startingRoadstead":    startingRoadstead.String,
+			"startingRoadstead":    stopRoadstead.String,
+			"stopQuayBerth":        stopQuayBerth.String,
+			"stopRoadstead":        stopRoadstead.String,
 			"cargoOnBoard":         cargoOnBoard.String,
 		}
 
@@ -270,7 +273,7 @@ res := map[string]string{
 10. __Departure previsions__: [*OK]
  
 ```bash
-http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
+http://<REMOTE_IP>:8000/departurePrevisions/<id_portinformer>
 ```
 
 Response:

@@ -5,23 +5,23 @@ import (
 	"github.com/kataras/iris"
 )
 
-// ArrivalPrevisionsToday todo description
-func (objPortinformer Portinformer) ArrivalPrevisionsToday(ctx iris.Context) {
+// ArrivalPrevisions todo description
+func (objPortinformer Portinformer) ArrivalPrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allArrivals := ldb.GetTodayArrivalPrevisions(idPortinformer)
+	allArrivals := ldb.GetArrivalPrevisions(idPortinformer)
 	ctx.JSON(allArrivals)
 }
 
-//DeparturePrevisionsToday todo description
-func (objPortinformer Portinformer) DeparturePrevisionsToday(ctx iris.Context) {
+//DeparturePrevisions todo description
+func (objPortinformer Portinformer) DeparturePrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allDepartures := ldb.GetTodayDeparturePrevisions(idPortinformer)
+	allDepartures := ldb.GetDeparturePrevisions(idPortinformer)
 	ctx.JSON(allDepartures)
 }
 
-//ShiftingPrevisionsToday todo description
-func (objPortinformer Portinformer) ShiftingPrevisionsToday(ctx iris.Context) {
+//ShiftingPrevisions todo description
+func (objPortinformer Portinformer) ShiftingPrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allShiftings := ldb.GetTodayShiftingPrevisions(idPortinformer)
+	allShiftings := ldb.GetShiftingPrevisions(idPortinformer)
 	ctx.JSON(allShiftings)
 }
