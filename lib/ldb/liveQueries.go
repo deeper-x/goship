@@ -467,7 +467,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 						  INNER JOIN quays
 						  ON latest_maneuverings.fk_stop_quay = id_quay
 						  LEFT JOIN (
-							SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description, ', ') AS shipped_goods_row
+							SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description||' '||quantity||''||unit::TEXT, ', ') AS shipped_goods_row
 							FROM shipped_goods
 							INNER JOIN goods_categories
 							ON goods_categories.id_goods_category = shipped_goods.fk_goods_category
