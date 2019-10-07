@@ -6,13 +6,16 @@ Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed
 
 1. __Active trips__: [*SB]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
 2. __At roadstead__: [*OK]
 
+Request:
 ```bash
+Request:
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
 
@@ -41,6 +44,7 @@ res := map[string]string{
 
 3. __Moored__: [*OK]
     
+Request:	
 ```bash
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
@@ -71,6 +75,7 @@ res := map[string]string{
 
 4. __Arrivals__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/arrivalsToday/<id_portinformer>
 ```
@@ -106,6 +111,7 @@ res := map[string]string{
 
 5. __Departures__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/departures/<id_portinformer>
 ```
@@ -137,6 +143,7 @@ res := map[string]string{
 
 6. __Arrival previsions__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/arrivalPrevisions/<id_portinformer>
 ```
@@ -170,6 +177,7 @@ res := map[string]string{
 
 7. __Shipped goods__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
 ```
@@ -200,6 +208,7 @@ res := map[string]string{
 
 8. __RO/RO + RO/PAX__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 ```
@@ -235,6 +244,7 @@ res := map[string]string{
 
 9. __Shifting previsions__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
 ```
@@ -272,6 +282,7 @@ res := map[string]string{
 
 10. __Departure previsions__: [*OK]
  
+Request:
 ```bash
 http://<REMOTE_IP>:8000/departurePrevisions/<id_portinformer>
 ```
@@ -306,48 +317,56 @@ res := map[string]string{
 
 1. __Trips archive [global recap, one row per trip]__: [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
 2. __Trips archive [global recap, one row per commercial operation]__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
 3. __Trip data archive__ [shipreport core]: [*SB]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
 4. __Trip data archive detailed__ [shipreport]: [*SB]
 
+Request:
 ```bash   
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
 5. __Arrivals archive__: [*OK]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>
 ```
 
 6. __Departures archive__: [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/departuresArchive?id_portinformer=<id_portinformer>
 ```
 
 7. __Shipped goods archive__: [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsArchive?id_portinformer=<id_portinformer>
 ```
 
 8. __Traffic list archive__: [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 ```
@@ -358,42 +377,56 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 1. __Arrivals:__ [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
 2. __Moored:__ [*MP]
 
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerMoored?id_portinformer=<ID_PORTINFORMER>
 ```
 
 3. __Roadstead:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerRoadstead?id_portinformer=<ID_PORTINFORMER>
 ```
 
 4. __Departures:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerDepartures?id_portinformer=<ID_PORTINFORMER>
 ```
 
 5. __Shiftings:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerShiftings?id_portinformer=<ID_PORTINFORMER>
 ```
 
 6. __Arrival previsions:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
 7. __Shipped goods:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerShippedGoods?id_portinformer=<ID_PORTINFORMER>
 ```
 
 8. __RO/RO + RO/PAX:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/registerTrafficList?id_portinformer=<ID_PORTINFORMER>
 ```
@@ -401,22 +434,30 @@ http://<REMOTE_IP>:8000/registerTrafficList?id_portinformer=<ID_PORTINFORMER>
 ## D - BUSINESS INTELLIGENCE SERVICES: ##
 
 1. __Shiftings/maneuverings [per quay/berth]:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/tripsManeuverings?id_portinformer=<ID_PORTINFORMER>
 ```
 
 2. __Shipped goods recap:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
 3. __RO/RO + RO/PAX recap:__ [*MP]
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/trafficListRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
 ## E - METEO DATA ##
 1. __Meteo data archive__:
+
+Request:
 ```bash
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
