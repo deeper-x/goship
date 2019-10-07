@@ -16,8 +16,10 @@ http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency, shippedGoods]
 
 res := map[string]string{
@@ -43,8 +45,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [idTrip, shipName, shipType, mooringTime, currentActivity, quay, shippedGoods, country, grossTonnage, length, width,  agency]
 
 res := map[string]string{
@@ -71,8 +75,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [ship, tsArrivalPrevision, shipType, country, width, length, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
@@ -103,8 +109,10 @@ res := map[string]string{
 ```bash
 http://<REMOTE_IP>:8000/departures/<id_portinformer>
 ```
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, portDestination]
 
 
@@ -133,8 +141,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/arrivalPrevisionsToday/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [ship, tsArrivalPrevision, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
@@ -164,8 +174,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [idTrip, shipName, quantity, unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, groupCategory, macroCategory]
 
 res := map[string]string{
@@ -192,8 +204,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [idTrip, shipName, numContainer, numPassengers, numCamion, numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons, numBus, numMinibus, trafficListMvntType, trafficListCategories, quay]
 
 
@@ -225,8 +239,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/shiftingPrevisionsToday/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [ship, ts_shifting_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage,net_tonnage, draft_aft, draft_fwd, agency, starting_quay_berth, starting_roadstead, stop_quay_berth, stop_roadstead, cargo_on_board]
 
 res := map[string]string{
@@ -257,8 +273,10 @@ res := map[string]string{
 http://<REMOTE_IP>:8000/departurePrevisionsToday/<id_portinformer>
 ```
 
-Result set:
+Response:
 ```bash
+# Content-Type: application/json; charset=UTF-8
+
 # data := [ship, ts_departure_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage, net_tonnage, draft_aft, draft_fwd, agency, destination_port, starting_quay_berth, starting_roadstead, cargo_on_board]
 
 res := map[string]string{
