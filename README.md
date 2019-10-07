@@ -401,10 +401,13 @@ http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
 
-# Install and (first) run 
+# Install Go and (first) run 
+### ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz ###
+
 ```bash
-# Install Go 1.11.9 and verify version
-# ref. https://golang.org/doc/install?download=go1.11.9.linux-386.tar.gz
+$ go version
+go version go1.12.10 linux/amd64
+
 $ export PATH=${PATH}:/usr/local/go/bin/ # FIX w/ your installation path
 
 # Pass vars at runtime or add to .bash_profile
