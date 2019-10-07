@@ -12,7 +12,7 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/arrivalPrevisionsToday/{id_portinformer:string}", objPortinformer.ArrivalPrevisionsToday)
 	objInstance.URLRequest("/departurePrevisionsToday/{id_portinformer:string}", objPortinformer.DeparturePrevisionsToday)
 	objInstance.URLRequest("/shiftingPrevisionsToday/{id_portinformer:string}", objPortinformer.ShiftingPrevisionsToday)
-	objInstance.URLRequest("/arrivals/{id_portinformer:string}", objPortinformer.Arrivals)
+	objInstance.URLRequest("/arrivalsToday/{id_portinformer:string}", objPortinformer.ArrivalsToday)
 	objInstance.URLRequest("/departures/{id_portinformer:string}", objPortinformer.Departures)
 	objInstance.URLRequest("/shippedGoodsToday/{id_portinformer:string}", objPortinformer.ShippedGoods)
 	objInstance.URLRequest("/trafficListToday/{id_portinformer:string}", objPortinformer.TrafficListToday)

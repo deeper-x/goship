@@ -72,7 +72,7 @@ res := map[string]string{
 4. __Arrivals__: [*OK]
 
 ```bash
-http://<REMOTE_IP>:8000/arrivals/<id_portinformer>
+http://<REMOTE_IP>:8000/arrivalsToday/<id_portinformer>
 ```
 
 Response:
