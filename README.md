@@ -1,4 +1,4 @@
-# GSW - Goship [Shipreporting Webservice] 
+# GSW - Goship Shipreporting Webservice 
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
