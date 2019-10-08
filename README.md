@@ -386,7 +386,7 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<START>/STOP
+http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
@@ -418,9 +418,6 @@ res := map[string]string{
 ```
 
 
-
-
-
 2. __Moored:__ [*MP]
 
 Request:
@@ -439,7 +436,7 @@ http://<REMOTE_IP>:8000/registerRoadstead?id_portinformer=<ID_PORTINFORMER>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/start/stop
+http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
