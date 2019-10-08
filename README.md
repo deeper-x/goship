@@ -386,7 +386,7 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/registerArrivals/<ID_PORTINFORMER>/<START>/STOP
+http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<START>/STOP
 ```
 
 Response:
@@ -439,8 +439,34 @@ http://<REMOTE_IP>:8000/registerRoadstead?id_portinformer=<ID_PORTINFORMER>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/registerDepartures?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/start/stop
 ```
+
+Response:
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, portDestination]
+
+
+res := map[string]string{
+			"id_trip":           idTrip.String,
+			"ship_name":         shipName.String,
+			"ship_type":         shipType.String,
+			"ts_out_of_sight":   tsOutOfSight.String,
+			"ship_flag":         shipFlag.String,
+			"ship_width":        shipWidth.String,
+			"ship_length":       shipLength.String,
+			"gross_tonnage":     grossTonnage.String,
+			"net_tonnage":       netTonnage.String,
+			"draft_aft":         draftAft.String,
+			"draft_fwd":         draftFwd.String,
+			"agency":            agency.String,
+			"last_port_of_call": lastPortOfCall.String,
+			"port_destination":  portDestination.String,
+		}
+```
+
 
 5. __Shiftings:__ [*MP]
 
