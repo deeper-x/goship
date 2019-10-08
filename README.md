@@ -6,7 +6,7 @@ __Version: v0.2.1__
 
 ## WIP: List of verified&active services:
 ```
-A.2; A.3; A.4; A.5; A.6; A.9; A.10
+A.2; A.3; A.4; A.5; A.6; A.9; A.10; C.1
 ```
 
 ## A - LIVE DATA SERVICES:
@@ -386,8 +386,40 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/registerArrivals?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/registerArrivals/<ID_PORTINFORMER>/<START>/STOP
 ```
+
+Response:
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [ship, tsArrivalPrevision, shipType, country, width, length, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
+
+res := map[string]string{
+			"id_trip":                idTrip.String,
+			"ship_name":              shipName.String,
+			"ship_type":              shipType.String,
+			"ts_sighting":            tsSighting.String,
+			"ship_flag":              shipFlag.String,
+			"ship_width":             shipWidth.String,
+			"ship_length":            shipLength.String,
+			"gross_tonnage":          grossTonnage.String,
+			"net_tonnage":            netTonnage.String,
+			"draft_aft":              draftAft.String,
+			"draft_fwd":              draftFwd.String,
+			"agency":                 agency.String,
+			"last_port_of_call":      lastPortOfCall.String,
+			"port_destination":       portDestination.String,
+			"destination_quay_berth": destinationQuayBerth.String,
+			"destination_roadstead":  destinationRoadstead.String,
+		}
+
+
+```
+
+
+
+
 
 2. __Moored:__ [*MP]
 
