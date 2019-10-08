@@ -6,7 +6,7 @@ __Version: v0.2.2__
 
 ## WIP: List of verified&active services:
 ```
-A.2; A.3; A.4; A.5; A.6; A.9; A.10; C.1
+A.2; A.3; A.4; A.5; A.6; A.9; A.10; C.1, C4
 ```
 
 ## A - LIVE DATA SERVICES:
@@ -382,7 +382,7 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 ## C - DAILY REGISTER SERVICES:
 
-1. __Arrivals:__ [*MP]
+1. __Arrivals:__ [*OK]
 
 Request:
 ```bash
@@ -435,7 +435,7 @@ Request:
 http://<REMOTE_IP>:8000/registerRoadstead?id_portinformer=<ID_PORTINFORMER>
 ```
 
-4. __Departures:__ [*MP]
+4. __Departures:__ [*OK]
 
 Request:
 ```bash
