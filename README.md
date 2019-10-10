@@ -6,7 +6,7 @@ __Version: v0.2.2__
 
 ## WIP: List of verified&active services:
 ```
-A.2; A.3; A.4; A.5; A.6; A.9; A.10; C.1, C4
+A.2; A.3; A.4; A.5; A.6; A.9; A.10; C.1, C.2, C.3, C4
 ```
 
 ## A - LIVE DATA SERVICES:
@@ -418,7 +418,7 @@ res := map[string]string{
 ```
 
 
-2. __Moored:__ [*MP]
+2. __Moored:__ [*OK]
 
 Request:
 ```bash
