@@ -581,9 +581,6 @@ $ export GOPATH=${HOME}/go
 $ export GOBIN=${GOPATH}/bin
 $ export PATH=${PATH}:${GOBIN}
 
-$ go version
-go version go1.11.9 linux/386
-
 # Get goship and deploy
 $ go get github.com/deeper-x/goship
 
