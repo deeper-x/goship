@@ -34,3 +34,13 @@ func (objPortinformer Portinformer) RoadsteadRegister(ctx iris.Context) {
 	allRoadstead := ldb.GetRoadsteadRegister(idPortinformer, start, stop)
 	ctx.JSON(allRoadstead)
 }
+
+// MooredRegister todo doc
+func (objPortinformer Portinformer) MooredRegister(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	start := ctx.Params().Get("start")
+	stop := ctx.Params().Get("stop")
+
+	allMoored := ldb.GetMooredRegister(idPortinformer, start, stop)
+	ctx.JSON(allMoored)
+}

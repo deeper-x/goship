@@ -422,7 +422,27 @@ res := map[string]string{
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/registerMoored?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/mooredRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
+```
+
+Response:
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, agency]
+
+res := map[string]string{
+			"id_trip":       idTrip.String,
+			"ship_name":     shipName.String,
+			"ship_type":     shipType.String,
+			"ts_mooring":    tsMooring.String,
+			"ship_flag":     shipFlag.String,
+			"ship_width":    shipWidth.String,
+			"ship_length":   shipLength.String,
+			"gross_tonnage": grossTonnage.String,
+			"net_tonnage":   netTonnage.String,
+			"agency":        agency.String,
+		}
 ```
 
 3. __Roadstead:__ [*OK]
