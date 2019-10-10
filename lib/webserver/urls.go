@@ -6,6 +6,8 @@ var objPortinformer services.Portinformer
 
 //URLLoader todo description
 func (objInstance Instance) URLLoader() {
+	objInstance.URLRequest("/", objPortinformer.Home)
+
 	// LIVE DATA CALLS:
 	objInstance.URLRequest("/moored/{id_portinformer:string}", objPortinformer.MooredNow)                        // verified
 	objInstance.URLRequest("/anchored/{id_portinformer:string}", objPortinformer.RoadsteadNow)                   // verified
@@ -18,10 +20,10 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/trafficListToday/{id_portinformer:string}", objPortinformer.TrafficListToday)
 
 	//REGISTER DATA CALLS
-	objInstance.URLRequest("/arrivalsRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.ArrivalsRegister)
-	objInstance.URLRequest("/departuresRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.DeparturesRegister)
-	objInstance.URLRequest("/roadsteadRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.RoadsteadRegister)
-	objInstance.URLRequest("/mooredRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.MooredRegister)
+	objInstance.URLRequest("/arrivalsRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.ArrivalsRegister)     // verified
+	objInstance.URLRequest("/departuresRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.DeparturesRegister) // verified
+	objInstance.URLRequest("/roadsteadRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.RoadsteadRegister)   // verified
+	objInstance.URLRequest("/mooredRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.MooredRegister)         // verified
 
 	//ARCHIVE DATA CALLS
 	objInstance.URLRequest("/arrivalsArchive/{id_portinformer:string}", objPortinformer.ArrivalsArchive)

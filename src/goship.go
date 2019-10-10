@@ -4,10 +4,11 @@ import (
 	"github.com/deeper-x/goship/lib/webserver"
 )
 
-var app webserver.Instance
+// Inst object
+var Inst webserver.Instance
 
 func main() {
-	webserver.StartInstance(&app)
-	app.URLLoader()
-	webserver.Run(&app)
+	webserver.StartInstance(&Inst)
+	Inst.URLLoader()
+	webserver.Run(&Inst)
 }

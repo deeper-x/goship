@@ -5,6 +5,11 @@ import (
 	"github.com/kataras/iris"
 )
 
+// Home todo doc
+func (objPortinformer Portinformer) Home(ctx iris.Context) {
+	ctx.JSON("hello, world")
+}
+
 // MooredNow todo description
 func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
