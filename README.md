@@ -386,11 +386,7 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 Request:
 ```bash
-<<<<<<< HEAD
-http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<TS_START>/<TS_STOP>
-=======
 http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
->>>>>>> bfa7ff5b8cb1edb527ff078b4b916e140f762114
 ```
 
 Response:
@@ -433,7 +429,7 @@ http://<REMOTE_IP>:8000/registerMoored?id_portinformer=<ID_PORTINFORMER>
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/roadsteadRegister/<ID_PORTINFORMER>/<TS_START>/<TS_STOP>
+http://<REMOTE_IP>:8000/roadsteadRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
@@ -461,7 +457,7 @@ res := map[string]string{
 
 Request:
 ```bash
-http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/<TS_START>/<TS_STOP>
+http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
