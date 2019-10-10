@@ -128,6 +128,107 @@ func GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start st
 	return result
 }
 
+// GetRoadsteadRegister todo doc
+func GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string {
+	var idTrip, shipName, shipType, tsAnchoring, shipFlag, shipWidth sql.NullString
+	var shipLength, grossTonnage sql.NullString
+	var netTonnage, agency sql.NullString
+
+	var result []map[string]string = []map[string]string{}
+	connector := Connect()
+
+	query := fmt.Sprintf(`(SELECT id_control_unit_data, 
+				ship_description, type_description, ts_anchor_drop,
+				countries.name as country, width, length, gross_tonnage, net_tonnage 
+				FROM control_unit_data
+				INNER JOIN data_arrivo_in_rada
+				ON fk_control_unit_data = id_control_unit_data
+				INNER JOIN ships
+				ON fk_ship = id_ship
+				INNER JOIN ship_types
+				ON fk_ship_type = id_ship_type
+				INNER JOIN countries
+				ON fk_country_flag = id_country
+				WHERE control_unit_data.fk_portinformer = %s 
+				AND ts_anchor_drop BETWEEN '%s' AND '%s')
+				UNION
+				(SELECT id_control_unit_data, 
+					ship_description, type_description, ts_anchor_drop,
+					countries.name as country, width, length, gross_tonnage, net_tonnage 
+					FROM control_unit_data
+					INNER JOIN data_da_ormeggio_a_rada
+					ON fk_control_unit_data = id_control_unit_data
+					INNER JOIN ships
+					ON fk_ship = id_ship
+					INNER JOIN ship_types
+					ON fk_ship_type = id_ship_type
+					INNER JOIN countries
+					ON fk_country_flag = id_country
+					WHERE control_unit_data.fk_portinformer = %s 
+					AND ts_anchor_drop BETWEEN '%s' AND '%s')
+				UNION
+				(
+				SELECT id_control_unit_data, 
+				ship_description, type_description, ts_anchor_drop,
+				countries.name as country, width, length, gross_tonnage, net_tonnage 
+				FROM control_unit_data
+				INNER JOIN data_da_rada_a_rada
+				ON fk_control_unit_data = id_control_unit_data
+				INNER JOIN ships
+				ON fk_ship = id_ship
+				INNER JOIN ship_types
+				ON fk_ship_type = id_ship_type
+				INNER JOIN countries
+				ON fk_country_flag = id_country
+				WHERE control_unit_data.fk_portinformer = %s 
+				AND ts_anchor_drop BETWEEN '%s' AND '%s'
+				)`, idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+
+	rows, err := connector.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer connector.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&shipName,
+			&shipType,
+			&tsAnchoring,
+			&shipFlag,
+			&shipWidth,
+			&shipLength,
+			&grossTonnage,
+			&netTonnage,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":       idTrip.String,
+			"ship_name":     shipName.String,
+			"ship_type":     shipType.String,
+			"ts_anchoring":  tsAnchoring.String,
+			"ship_flag":     shipFlag.String,
+			"ship_width":    shipWidth.String,
+			"ship_length":   shipLength.String,
+			"gross_tonnage": grossTonnage.String,
+			"net_tonnage":   netTonnage.String,
+			"agency":        agency.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+
+}
+
 // GetDeparturesRegister todo description
 func GetDeparturesRegister(idPortinformer string, idDepartureState int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth sql.NullString
