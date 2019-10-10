@@ -425,7 +425,7 @@ Request:
 http://<REMOTE_IP>:8000/registerMoored?id_portinformer=<ID_PORTINFORMER>
 ```
 
-3. __Roadstead:__ [*MP]
+3. __Roadstead:__ [*OK]
 
 Request:
 ```bash
@@ -453,7 +453,7 @@ res := map[string]string{
 ```
 
 
-4. __Departures:__ [*MP]
+4. __Departures:__ [*OK]
 
 Request:
 ```bash
