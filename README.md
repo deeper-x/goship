@@ -599,9 +599,6 @@ $ <CTRL+C>
 # Test (httpexpect)
 ```bash
 $ go test -v ./...
-?   	github.com/deeper-x/goship/lib/ldb	[no test files]
-?   	github.com/deeper-x/goship/lib/webserver	[no test files]
-?   	github.com/deeper-x/goship/services	[no test files]
 === RUN   TestMain
 --- PASS: TestMain (0.44s)
 PASS
