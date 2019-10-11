@@ -596,7 +596,7 @@ $ <CTRL+C>
 
 ```
 
-# Test (httpexpect)
+# Integration Test (httpexpect)
 ```bash
 $ go test -v ./...
 === RUN   TestMain
