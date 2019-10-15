@@ -586,7 +586,7 @@ $ go get github.com/deeper-x/goship
 
 $ cd ${GOPATH}/src/github.com/deeper-x/goship
 $ cat > .env <<HEREDOC 
-DB_DSN=""postgres://<user>:<passwd>@127.0.0.1/<db>"
+DB_DSN="postgres://<user>:<passwd>@127.0.0.1/<db>"
 HEREDOC
 
 $ go get -d ./...    
