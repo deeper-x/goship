@@ -7,7 +7,7 @@ import (
 
 // Home todo doc
 func (objPortinformer Portinformer) Home(ctx iris.Context) {
-	ctx.JSON("hello, world")
+	ctx.JSON("Please choose a service")
 }
 
 // MooredNow todo description

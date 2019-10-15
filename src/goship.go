@@ -8,7 +8,12 @@ import (
 var Inst webserver.Instance
 
 func main() {
-	webserver.StartInstance(&Inst)
+	//1. Start instance. Implicit to (&Inst).StartInstance()
+	Inst.StartInstance()
+
+	//2. Load url schema mapping
 	Inst.URLLoader()
-	webserver.Run(&Inst)
+
+	//3. Run instance. Implicit to (&Inst).Run()
+	Inst.Run()
 }

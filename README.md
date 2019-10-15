@@ -586,7 +586,7 @@ $ go get github.com/deeper-x/goship
 
 $ cd ${GOPATH}/src/github.com/deeper-x/goship
 $ go get -d ./...    
-$ go install src/goship.go 
+$ go install src/main.go 
 $ goship # RUN FOR TEST
 Now listening on: http://localhost:8000
 Application started. Press CTRL+C to shut down.

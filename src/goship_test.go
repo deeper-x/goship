@@ -3,12 +3,11 @@ package main
 import (
 	"testing"
 
-	"github.com/deeper-x/goship/lib/webserver"
 	"github.com/kataras/iris/httptest"
 )
 
 func TestMain(t *testing.T) {
-	webserver.StartInstance(&Inst)
+	Inst.StartInstance()
 	Inst.URLLoader()
 
 	app := Inst.App

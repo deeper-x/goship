@@ -3,9 +3,9 @@ package ldb
 import (
 	"database/sql"
 	"log"
-)
 
-var odot = GenDot("./qsql/live_queries.sql")
+	"github.com/deeper-x/goship/conf"
+)
 
 // GetAllRoadstead todo doc
 func GetAllRoadstead(idPortinformer string) []map[string]string {
@@ -16,7 +16,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "all-anchored", idPortinformer, idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "all-anchored", idPortinformer, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -82,7 +83,8 @@ func GetArrivalPrevisions(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "arrival-previsions", idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "arrival-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -150,7 +152,8 @@ func GetShiftingPrevisions(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "shifting-previsions", idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "shifting-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -214,7 +217,8 @@ func GetDeparturePrevisions(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "departure-previsions", idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "departure-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -279,7 +283,8 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "all-moored", idPortinformer, idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "all-moored", idPortinformer, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -339,7 +344,8 @@ func GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[strin
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "arrivals", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "arrivals", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -406,7 +412,8 @@ func GetTodayDepartures(idPortinformer string, idDepartureState int) []map[strin
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "departures", idDepartureState, idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "departures", idDepartureState, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -469,7 +476,8 @@ func GetTodayShippedGoods(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "shipped-goods", idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "shipped-goods", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -530,7 +538,8 @@ func GetTodayTrafficList(idPortinformer string) []map[string]string {
 
 	connector := Connect()
 
-	rows, err := odot.Query(connector, "traffic-list", idPortinformer)
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(connector, "traffic-list", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
