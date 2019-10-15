@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.3__
+__Version: v0.2.4__
 
 ## WIP: List of verified&active services:
 ```
