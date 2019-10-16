@@ -25,4 +25,7 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/roadsteadRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.RoadsteadRegister)   // verified
 	objInstance.URLRequest("/mooredRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.MooredRegister)         // verified
 
+	//WEATHER/METO CALLS
+	objInstance.URLRequest("/weatherActiveStations", objPortinformer.ActiveStations)
+
 }
