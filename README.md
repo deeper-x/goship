@@ -2,9 +2,10 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.4__
+__Version: v0.2.5__
 
 ## WIP: List of verified&active services:
+
 ```
 Live data: A.2; A.3; A.4; A.5; A.6; A.9; A.10; 
 Register data: C.1; C.2; C.3; C4;
@@ -34,19 +35,19 @@ Response:
 # data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency, shippedGoods]
 
 res := map[string]string{
-			"id_trip":          idControlUnitDataStr.String,
-			"ship":             shipName.String,
-			"ship_type":        shipType.String,
-			"anchoring_time":   anchoringTime.String,
-			"current_activity": currentActivity.String,
-			"anchorage_point":  anchoragePoint.String,
-			"iso3":             iso3.String,
-			"gross_tonnage":    grossTonnage.String,
-			"length":           length.String,
-			"width":            width.String,
-			"agency":           agency.String,
-			"shipped_goods":    shipped_goods.String,
-		}
+    "id_trip":          idControlUnitDataStr.String,
+    "ship":             shipName.String,
+    "ship_type":        shipType.String,
+    "anchoring_time":   anchoringTime.String,
+    "current_activity": currentActivity.String,
+    "anchorage_point":  anchoragePoint.String,
+    "iso3":             iso3.String,
+    "gross_tonnage":    grossTonnage.String,
+    "length":           length.String,
+    "width":            width.String,
+    "agency":           agency.String,
+    "shipped_goods":    shipped_goods.String,
+    }
 
 ```
 
@@ -64,19 +65,19 @@ Response:
 # data := [idTrip, shipName, shipType, mooringTime, currentActivity, quay, shippedGoods, country, grossTonnage, length, width,  agency]
 
 res := map[string]string{
-			"id_trip":          idControlUnitDataStr.String,
-			"ship":             shipName.String,
-			"mooring_time":     mooringTime.String,
-			"current_activity": currentActivity.String,
-			"quay":             quay.String,
-			"shipped_goods":    shippedGoods.String,
-			"iso3":             iso3.String,
-			"gross_tonnage":    grossTonnage.String,
-			"ships_length":     length.String,
-			"ships_width":      width.String,
-			"ship_type":        shipType.String,
-			"agency":           agency.String,
-		}
+    "id_trip":          idControlUnitDataStr.String,
+    "ship":             shipName.String,
+    "mooring_time":     mooringTime.String,
+    "current_activity": currentActivity.String,
+    "quay":             quay.String,
+    "shipped_goods":    shippedGoods.String,
+    "iso3":             iso3.String,
+    "gross_tonnage":    grossTonnage.String,
+    "ships_length":     length.String,
+    "ships_width":      width.String,
+    "ship_type":        shipType.String,
+    "agency":           agency.String,
+    }
 
 ```
 
@@ -95,23 +96,23 @@ Response:
 # data := [ship, tsArrivalPrevision, shipType, country, width, length, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
-			"id_trip":                idTrip.String,
-			"ship_name":              shipName.String,
-			"ship_type":              shipType.String,
-			"ts_sighting":            tsSighting.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"last_port_of_call":      lastPortOfCall.String,
-			"port_destination":       portDestination.String,
-			"destination_quay_berth": destinationQuayBerth.String,
-			"destination_roadstead":  destinationRoadstead.String,
-		}
+    "id_trip":                idTrip.String,
+    "ship_name":              shipName.String,
+    "ship_type":              shipType.String,
+    "ts_sighting":            tsSighting.String,
+    "ship_flag":              shipFlag.String,
+    "ship_width":             shipWidth.String,
+    "ship_length":            shipLength.String,
+    "gross_tonnage":          grossTonnage.String,
+    "net_tonnage":            netTonnage.String,
+    "draft_aft":              draftAft.String,
+    "draft_fwd":              draftFwd.String,
+    "agency":                 agency.String,
+    "last_port_of_call":      lastPortOfCall.String,
+    "port_destination":       portDestination.String,
+    "destination_quay_berth": destinationQuayBerth.String,
+    "destination_roadstead":  destinationRoadstead.String,
+    }
 
 
 ```
@@ -131,21 +132,21 @@ Response:
 
 
 res := map[string]string{
-			"id_trip":           idTrip.String,
-			"ship_name":         shipName.String,
-			"ship_type":         shipType.String,
-			"ts_out_of_sight":   tsOutOfSight.String,
-			"ship_flag":         shipFlag.String,
-			"ship_width":        shipWidth.String,
-			"ship_length":       shipLength.String,
-			"gross_tonnage":     grossTonnage.String,
-			"net_tonnage":       netTonnage.String,
-			"draft_aft":         draftAft.String,
-			"draft_fwd":         draftFwd.String,
-			"agency":            agency.String,
-			"last_port_of_call": lastPortOfCall.String,
-			"port_destination":  portDestination.String,
-		}
+    "id_trip":           idTrip.String,
+    "ship_name":         shipName.String,
+    "ship_type":         shipType.String,
+    "ts_out_of_sight":   tsOutOfSight.String,
+    "ship_flag":         shipFlag.String,
+    "ship_width":        shipWidth.String,
+    "ship_length":       shipLength.String,
+    "gross_tonnage":     grossTonnage.String,
+    "net_tonnage":       netTonnage.String,
+    "draft_aft":         draftAft.String,
+    "draft_fwd":         draftFwd.String,
+    "agency":            agency.String,
+    "last_port_of_call": lastPortOfCall.String,
+    "port_destination":  portDestination.String,
+    }
 ```
 
 
@@ -163,23 +164,23 @@ Response:
 # data := [ship, tsArrivalPrevision, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
-			"id_trip":                idControlUnitDataStr.String,
-			"ship":                   shipName.String,
-			"ts_arrival_prevision":   tsArrivalPrevision.String,
-			"ship_type":              shipType.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"last_port_of_call":      lastPortOfCall.String,
-			"destination_quay_berth": destinationQuayBerth.String,
-			"destination_roadstead":  destinationRoadstead.String,
-			"cargo_on_board":         cargoOnBoard.String,
-		}
+    "id_trip":                idControlUnitDataStr.String,
+    "ship":                   shipName.String,
+    "ts_arrival_prevision":   tsArrivalPrevision.String,
+    "ship_type":              shipType.String,
+    "ship_flag":              shipFlag.String,
+    "ship_width":             shipWidth.String,
+    "ship_length":            shipLength.String,
+    "gross_tonnage":          grossTonnage.String,
+    "net_tonnage":            netTonnage.String,
+    "draft_aft":              draftAft.String,
+    "draft_fwd":              draftFwd.String,
+    "agency":                 agency.String,
+    "last_port_of_call":      lastPortOfCall.String,
+    "destination_quay_berth": destinationQuayBerth.String,
+    "destination_roadstead":  destinationRoadstead.String,
+    "cargo_on_board":         cargoOnBoard.String,
+    }
 
 ```
 
@@ -197,20 +198,20 @@ Response:
 # data := [idTrip, shipName, quantity, unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, groupCategory, macroCategory]
 
 res := map[string]string{
-			"id_trip":        idTrip.String,
-			"ship_name":      shipName.String,
-			"quantity":       quantity.String,
-			"unit":           unit.String,
-			"goods_category": goodsCategory.String,
-			"ship_type":      shipType.String,
-			"ship_flag":      shipFlag.String,
-			"ship_width":     shipWidth.String,
-			"shipLength":     shipLength.String,
-			"grossTonnage":   grossTonnage.String,
-			"netTonnage":     netTonnage.String,
-			"groupCategory":  groupCategory.String,
-			"macroCategory":  macroCategory.String,
-		}
+    "id_trip":        idTrip.String,
+    "ship_name":      shipName.String,
+    "quantity":       quantity.String,
+    "unit":           unit.String,
+    "goods_category": goodsCategory.String,
+    "ship_type":      shipType.String,
+    "ship_flag":      shipFlag.String,
+    "ship_width":     shipWidth.String,
+    "shipLength":     shipLength.String,
+    "grossTonnage":   grossTonnage.String,
+    "netTonnage":     netTonnage.String,
+    "groupCategory":  groupCategory.String,
+    "macroCategory":  macroCategory.String,
+    }
 
 ```
 
@@ -229,23 +230,23 @@ Response:
 
 
 res := map[string]string{
-			"id_trip":        idTrip.String,
-			"ship_name":      shipName.String,
-			"num_container":  numContainer.String,
-			"num_passengers": numPassengers.String,
-			"num_camion":     numCamion.String,
-			"num_furgoni":    numFurgoni.String,
-			"num_rimorchi":   numRimorchi.String,
-			"num_auto":       numAuto.String,
-			"num_moto":       numMoto.String,
-			"num_camper":     numCamper.String,
-			"tons":           tons.String,
-			"num_bus":        numBus.String,
-			"num_minibus":    numMinibus.String,
-			"mvnt_type":      mvntType.String,
-			"description":    description.String,
-			"quay":           quay.String,
-		}
+    "id_trip":        idTrip.String,
+    "ship_name":      shipName.String,
+    "num_container":  numContainer.String,
+    "num_passengers": numPassengers.String,
+    "num_camion":     numCamion.String,
+    "num_furgoni":    numFurgoni.String,
+    "num_rimorchi":   numRimorchi.String,
+    "num_auto":       numAuto.String,
+    "num_moto":       numMoto.String,
+    "num_camper":     numCamper.String,
+    "tons":           tons.String,
+    "num_bus":        numBus.String,
+    "num_minibus":    numMinibus.String,
+    "mvnt_type":      mvntType.String,
+    "description":    description.String,
+    "quay":           quay.String,
+    }
 
 
 ```
@@ -265,24 +266,24 @@ Response:
 
 
 res := map[string]string{
-			"ship":                 ship.String,
-			"tsDeparturePrevision": tsShiftingPrevision.String,
-			"shipType":             shipType.String,
-			"shipFlag":             shipFlag.String,
-			"shipWidth":            shipWidth.String,
-			"shipLength":           shipLength.String,
-			"grossTonnage":         grossTonnage.String,
-			"netTonnage":           netTonnage.String,
-			"draftAft":             draftAft.String,
-			"draftFwd":             draftFwd.String,
-			"agency":               agency.String,
-			"destinationPort":      destinationPort.String,
-			"startingQuayBerth":    startingQuayBerth.String,
-			"startingRoadstead":    stopRoadstead.String,
-			"stopQuayBerth":        stopQuayBerth.String,
-			"stopRoadstead":        stopRoadstead.String,
-			"cargoOnBoard":         cargoOnBoard.String,
-		}
+    "ship":                 ship.String,
+    "tsDeparturePrevision": tsShiftingPrevision.String,
+    "shipType":             shipType.String,
+    "shipFlag":             shipFlag.String,
+    "shipWidth":            shipWidth.String,
+    "shipLength":           shipLength.String,
+    "grossTonnage":         grossTonnage.String,
+    "netTonnage":           netTonnage.String,
+    "draftAft":             draftAft.String,
+    "draftFwd":             draftFwd.String,
+    "agency":               agency.String,
+    "destinationPort":      destinationPort.String,
+    "startingQuayBerth":    startingQuayBerth.String,
+    "startingRoadstead":    stopRoadstead.String,
+    "stopQuayBerth":        stopQuayBerth.String,
+    "stopRoadstead":        stopRoadstead.String,
+    "cargoOnBoard":         cargoOnBoard.String,
+    }
 
 
 ```
@@ -302,22 +303,22 @@ Response:
 # data := [ship, ts_departure_prevision, ship_type, ship_flag, ship_width, ship_length, gross_tonnage, net_tonnage, draft_aft, draft_fwd, agency, destination_port, starting_quay_berth, starting_roadstead, cargo_on_board]
 
 res := map[string]string{
-			"ship":                   ship.String,
-			"ts_departure_prevision": tsDeparturePrevision.String,
-			"ship_type":              shipType.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"destination_port":       destinationPort.String,
-			"starting_quay_berth":    startingQuayBerth.String,
-			"starting_roadstead":     startingRoadstead.String,
-			"cargo_on_board":         cargoOnBoard.String,
-		}
+    "ship":                   ship.String,
+    "ts_departure_prevision": tsDeparturePrevision.String,
+    "ship_type":              shipType.String,
+    "ship_flag":              shipFlag.String,
+    "ship_width":             shipWidth.String,
+    "ship_length":            shipLength.String,
+    "gross_tonnage":          grossTonnage.String,
+    "net_tonnage":            netTonnage.String,
+    "draft_aft":              draftAft.String,
+    "draft_fwd":              draftFwd.String,
+    "agency":                 agency.String,
+    "destination_port":       destinationPort.String,
+    "starting_quay_berth":    startingQuayBerth.String,
+    "starting_roadstead":     startingRoadstead.String,
+    "cargo_on_board":         cargoOnBoard.String,
+    }
 
 ```
 
@@ -397,23 +398,23 @@ Response:
 # data := [ship, tsArrivalPrevision, shipType, country, width, length, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
-			"id_trip":                idTrip.String,
-			"ship_name":              shipName.String,
-			"ship_type":              shipType.String,
-			"ts_sighting":            tsSighting.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"last_port_of_call":      lastPortOfCall.String,
-			"port_destination":       portDestination.String,
-			"destination_quay_berth": destinationQuayBerth.String,
-			"destination_roadstead":  destinationRoadstead.String,
-		}
+    "id_trip":                idTrip.String,
+    "ship_name":              shipName.String,
+    "ship_type":              shipType.String,
+    "ts_sighting":            tsSighting.String,
+    "ship_flag":              shipFlag.String,
+    "ship_width":             shipWidth.String,
+    "ship_length":            shipLength.String,
+    "gross_tonnage":          grossTonnage.String,
+    "net_tonnage":            netTonnage.String,
+    "draft_aft":              draftAft.String,
+    "draft_fwd":              draftFwd.String,
+    "agency":                 agency.String,
+    "last_port_of_call":      lastPortOfCall.String,
+    "port_destination":       portDestination.String,
+    "destination_quay_berth": destinationQuayBerth.String,
+    "destination_roadstead":  destinationRoadstead.String,
+    }
 
 
 ```
@@ -433,17 +434,17 @@ Response:
 # data := [idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, agency]
 
 res := map[string]string{
-			"id_trip":       idTrip.String,
-			"ship_name":     shipName.String,
-			"ship_type":     shipType.String,
-			"ts_mooring":    tsMooring.String,
-			"ship_flag":     shipFlag.String,
-			"ship_width":    shipWidth.String,
-			"ship_length":   shipLength.String,
-			"gross_tonnage": grossTonnage.String,
-			"net_tonnage":   netTonnage.String,
-			"agency":        agency.String,
-		}
+    "id_trip":       idTrip.String,
+    "ship_name":     shipName.String,
+    "ship_type":     shipType.String,
+    "ts_mooring":    tsMooring.String,
+    "ship_flag":     shipFlag.String,
+    "ship_width":    shipWidth.String,
+    "ship_length":   shipLength.String,
+    "gross_tonnage": grossTonnage.String,
+    "net_tonnage":   netTonnage.String,
+    "agency":        agency.String,
+    }
 ```
 
 3. __Roadstead:__ [*OK]
@@ -460,17 +461,17 @@ Response:
 # data := [idTrip, shipName, shipType, tsAnchoring, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, agency]
 
 res := map[string]string{
-			"id_trip":       idTrip.String,
-			"ship_name":     shipName.String,
-			"ship_type":     shipType.String,
-			"ts_anchoring":  tsAnchoring.String,
-			"ship_flag":     shipFlag.String,
-			"ship_width":    shipWidth.String,
-			"ship_length":   shipLength.String,
-			"gross_tonnage": grossTonnage.String,
-			"net_tonnage":   netTonnage.String,
-			"agency":        agency.String,
-		}
+    "id_trip":       idTrip.String,
+    "ship_name":     shipName.String,
+    "ship_type":     shipType.String,
+    "ts_anchoring":  tsAnchoring.String,
+    "ship_flag":     shipFlag.String,
+    "ship_width":    shipWidth.String,
+    "ship_length":   shipLength.String,
+    "gross_tonnage": grossTonnage.String,
+    "net_tonnage":   netTonnage.String,
+    "agency":        agency.String,
+    }
 ```
 
 
@@ -489,21 +490,21 @@ Response:
 
 
 res := map[string]string{
-			"id_trip":           idTrip.String,
-			"ship_name":         shipName.String,
-			"ship_type":         shipType.String,
-			"ts_out_of_sight":   tsOutOfSight.String,
-			"ship_flag":         shipFlag.String,
-			"ship_width":        shipWidth.String,
-			"ship_length":       shipLength.String,
-			"gross_tonnage":     grossTonnage.String,
-			"net_tonnage":       netTonnage.String,
-			"draft_aft":         draftAft.String,
-			"draft_fwd":         draftFwd.String,
-			"agency":            agency.String,
-			"last_port_of_call": lastPortOfCall.String,
-			"port_destination":  portDestination.String,
-		}
+    "id_trip":           idTrip.String,
+    "ship_name":         shipName.String,
+    "ship_type":         shipType.String,
+    "ts_out_of_sight":   tsOutOfSight.String,
+    "ship_flag":         shipFlag.String,
+    "ship_width":        shipWidth.String,
+    "ship_length":       shipLength.String,
+    "gross_tonnage":     grossTonnage.String,
+    "net_tonnage":       netTonnage.String,
+    "draft_aft":         draftAft.String,
+    "draft_fwd":         draftFwd.String,
+    "agency":            agency.String,
+    "last_port_of_call": lastPortOfCall.String,
+    "port_destination":  portDestination.String,
+    }
 ```
 
 
@@ -559,12 +560,36 @@ http://<REMOTE_IP>:8000/trafficListRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
 ## E - METEO DATA ##
-1. __Meteo data archive__:
+1. __Meteo data archive__: [*MP]
 
 Request:
 ```bash
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
+
+2. __Active meteo stations__:
+
+Request:
+
+```bash
+http://<REMOTE_IP>:8000/weatherActiveStations
+```
+
+Response:
+```bash
+
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idPortinformer, portinformerCode, tsFirstCreated, isActive]
+
+res := map[string]string{
+	"id_portinformer":   idPortinformer.String,
+	"portinformer_code": portinformerCode.String,
+	"ts_first_created":  tsFirstCreated.String,
+	"is_active":         isActive.String,
+}
+```
+
 
 
 # Install Go and (first) run 

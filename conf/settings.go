@@ -9,7 +9,10 @@ import (
 var ProjectRoot = fmt.Sprintf("%s/src/github.com/deeper-x/goship", os.Getenv("GOPATH"))
 
 // PRegisterSQL register dot file
-var PRegisterSQL = fmt.Sprintf("%s/qsql/register_queries.sql", ProjectRoot)
+var PRegisterSQL = fmt.Sprintf("%s/qsql/register.sql", ProjectRoot)
 
 // PLiveSQL live data dot file
-var PLiveSQL = fmt.Sprintf("%s/qsql/live_queries.sql", ProjectRoot)
+var PLiveSQL = fmt.Sprintf("%s/qsql/realtime.sql", ProjectRoot)
+
+// PMeteoSQL meteo data dot file
+var PMeteoSQL = fmt.Sprintf("%s/qsql/meteo.sql", ProjectRoot)
