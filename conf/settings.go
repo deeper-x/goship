@@ -8,6 +8,9 @@ import (
 // ProjectRoot base directory
 var ProjectRoot = fmt.Sprintf("%s/src/github.com/deeper-x/goship", os.Getenv("GOPATH"))
 
+// EnvFile .env location
+var EnvFile = fmt.Sprintf("%s/.env", ProjectRoot)
+
 // PRegisterSQL register dot file
 var PRegisterSQL = fmt.Sprintf("%s/qsql/register.sql", ProjectRoot)
 

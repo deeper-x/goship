@@ -6,6 +6,7 @@ import (
 
 	"os"
 
+	"github.com/deeper-x/goship/conf"
 	"github.com/gchaincl/dotsql"
 	"github.com/joho/godotenv"
 
@@ -26,7 +27,7 @@ var objConn connection
 
 // Connect to db
 func Connect() *sql.DB {
-	err := godotenv.Load()
+	err := godotenv.Load(conf.EnvFile)
 	if err != nil {
 		log.Fatal(err)
 	}
