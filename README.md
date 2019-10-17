@@ -6,29 +6,48 @@ __Version: v0.2.5__
 
 ## WIP: List of verified&active services:
 
-```
-Live data: A.2; A.3; A.4; A.5; A.6; A.9; A.10; 
-Register data: C.1; C.2; C.3; C4;
+```bash
+Live data:
+[A.2 - Ships at roadstead;](#a2-at-roadstead-ok)
+[A.3 - Ships at mooring;](#a3-moored-ok)
+[A.4 - Ships arrived today;](#a4-arrivals-ok)
+[A.5 - Ships departed today;](#a5-departures-ok)
+[A.6 - Arrivals previsions today;](#a6-arrival-previsions-ok)
+[A.9 - Shifting previsions today;](#a9-shifting-previsions-ok)
+[A.10 - Departure previsions today;](#a10-departure-previsions-ok)
+
+Register data:
+[C.1 - Arrivals](#c1-arrivals-ok);
+[C.2 - Moored](#c2-moored-ok);
+[C.3 - At roadstead](#c3-roadstead-ok);
+[C.4 - Departures](#c4-departures-ok);
+
+Meteo data:
+[E.2 - Active stations](#e2-active-meteo-stations)
+
 ```
 
 ## A - LIVE DATA SERVICES:
 
-1. __Active trips__: [*SB]
+# A1. __Active trips__: [*SB]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-2. __At roadstead__: [*OK]
+# A2. __At roadstead__: [*OK]
 
 Request:
+
 ```bash
 Request:
 http://<REMOTE_IP>:8000/anchored/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -51,14 +70,16 @@ res := map[string]string{
 
 ```
 
-3. __Moored__: [*OK]
-    
-Request:	
+# A3. __Moored__: [*OK]
+
+Request:
+
 ```bash
 http://<REMOTE_IP>:8000/moored/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -81,15 +102,16 @@ res := map[string]string{
 
 ```
 
-
-4. __Arrivals__: [*OK]
+# A4. __Arrivals__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/arrivalsToday/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -117,14 +139,16 @@ res := map[string]string{
 
 ```
 
-
-5. __Departures__: [*OK]
+# A5. __Departures__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/departures/<id_portinformer>
 ```
+
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -149,15 +173,16 @@ res := map[string]string{
     }
 ```
 
-
-6. __Arrival previsions__: [*OK]
+# A6. __Arrival previsions__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/arrivalPrevisions/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -184,14 +209,16 @@ res := map[string]string{
 
 ```
 
-7. __Shipped goods__: [*OK]
+# A7. __Shipped goods__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -215,14 +242,16 @@ res := map[string]string{
 
 ```
 
-8. __RO/RO + RO/PAX__: [*OK]
+# A8. __RO/RO + RO/PAX__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/trafficListToday/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -251,14 +280,16 @@ res := map[string]string{
 
 ```
 
-9. __Shifting previsions__: [*OK]
+# A9. __Shifting previsions__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/shiftingPrevisions/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -288,15 +319,16 @@ res := map[string]string{
 
 ```
 
+# A10. __Departure previsions__: [*OK]
 
-10. __Departure previsions__: [*OK]
- 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/departurePrevisions/<id_portinformer>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -324,74 +356,82 @@ res := map[string]string{
 
 ## B - ARCHIVE DATA SERVICES:
 
-1. __Trips archive [global recap, one row per trip]__: [*MP]
+# B1. __Trips archive [global recap, one row per trip]__: [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-2. __Trips archive [global recap, one row per commercial operation]__: [*OK]
+# B2. __Trips archive [global recap, one row per commercial operation]__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
-3. __Trip data archive__ [shipreport core]: [*SB]
+# B3. __Trip data archive__ [shipreport core]: [*SB]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
-4. __Trip data archive detailed__ [shipreport]: [*SB]
+# B4. __Trip data archive detailed__ [shipreport]: [*SB]
 
 Request:
-```bash   
+
+```bash
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-5. __Arrivals archive__: [*OK]
+# B5. __Arrivals archive__: [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>
 ```
 
-6. __Departures archive__: [*MP]
+# B6. __Departures archive__: [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/departuresArchive?id_portinformer=<id_portinformer>
 ```
 
-7. __Shipped goods archive__: [*MP]
+# B7. __Shipped goods archive__: [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsArchive?id_portinformer=<id_portinformer>
 ```
 
-8. __Traffic list archive__: [*MP]
+# B8. __Traffic list archive__: [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 ```
 
-
-
 ## C - DAILY REGISTER SERVICES:
 
-1. __Arrivals:__ [*OK]
+# C1. __Arrivals:__ [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/arrivalsRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -419,15 +459,16 @@ res := map[string]string{
 
 ```
 
-
-2. __Moored:__ [*OK]
+# C2. __Moored:__ [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/mooredRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -447,14 +488,16 @@ res := map[string]string{
     }
 ```
 
-3. __Roadstead:__ [*OK]
+# C3. __Roadstead:__ [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/roadsteadRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -474,15 +517,16 @@ res := map[string]string{
     }
 ```
 
-
-4. __Departures:__ [*OK]
+# C4. __Departures:__ [*OK]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/departuresRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
 ```
 
 Response:
+
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
@@ -507,67 +551,74 @@ res := map[string]string{
     }
 ```
 
-
-5. __Shiftings:__ [*MP]
+# C5. __Shiftings:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/registerShiftings?id_portinformer=<ID_PORTINFORMER>
 ```
 
-6. __Arrival previsions:__ [*MP]
+# C6. __Arrival previsions:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
-7. __Shipped goods:__ [*MP]
+# C7. __Shipped goods:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/registerShippedGoods?id_portinformer=<ID_PORTINFORMER>
 ```
 
-8. __RO/RO + RO/PAX:__ [*MP]
+# C8. __RO/RO + RO/PAX:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/registerTrafficList?id_portinformer=<ID_PORTINFORMER>
 ```
 
 ## D - BUSINESS INTELLIGENCE SERVICES: ##
 
-1. __Shiftings/maneuverings [per quay/berth]:__ [*MP]
+# D1. __Shiftings/maneuverings [per quay/berth]:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/tripsManeuverings?id_portinformer=<ID_PORTINFORMER>
 ```
 
-2. __Shipped goods recap:__ [*MP]
+# D2. __Shipped goods recap:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/shippedGoodsRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
-3. __RO/RO + RO/PAX recap:__ [*MP]
+# D3. __RO/RO + RO/PAX recap:__ [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/trafficListRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
 ## E - METEO DATA ##
-1. __Meteo data archive__: [*MP]
+# E1. __Meteo data archive__: [*MP]
 
 Request:
+
 ```bash
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-2. __Active meteo stations__:
+# E2. __Active meteo stations__:
 
 Request:
 
@@ -576,21 +627,19 @@ http://<REMOTE_IP>:8000/weatherActiveStations
 ```
 
 Response:
-```bash
 
+```bash
 # Content-Type: application/json; charset=UTF-8
 
 # data := [idPortinformer, portinformerCode, tsFirstCreated, isActive]
 
 res := map[string]string{
-	"id_portinformer":   idPortinformer.String,
-	"portinformer_code": portinformerCode.String,
-	"ts_first_created":  tsFirstCreated.String,
-	"is_active":         isActive.String,
+    "id_portinformer":   idPortinformer.String,
+    "portinformer_code": portinformerCode.String,
+    "ts_first_created":  tsFirstCreated.String,
+    "is_active":         isActive.String,
 }
 ```
-
-
 
 # Install Go and (first) run 
 ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz
