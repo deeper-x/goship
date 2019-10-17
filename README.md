@@ -6,6 +6,8 @@ __Version: v0.2.5__
 
 ## List of verified & Active services:
 
+Real time data:
+
 - [A.2 - Ships at roadstead](#a2-at-roadstead-ok)
 
 - [A.3 - Ships at mooring](#a3-moored-ok)
