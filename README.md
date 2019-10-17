@@ -666,7 +666,7 @@ res := map[string]string{
 ____
 
 
-## Install Go and (first) run 
+#### Install Go and (first) run 
 ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz
 
 ```bash
@@ -701,7 +701,7 @@ $ <CTRL+C>
 
 ____
 
-## Integration Test (httpexpect)
+#### Integration Test (httpexpect)
 ```bash
 $ go test -v ./...
 === RUN   TestMain
@@ -712,7 +712,7 @@ ok  	github.com/deeper-x/goship/src	(cached)
 
 ____
 
-## Systemd configuration
+#### Systemd configuration
 
 ```bash
 ## Service install instructions: 
