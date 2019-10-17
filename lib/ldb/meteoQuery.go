@@ -25,8 +25,8 @@ func GetActiveStations() []map[string]string {
 
 	for rows.Next() {
 		err := rows.Scan(
-			&portinformerCode,
 			&idPortinformer,
+			&portinformerCode,
 			&tsFirstCreated,
 			&isActive,
 		)
