@@ -4,28 +4,37 @@ Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed
 
 __Version: v0.2.5__
 
-## WIP: List of verified&active services:
+## List of verified & Active services:
 
-```bash
-Live data:
-[A.2 - Ships at roadstead;](#a2-at-roadstead-ok)
-[A.3 - Ships at mooring;](#a3-moored-ok)
-[A.4 - Ships arrived today;](#a4-arrivals-ok)
-[A.5 - Ships departed today;](#a5-departures-ok)
-[A.6 - Arrivals previsions today;](#a6-arrival-previsions-ok)
-[A.9 - Shifting previsions today;](#a9-shifting-previsions-ok)
-[A.10 - Departure previsions today;](#a10-departure-previsions-ok)
+- [A.2 - Ships at roadstead](#a2-at-roadstead-ok)
+
+- [A.3 - Ships at mooring](#a3-moored-ok)
+
+- [A.4 - Ships arrived today](#a4-arrivals-ok)
+
+- [A.5 - Ships departed today](#a5-departures-ok)
+
+- [A.6 - Arrivals previsions today](#a6-arrival-previsions-ok)
+
+- [A.9 - Shifting previsions today](#a9-shifting-previsions-ok)
+
+- [A.10 - Departure previsions today](#a10-departure-previsions-ok)
 
 Register data:
-[C.1 - Arrivals](#c1-arrivals-ok);
-[C.2 - Moored](#c2-moored-ok);
-[C.3 - At roadstead](#c3-roadstead-ok);
-[C.4 - Departures](#c4-departures-ok);
+
+- [C.1 - Arrivals](#c1-arrivals-ok)
+  
+- [C.2 - Moored](#c2-moored-ok)
+
+- [C.3 - At roadstead](#c3-roadstead-ok)
+
+- [C.4 - Departures](#c4-departures-ok)
 
 Meteo data:
-[E.2 - Active stations](#e2-active-meteo-stations)
 
-```
+- [E.2 - Active stations](#e2-active-meteo-stations)
+  
+  _________
 
 ## A - LIVE DATA SERVICES:
 
