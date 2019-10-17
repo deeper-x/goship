@@ -673,7 +673,7 @@ DB_DSN="postgres://<user>:<passwd>@127.0.0.1/<db>"
 HEREDOC
 
 $ go get -d ./...    
-$ go install src/main.go 
+$ go install src/goship.go 
 $ goship # RUN FOR TEST
 Now listening on: http://localhost:8000
 Application started. Press CTRL+C to shut down.
