@@ -6,7 +6,7 @@ __Version: v0.2.5__
 
 ____
 
-#### List of verified & Active services:
+#### REST services:
 
 Real time data:
 
