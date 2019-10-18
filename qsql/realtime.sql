@@ -24,6 +24,7 @@ INNER JOIN (
 	SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
 	FROM trips_logs
 	WHERE fk_portinformer = $1
+	AND fk_state IN (16, 19, 27)
 	GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
 	) AS RES
 ON id_control_unit_data = RES.fk_control_unit_data
@@ -74,6 +75,7 @@ INNER JOIN (
 SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
 FROM trips_logs
 WHERE fk_portinformer = $1
+AND fk_state in (17, 18, 20, 21, 22)
 GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
 ) AS RES
 ON id_control_unit_data = RES.fk_control_unit_data 
