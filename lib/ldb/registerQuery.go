@@ -187,6 +187,68 @@ func GetRoadsteadRegister(idPortinformer string, start string, stop string) []ma
 
 }
 
+// GetShippedGoodsRegister todo description
+func GetShippedGoodsRegister(idPortinformer string, start string, stop string) []map[string]string {
+	var idTrip, shipName, quantity sql.NullString
+	var unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength sql.NullString
+	var grossTonnage, netTonnage, groupCategory, macroCategory sql.NullString
+
+	result := []map[string]string{}
+
+	connector := Connect()
+
+	mapper.GenResource(conf.PRegisterSQL)
+	rows, err := mapper.resource.Query(connector, "shipped-goods-register", idPortinformer, start, stop)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer connector.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&shipName,
+			&quantity,
+			&unit,
+			&goodsCategory,
+			&shipType,
+			&shipFlag,
+			&shipWidth,
+			&shipLength,
+			&grossTonnage,
+			&netTonnage,
+			&groupCategory,
+			&macroCategory,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":        idTrip.String,
+			"ship_name":      shipName.String,
+			"quantity":       quantity.String,
+			"unit":           unit.String,
+			"goods_category": goodsCategory.String,
+			"ship_type":      shipType.String,
+			"ship_flag":      shipFlag.String,
+			"ship_width":     shipWidth.String,
+			"ship_length":    shipLength.String,
+			"gross_tonnage":  grossTonnage.String,
+			"net_tonnage":    netTonnage.String,
+			"group_category": groupCategory.String,
+			"macro_category": macroCategory.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
+
 // GetDeparturesRegister todo description
 func GetDeparturesRegister(idPortinformer string, idDepartureState int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth sql.NullString
@@ -249,4 +311,75 @@ func GetDeparturesRegister(idPortinformer string, idDepartureState int, start st
 	}
 
 	return result
+}
+
+//GetRegisterTrafficList todo doc
+func GetRegisterTrafficList(idPortinformer string, start string, stop string) []map[string]string {
+	var idTrip, shipName, tsSighting sql.NullString
+	var numContainer, numPassengers, numCamion sql.NullString
+	var numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons sql.NullString
+	var numBus, numMinibus, mvntType, description sql.NullString
+	var quay sql.NullString
+
+	result := []map[string]string{}
+
+	connector := Connect()
+
+	mapper.GenResource(conf.PRegisterSQL)
+	rows, err := mapper.resource.Query(connector, "traffic-list-register", idPortinformer, start, stop)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&shipName,
+			&tsSighting,
+			&numContainer,
+			&numPassengers,
+			&numCamion,
+			&numFurgoni,
+			&numRimorchi,
+			&numAuto,
+			&numMoto,
+			&numCamper,
+			&tons,
+			&numBus,
+			&numMinibus,
+			&mvntType,
+			&description,
+			&quay,
+		)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":        idTrip.String,
+			"ship_name":      shipName.String,
+			"ts_sighting":    tsSighting.String,
+			"num_container":  numContainer.String,
+			"num_passengers": numPassengers.String,
+			"num_camion":     numCamion.String,
+			"num_furgoni":    numFurgoni.String,
+			"num_rimorchi":   numRimorchi.String,
+			"num_auto":       numAuto.String,
+			"num_moto":       numMoto.String,
+			"num_camper":     numCamper.String,
+			"tons":           tons.String,
+			"num_bus":        numBus.String,
+			"num_minibus":    numMinibus.String,
+			"mvnt_type":      mvntType.String,
+			"description":    description.String,
+			"quay":           quay.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+
 }

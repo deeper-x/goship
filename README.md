@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.5__
+__Version: v0.2.6__
 
 ____
 
@@ -10,7 +10,7 @@ ____
 
 Real time data:
 
-- [A2 - Ships at roadstead](#a2-at-roadstead-ok)
+- [A2 - Ships at roadstead](#a2-at-roadstead-ok): 
 
 - [A3 - Ships at mooring](#a3-moored-ok)
 
@@ -19,6 +19,10 @@ Real time data:
 - [A5 - Ships departed today](#a5-departures-ok)
 
 - [A6 - Arrivals previsions today](#a6-arrival-previsions-ok)
+  
+- [A7 - Shipped goods](#a7-shipped-goods-ok)
+
+- [A8 . Traffic list](#a8-roro--ropax-ok)
 
 - [A9 - Shifting previsions today](#a9-shifting-previsions-ok)
 
@@ -34,11 +38,14 @@ Register data:
 
 - [C4 - Departures](#c4-departures-ok)
 
+- [C7 - Shipped goods](#c7-shipped-goods-mp)
+
+- [C8 - Traffic list](#c8-roro--ropax-mp)
+  
 Meteo data:
 
 - [E2 - Active stations](#e2-active-meteo-stations)
   
-
   ____
 
 #### A - LIVE DATA SERVICES:
@@ -52,6 +59,8 @@ http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
 #### A2. __At roadstead__: [*OK] ##
+
+*Description:* trips currently in state of anchoring
 
 Request:
 
@@ -86,6 +95,8 @@ res := map[string]string{
 
 #### A3. __Moored__: [*OK] ##
 
+*Description:* trips currently in state of mooring
+
 Request:
 
 ```bash
@@ -117,6 +128,8 @@ res := map[string]string{
 ```
 
 #### A4. __Arrivals__: [*OK] ##
+
+*Description:* trips with sighting date == $( date +%Y-%m-%d )
 
 Request:
 
@@ -155,6 +168,8 @@ res := map[string]string{
 
 #### A5. __Departures__: [*OK] ##
 
+*Description:* trips with out of sight date == $( date +%Y-%m-%d )
+
 Request:
 
 ```bash
@@ -188,6 +203,8 @@ res := map[string]string{
 ```
 
 #### A6. __Arrival previsions__: [*OK] ##
+
+*Description:* trips with out_of_sight date == $( date +%Y-%m-%d )
 
 Request:
 
@@ -225,6 +242,8 @@ res := map[string]string{
 
 #### A7. __Shipped goods__: [*OK] ##
 
+*Description:* shipped goods in trips with sighting date == $( date +%Y-%m-%d )
+
 Request:
 
 ```bash
@@ -257,6 +276,8 @@ res := map[string]string{
 ```
 
 #### A8. __RO/RO + RO/PAX__: [*OK]
+
+*Description:* RO/RO RO/PAX operations in trips with with sighting date == $( date +%Y-%m-%d )
 
 Request:
 
@@ -296,6 +317,8 @@ res := map[string]string{
 
 #### A9. __Shifting previsions__: [*OK]
 
+*Description:* trips with shifting prevision date == $( date +%Y-%m-%d )
+
 Request:
 
 ```bash
@@ -334,6 +357,8 @@ res := map[string]string{
 ```
 
 #### A10. __Departure previsions__: [*OK]
+
+*Description:* trips with departure prevision's date == $( date +%Y-%m-%d )
 
 Request:
 
@@ -440,7 +465,11 @@ ____
 
 #### C - DAILY REGISTER SERVICES:
 
+These calls get the last trip activity in range, according with criteria
+
 #### C1. __Arrivals:__ [*OK]
+
+*Description:* trips with sighting's date in range
 
 Request:
 
@@ -479,6 +508,8 @@ res := map[string]string{
 
 #### C2. __Moored:__ [*OK]
 
+*Description:* trips with the last activity as mooring in range (whatever form has been used)
+
 Request:
 
 ```bash
@@ -508,6 +539,8 @@ res := map[string]string{
 
 #### C3. __Roadstead:__ [*OK]
 
+*Description:* trips with the last activity as anchoring in range (whatever form has been used)
+
 Request:
 
 ```bash
@@ -536,6 +569,8 @@ res := map[string]string{
 ```
 
 #### C4. __Departures:__ [*OK]
+
+*Description:* trips with out of sight in range (whatever form has been used)
 
 Request:
 
@@ -587,18 +622,78 @@ http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER
 
 #### C7. __Shipped goods:__ [*MP]
 
+*Description:* commercial operations trips with sighting date in range (whatever form has been used)
+
 Request:
 
 ```bash
-http://<REMOTE_IP>:8000/registerShippedGoods?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/shippedGoodsRegister/<id_portinformer>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
+```
+
+Response:
+
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idTrip, shipName, quantity, unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, groupCategory, macroCategory]
+
+res := map[string]string{
+    "id_trip":        idTrip.String,
+    "ship_name":      shipName.String,
+    "quantity":       quantity.String,
+    "unit":           unit.String,
+    "goods_category": goodsCategory.String,
+    "ship_type":      shipType.String,
+    "ship_flag":      shipFlag.String,
+    "ship_width":     shipWidth.String,
+    "ship_length":    shipLength.String,
+    "gross_tonnage":  grossTonnage.String,
+    "net_tonnage":    netTonnage.String,
+    "group_category": groupCategory.String,
+    "macro_category": macroCategory.String,
+}
 ```
 
 #### C8. __RO/RO + RO/PAX:__ [*MP]
 
+*Description:* RO/RO + RO/PAX operations trips with sighting date in range (whatever form has been used)
+
+
 Request:
 
 ```bash
-http://<REMOTE_IP>:8000/registerTrafficList?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/trafficListRegister/<id_portinformer>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
+```
+
+Response:
+
+```bash
+## Content-Type: application/json; charset=UTF-8
+
+## data := [idTrip, shipName, tsSighting, numContainer, numPassengers, numCamion, numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons, numBus, numMinibus, trafficListMvntType, trafficListCategories, quay]
+
+
+res := map[string]string{
+    "id_trip":        idTrip.String,
+    "ship_name":      shipName.String,
+    "ts_sighting":    tsSighting.String,
+    "num_container":  numContainer.String,
+    "num_passengers": numPassengers.String,
+    "num_camion":     numCamion.String,
+    "num_furgoni":    numFurgoni.String,
+    "num_rimorchi":   numRimorchi.String,
+    "num_auto":       numAuto.String,
+    "num_moto":       numMoto.String,
+    "num_camper":     numCamper.String,
+    "tons":           tons.String,
+    "num_bus":        numBus.String,
+    "num_minibus":    numMinibus.String,
+    "mvnt_type":      mvntType.String,
+    "description":    description.String,
+    "quay":           quay.String,
+    }
+
+
 ```
 ____
 
