@@ -129,7 +129,7 @@ res := map[string]string{
 
 #### A4. __Arrivals__: [*OK] ##
 
-*Description:* trips with sighting date == $( date +%Y-%m-%d )
+*Description:* trips with sighting date == ${TODAY}
 
 Request:
 
@@ -168,7 +168,7 @@ res := map[string]string{
 
 #### A5. __Departures__: [*OK] ##
 
-*Description:* trips with out of sight date == $( date +%Y-%m-%d )
+*Description:* trips with out of sight date == ${TODAY}
 
 Request:
 
@@ -204,7 +204,7 @@ res := map[string]string{
 
 #### A6. __Arrival previsions__: [*OK] ##
 
-*Description:* trips with out_of_sight date == $( date +%Y-%m-%d )
+*Description:* trips with out_of_sight date == ${TODAY}
 
 Request:
 
@@ -242,7 +242,7 @@ res := map[string]string{
 
 #### A7. __Shipped goods__: [*OK] ##
 
-*Description:* shipped goods in trips with sighting date == $( date +%Y-%m-%d )
+*Description:* shipped goods in trips with sighting date == ${TODAY}
 
 Request:
 
@@ -277,7 +277,7 @@ res := map[string]string{
 
 #### A8. __RO/RO + RO/PAX__: [*OK]
 
-*Description:* RO/RO RO/PAX operations in trips with with sighting date == $( date +%Y-%m-%d )
+*Description:* RO/RO RO/PAX operations in trips with with sighting date == ${TODAY}
 
 Request:
 
@@ -317,7 +317,7 @@ res := map[string]string{
 
 #### A9. __Shifting previsions__: [*OK]
 
-*Description:* trips with shifting prevision date == $( date +%Y-%m-%d )
+*Description:* trips with shifting prevision date == ${TODAY}
 
 Request:
 
@@ -358,7 +358,7 @@ res := map[string]string{
 
 #### A10. __Departure previsions__: [*OK]
 
-*Description:* trips with departure prevision's date == $( date +%Y-%m-%d )
+*Description:* trips with departure prevision's date == ${TODAY}
 
 Request:
 
