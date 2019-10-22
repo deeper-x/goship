@@ -130,6 +130,62 @@ AND planned_arrivals.is_active = true
 AND planned_arrivals.fk_portinformer = $1;
 
 
+--name: shiftings
+SELECT control_unit_data.fk_portinformer, ts_main_event_field_val, 
+imo, ship_description AS ship_name, 
+type_acronym AS ship_type, iso3 AS country, 
+start_quay.description||'/'||start_berth.description as FROM_QUAY,
+stop_quay.description||'/'||stop_berth.description as TO_QUAY,
+start_anchorage.description as FROM_ANCH,
+stop_anchorage.description as TO_ANCH
+FROM control_unit_data 
+INNER JOIN trips_logs
+ON id_control_unit_data = trips_logs.fk_control_unit_data
+INNER JOIN ships
+ON control_unit_data.fk_ship = id_ship
+INNER JOIN ship_types
+ON id_ship_type = fk_ship_type
+INNER JOIN countries
+ON ships.fk_country_flag = id_country
+INNER JOIN maneuverings
+ON id_maneuvering = trips_logs.fk_maneuvering
+INNER JOIN (
+    SELECT id_quay, description 
+    FROM quays 
+) AS start_quay
+ON start_quay.id_quay = maneuverings.fk_start_quay
+INNER JOIN (
+    SELECT id_quay, description 
+    FROM quays 
+) AS stop_quay
+ON stop_quay.id_quay = maneuverings.fk_stop_quay
+INNER JOIN (
+    SELECT id_berth, description
+    FROM berths
+) AS start_berth
+ON start_berth.id_berth = maneuverings.fk_start_berth
+INNER JOIN (
+    SELECT id_berth, description
+    FROM berths
+) AS stop_berth
+ON stop_berth.id_berth = maneuverings.fk_stop_berth
+INNER JOIN (
+    SELECT id_anchorage_point, description
+    FROM anchorage_points
+) AS start_anchorage
+ON start_anchorage.id_anchorage_point = maneuverings.fk_start_anchorage_point
+INNER JOIN (
+    SELECT id_anchorage_point, description
+    FROM anchorage_points
+) AS stop_anchorage
+ON stop_anchorage.id_anchorage_point = maneuverings.fk_stop_anchorage_point
+WHERE control_unit_data.fk_portinformer = $1
+AND trips_logs.fk_state IN (18, 19, 20, 21, 22, 27)
+AND LENGTH(ts_main_event_field_val) = 16
+AND ts_main_event_field_val::date = now()::date
+ORDER BY ts_main_event_field_val 
+
+
 --name: shifting-previsions
 SELECT 
 ship_description AS ship, 

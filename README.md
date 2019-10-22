@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.7__
+__Version: v0.2.8__
 
 ____
 
@@ -37,6 +37,8 @@ Register data:
 - [C3 - At roadstead](#c3-roadstead-ok)
 
 - [C4 - Departures](#c4-departures-ok)
+
+- [C5 - Shiftings](#c5-shiftings-ok)
 
 - [C7 - Shipped goods](#c7-shipped-goods-mp)
 
@@ -604,12 +606,36 @@ res := map[string]string{
     }
 ```
 
-#### C5. __Shiftings:__ [*MP]
+#### C5. __Shiftings:__ [OK]
+
+*Description:* trips' starting shifting in passed range  
 
 Request:
 
 ```bash
-http://<REMOTE_IP>:8000/registerShiftings?id_portinformer=<ID_PORTINFORMER>
+http://<REMOTE_IP>:8000/shiftingsRegister/<ID_PORTINFORMER>/<TIMESTAMP_START>/<TIMESTAMP_STOP>
+```
+
+Response:
+
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idTrip, tsSighting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
+
+res := map[string]string{
+	"id_trip":     idTrip.String,
+	"ts_sighting": tsSighting.String,
+	"imo":         imo.String,
+	"ship":        ship.String,
+	"ship_type":   shipType.String,
+	"iso3":        iso3.String,
+	"from_quay":   fromQuay.String,
+	"to_quay":     toQuay.String,
+	"from_anch":   fromAnch.String,
+	"to_anch":     toAnch.String,
+}
+
 ```
 
 #### C6. __Arrival previsions:__ [*MP]

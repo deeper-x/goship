@@ -45,6 +45,16 @@ func (objPortinformer Portinformer) MooredRegister(ctx iris.Context) {
 	ctx.JSON(allMoored)
 }
 
+// ShiftingsRegister todo doc
+func (objPortinformer Portinformer) ShiftingsRegister(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	start := ctx.Params().Get("start")
+	stop := ctx.Params().Get("stop")
+
+	allShiftings := ldb.GetShiftingsRegister(idPortinformer, start, stop)
+	ctx.JSON(allShiftings)
+}
+
 // ShippedGoodsRegister todo doc
 func (objPortinformer Portinformer) ShippedGoodsRegister(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")

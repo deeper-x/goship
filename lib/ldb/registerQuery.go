@@ -75,6 +75,60 @@ func GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start st
 	return result
 }
 
+// GetShiftingsRegister todo doc
+func GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string {
+	var idTrip, tsSighting, imo, ship sql.NullString
+	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
+
+	var result []map[string]string = []map[string]string{}
+
+	connector := Connect()
+
+	mapper.GenResource(conf.PRegisterSQL)
+	rows, err := mapper.resource.Query(connector, "shiftings-register", idPortinformer, start, stop)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer connector.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idTrip,
+			&tsSighting,
+			&imo,
+			&ship,
+			&shipType,
+			&iso3,
+			&fromQuay,
+			&toQuay,
+			&fromAnch,
+			&toAnch,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_trip":     idTrip.String,
+			"ts_sighting": tsSighting.String,
+			"imo":         imo.String,
+			"ship":        ship.String,
+			"ship_type":   shipType.String,
+			"iso3":        iso3.String,
+			"from_quay":   fromQuay.String,
+			"to_quay":     toQuay.String,
+			"from_anch":   fromAnch.String,
+			"to_anch":     toAnch.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
+
 // GetMooredRegister todo doc
 func GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth sql.NullString
