@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.8__
+__Version: v0.2.9__
 
 ____
 
@@ -27,6 +27,8 @@ Real time data:
 - [A9 - Shifting previsions today](#a9-shifting-previsions-ok)
 
 - [A10 - Departure previsions today](#a10-departure-previsions-ok)
+
+- [A11 - Shifting previsions today](#a11-shiftings-ok)
 
 Register data:
 
@@ -394,6 +396,39 @@ res := map[string]string{
     }
 
 ```
+
+#### A11. __Shiftings:__ [OK]
+
+*Description:* trips' starting shifting today  
+
+Request:
+
+```bash
+http://<REMOTE_IP>:8000/shiftingsToday/<ID_PORTINFORMER>
+```
+
+Response:
+
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idTrip, tsSighting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
+
+res := map[string]string{
+	"id_trip":     idTrip.String,
+	"ts_sighting": tsSighting.String,
+	"imo":         imo.String,
+	"ship":        ship.String,
+	"ship_type":   shipType.String,
+	"iso3":        iso3.String,
+	"from_quay":   fromQuay.String,
+	"to_quay":     toQuay.String,
+	"from_anch":   fromAnch.String,
+	"to_anch":     toAnch.String,
+}
+
+```
+
 
 ____
 

@@ -18,6 +18,7 @@ func (objInstance Instance) URLLoader() {
 	objInstance.URLRequest("/departuresToday/{id_portinformer:string}", objPortinformer.DeparturesToday)         // verified
 	objInstance.URLRequest("/shippedGoodsToday/{id_portinformer:string}", objPortinformer.ShippedGoods)
 	objInstance.URLRequest("/trafficListToday/{id_portinformer:string}", objPortinformer.TrafficListToday)
+	objInstance.URLRequest("/shiftingsToday/{id_portinformer:string}", objPortinformer.ShiftingsToday)
 
 	//REGISTER DATA CALLS
 	objInstance.URLRequest("/arrivalsRegister/{id_portinformer:string}/{start:string}/{stop:string}", objPortinformer.ArrivalsRegister)     // verified

@@ -45,6 +45,13 @@ func (objPortinformer Portinformer) ShippedGoods(ctx iris.Context) {
 	ctx.JSON(shippedGoods)
 }
 
+// ShiftingsToday todo description
+func (objPortinformer Portinformer) ShiftingsToday(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+	shiftings := ldb.GetTodayShiftings(idPortinformer)
+	ctx.JSON(shiftings)
+}
+
 //TrafficListToday todo description
 func (objPortinformer Portinformer) TrafficListToday(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
