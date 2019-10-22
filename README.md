@@ -399,7 +399,7 @@ res := map[string]string{
 
 #### A11. __Shiftings:__ [OK]
 
-*Description:* trips' starting shifting today  
+*Description:* trips' where starting shifting's date == ${TODAY}  
 
 Request:
 
