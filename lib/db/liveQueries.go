@@ -277,7 +277,7 @@ func GetDeparturePrevisions(idPortinformer string) []map[string]string {
 func GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
 	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
-	var agency sql.NullString
+	var agency, tsETD sql.NullString
 
 	var result []map[string]string
 
@@ -306,6 +306,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			&width,
 			&shipType,
 			&agency,
+			&tsETD,
 		)
 
 		if err != nil {
@@ -327,6 +328,7 @@ func GetAllMoored(idPortinformer string) []map[string]string {
 			"ships_width":      width.String,
 			"ship_type":        shipType.String,
 			"agency":           agency.String,
+			"ts_etd":           tsETD.String,
 		}
 		result = append(result, tmpDict)
 	}

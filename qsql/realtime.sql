@@ -51,7 +51,8 @@ ship_current_activities.description AS current_activity,
 quays.description AS quay,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
 iso3, gross_tonnage, ships.length, ships.width, type_acronym,
-agencies.description AS agency  
+agencies.description AS agency,
+data_ormeggio_nave.ts_etd  
 FROM control_unit_data 
 INNER JOIN ships
 ON fk_ship = id_ship
@@ -84,7 +85,9 @@ ON countries.id_country = ships.fk_country_flag
 INNER JOIN ship_types
 ON ships.fk_ship_type = ship_types.id_ship_type
 INNER JOIN agencies
-ON RES.fk_agency = agencies.id_agency 
+ON RES.fk_agency = agencies.id_agency
+LEFT JOIN data_ormeggio_nave
+ON data_ormeggio_nave.fk_control_unit_data = id_control_unit_data 
 WHERE fk_ship_current_activity = 5
 AND control_unit_data.is_active = true 
 AND control_unit_data.fk_portinformer = $2;
