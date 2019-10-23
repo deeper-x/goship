@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/deeper-x/goship/lib/ldb"
+	"github.com/deeper-x/goship/lib/db"
 	"github.com/kataras/iris"
 )
 
