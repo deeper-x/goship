@@ -442,7 +442,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B2. __Trips archive [global recap, one row per commercial operation]__: [*OK]
+#### B2. __Trips archive [global recap, one row per commercial operation]__: [*SB]
 
 Request:
 
@@ -466,7 +466,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B5. __Arrivals archive__: [*OK]
+#### B5. __Arrivals archive__: [*MP]
 
 Request:
 
@@ -796,7 +796,7 @@ Request:
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### E2. __Active meteo stations__:
+#### E2. __Active meteo stations__: [OK]
 
 Request:
 
