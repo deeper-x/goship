@@ -251,7 +251,7 @@ res := map[string]string{
 Request:
 
 ```bash
-http://<REMOTE_IP>:8000/shippedGoodToday/<id_portinformer>
+http://<REMOTE_IP>:8000/shippedGoodsToday/<id_portinformer>
 ```
 
 Response:
