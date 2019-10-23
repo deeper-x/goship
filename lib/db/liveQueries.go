@@ -10,8 +10,8 @@ import (
 // GetAllRoadstead todo doc
 func GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idControlUnitData sql.NullString
-	var shipName, anchoringTime, currentActivity, shippedGoods sql.NullString
-	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency sql.NullString
+	var shipName, anchoringTime, currentActivity, shippedGoods, tsReadiness sql.NullString
+	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency, tsPlannedMooring sql.NullString
 	var result []map[string]string = []map[string]string{}
 
 	connector := Connect()
@@ -39,6 +39,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 			&width,
 			&agency,
 			&shippedGoods,
+			&tsPlannedMooring,
+			&tsReadiness,
 		)
 
 		if err != nil {
@@ -48,18 +50,20 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 		idControlUnitDataStr := idControlUnitData
 
 		tmpDict := map[string]string{
-			"id_trip":          idControlUnitDataStr.String,
-			"ship":             shipName.String,
-			"ship_type":        shipType.String,
-			"anchoring_time":   anchoringTime.String,
-			"current_activity": currentActivity.String,
-			"anchorage_point":  anchoragePoint.String,
-			"iso3":             iso3.String,
-			"gross_tonnage":    grossTonnage.String,
-			"length":           length.String,
-			"width":            width.String,
-			"agency":           agency.String,
-			"shipped_goods":    shippedGoods.String,
+			"id_trip":            idControlUnitDataStr.String,
+			"ship":               shipName.String,
+			"ship_type":          shipType.String,
+			"anchoring_time":     anchoringTime.String,
+			"current_activity":   currentActivity.String,
+			"anchorage_point":    anchoragePoint.String,
+			"iso3":               iso3.String,
+			"gross_tonnage":      grossTonnage.String,
+			"length":             length.String,
+			"width":              width.String,
+			"agency":             agency.String,
+			"shipped_goods":      shippedGoods.String,
+			"ts_planned_mooring": tsPlannedMooring.String,
+			"ts_readiness":       tsReadiness.String,
 		}
 
 		result = append(result, tmpDict)

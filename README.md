@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.9__
+__Version: v0.2.10__
 
 ____
 
@@ -78,7 +78,7 @@ Response:
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
-# data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency, shippedGoods]
+# data := [idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage, length, width, agency, shippedGoods, tsPlannedMooring, tsReadiness]
 
 res := map[string]string{
     "id_trip":          idControlUnitDataStr.String,
@@ -93,6 +93,8 @@ res := map[string]string{
     "width":            width.String,
     "agency":           agency.String,
     "shipped_goods":    shipped_goods.String,
+    "ts_planned_mooring": tsPlannedMooring.String,
+    "ts_readiness":       tsReadiness.String,
     }
 
 ```
@@ -127,7 +129,8 @@ res := map[string]string{
     "ships_width":      width.String,
     "ship_type":        shipType.String,
     "agency":           agency.String,
-    }
+    "ts_etd":           tsETD.String,
+}
 
 ```
 

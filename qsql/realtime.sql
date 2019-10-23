@@ -6,7 +6,9 @@ anchorage_points.description AS anchorage_point,
 type_acronym as ship_type, iso3, gross_tonnage, 
 ships.length, ships.width,
 agencies.description as agency,
-shipped_goods_data.shipped_goods_row AS shipped_goods_data
+shipped_goods_data.shipped_goods_row AS shipped_goods_data,
+data_previsione_arrivo_nave.ts_mooring_time AS planned_mooring,
+data_arrivo_in_rada.ts_readiness AS ts_readiness
 FROM control_unit_data 
 INNER JOIN ships
 ON fk_ship = id_ship
@@ -40,6 +42,10 @@ LEFT JOIN (
 	GROUP BY fk_control_unit_data        
 ) as shipped_goods_data
 ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
+LEFT JOIN data_previsione_arrivo_nave
+ON data_previsione_arrivo_nave.fk_control_unit_data = control_unit_data.id_control_unit_data
+LEFT JOIN data_arrivo_in_rada
+ON data_arrivo_in_rada.fk_control_unit_data = control_unit_data.id_control_unit_data
 WHERE fk_ship_current_activity = 2
 AND is_active = true 
 AND control_unit_data.fk_portinformer = $2;
