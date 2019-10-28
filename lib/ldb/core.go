@@ -30,6 +30,14 @@ type repository struct {
 type ResServer interface {
 	GetAllRoadstead(idPortinformer string) []map[string]string
 	GetAllMoored(idPortinformer string) []map[string]string
+	GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[string]string
+	GetTodayDepartures(idPortinformer string, idDepartureState int) []map[string]string
+	GetArrivalPrevisions(idPortinformer string) []map[string]string
+	GetTodayShippedGoods(idPortinformer string) []map[string]string
+	GetTodayTrafficList(idPortinformer string) []map[string]string
+	GetShiftingPrevisions(idPortinformer string) []map[string]string
+	GetDeparturePrevisions(idPortinformer string) []map[string]string
+	GetTodayShiftings(idPortinformer string) []map[string]string
 }
 
 // NewRepository connector builder

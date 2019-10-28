@@ -64,7 +64,7 @@ func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 }
 
 //GetArrivalPrevisions todo doc
-func GetArrivalPrevisions(idPortinformer string) []map[string]string {
+func (r repository) GetArrivalPrevisions(idPortinformer string) []map[string]string {
 	var idControlUnitData, shipName sql.NullString
 	var tsArrivalPrevision, shipType sql.NullString
 	var shipFlag, shipWidth, shipLength, grossTonnage sql.NullString
@@ -76,10 +76,8 @@ func GetArrivalPrevisions(idPortinformer string) []map[string]string {
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "arrival-previsions", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "arrival-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -138,21 +136,21 @@ func GetArrivalPrevisions(idPortinformer string) []map[string]string {
 }
 
 //GetShiftingPrevisions todo doc
-func GetShiftingPrevisions(idPortinformer string) []map[string]string {
+func (r repository) GetShiftingPrevisions(idPortinformer string) []map[string]string {
 	var ship, tsShiftingPrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
 	var agency, destinationPort, startingQuayBerth, startingRoadstead, stopQuayBerth, stopRoadstead, cargoOnBoard sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "shifting-previsions", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "shifting-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -203,17 +201,15 @@ func GetShiftingPrevisions(idPortinformer string) []map[string]string {
 }
 
 //GetDeparturePrevisions todo doc
-func GetDeparturePrevisions(idPortinformer string) []map[string]string {
+func (r repository) GetDeparturePrevisions(idPortinformer string) []map[string]string {
 	var ship, tsDeparturePrevision, shipType, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
 	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "departure-previsions", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "departure-previsions", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -330,23 +326,21 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 }
 
 //GetTodayArrivals todo doc
-func GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[string]string {
+func (r repository) GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[string]string {
 	var idTrip, shipName, shipType, tsSighting, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
 	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "arrivals", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "arrivals", idPortinformer, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -398,23 +392,21 @@ func GetTodayArrivals(idPortinformer string, idArrivalPrevision int) []map[strin
 }
 
 // GetTodayDepartures todo description
-func GetTodayDepartures(idPortinformer string, idDepartureState int) []map[string]string {
+func (r repository) GetTodayDepartures(idPortinformer string, idDepartureState int) []map[string]string {
 	var idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, draftAft, draftFwd, agency, lastPortOfCall, portDestination sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "departures", idDepartureState, idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "departures", idDepartureState, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -462,21 +454,21 @@ func GetTodayDepartures(idPortinformer string, idDepartureState int) []map[strin
 }
 
 // GetTodayShippedGoods todo doc
-func GetTodayShippedGoods(idPortinformer string) []map[string]string {
+func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]string {
 	var idTrip, shipName, quantity sql.NullString
 	var unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, groupCategory, macroCategory sql.NullString
 
 	result := []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "shipped-goods", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "shipped-goods", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -522,22 +514,20 @@ func GetTodayShippedGoods(idPortinformer string) []map[string]string {
 }
 
 // GetTodayShiftings todo doc
-func GetTodayShiftings(idPortinformer string) []map[string]string {
+func (r repository) GetTodayShiftings(idPortinformer string) []map[string]string {
 	var idTrip, tsSighting, imo, ship sql.NullString
 	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "shiftings", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "shiftings", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -576,7 +566,7 @@ func GetTodayShiftings(idPortinformer string) []map[string]string {
 }
 
 //GetTodayTrafficList todo doc
-func GetTodayTrafficList(idPortinformer string) []map[string]string {
+func (r repository) GetTodayTrafficList(idPortinformer string) []map[string]string {
 	var idTrip, shipName sql.NullString
 	var numContainer, numPassengers, numCamion sql.NullString
 	var numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons sql.NullString
@@ -585,14 +575,14 @@ func GetTodayTrafficList(idPortinformer string) []map[string]string {
 
 	result := []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "traffic-list", idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "traffic-list", idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(

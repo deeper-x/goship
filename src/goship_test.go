@@ -6,7 +6,7 @@ import (
 	"github.com/kataras/iris/httptest"
 )
 
-func TestMain(t *testing.T) {
+func TestLive(t *testing.T) {
 	Inst.StartInstance()
 	Inst.URLLoader()
 
@@ -25,6 +25,18 @@ func TestMain(t *testing.T) {
 	e.GET("/shippedGoodsToday/28").Expect().Status(httptest.StatusOK)
 	e.GET("/trafficListToday/28").Expect().Status(httptest.StatusOK)
 	e.GET("/shiftingsToday/28").Expect().Status(httptest.StatusOK)
+
+	e.GET("/weatherActiveStations").Expect().Status(httptest.StatusOK)
+
+}
+
+func TestRegister(t *testing.T) {
+	Inst.StartInstance()
+	Inst.URLLoader()
+
+	app := Inst.App
+
+	e := httptest.New(t, app)
 
 	e.GET("/arrivalsRegister/28/2019-01-01 00:00/2019-01-01 00:00/").Expect().Status(httptest.StatusOK)
 	e.GET("/departuresRegister/28/2019-01-01 00:00/2019-01-01 00:00/").Expect().Status(httptest.StatusOK)

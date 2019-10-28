@@ -35,34 +35,52 @@ func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
 // ArrivalsToday todo description
 func (objPortinformer Portinformer) ArrivalsToday(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	arrivals := ldb.GetTodayArrivals(idPortinformer, 10)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	arrivals := r.GetTodayArrivals(idPortinformer, 10)
 	ctx.JSON(arrivals)
 }
 
 // DeparturesToday todo description
 func (objPortinformer Portinformer) DeparturesToday(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	departures := ldb.GetTodayDepartures(idPortinformer, 26)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	departures := r.GetTodayDepartures(idPortinformer, 26)
 	ctx.JSON(departures)
 }
 
 // ShippedGoods todo description
 func (objPortinformer Portinformer) ShippedGoods(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	shippedGoods := ldb.GetTodayShippedGoods(idPortinformer)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	shippedGoods := r.GetTodayShippedGoods(idPortinformer)
 	ctx.JSON(shippedGoods)
 }
 
 // ShiftingsToday todo description
 func (objPortinformer Portinformer) ShiftingsToday(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	shiftings := ldb.GetTodayShiftings(idPortinformer)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	shiftings := r.GetTodayShiftings(idPortinformer)
 	ctx.JSON(shiftings)
 }
 
 //TrafficListToday todo description
 func (objPortinformer Portinformer) TrafficListToday(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	trafficList := ldb.GetTodayTrafficList(idPortinformer)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	trafficList := r.GetTodayTrafficList(idPortinformer)
 	ctx.JSON(trafficList)
 }

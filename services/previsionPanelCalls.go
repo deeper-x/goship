@@ -8,20 +8,31 @@ import (
 // ArrivalPrevisions todo description
 func (objPortinformer Portinformer) ArrivalPrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allArrivals := ldb.GetArrivalPrevisions(idPortinformer)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allArrivals := r.GetArrivalPrevisions(idPortinformer)
 	ctx.JSON(allArrivals)
 }
 
 //DeparturePrevisions todo description
 func (objPortinformer Portinformer) DeparturePrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allDepartures := ldb.GetDeparturePrevisions(idPortinformer)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allDepartures := r.GetDeparturePrevisions(idPortinformer)
 	ctx.JSON(allDepartures)
 }
 
 //ShiftingPrevisions todo description
 func (objPortinformer Portinformer) ShiftingPrevisions(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allShiftings := ldb.GetShiftingPrevisions(idPortinformer)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allShiftings := r.GetShiftingPrevisions(idPortinformer)
 	ctx.JSON(allShiftings)
 }
