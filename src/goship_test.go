@@ -26,8 +26,6 @@ func TestLive(t *testing.T) {
 	e.GET("/trafficListToday/28").Expect().Status(httptest.StatusOK)
 	e.GET("/shiftingsToday/28").Expect().Status(httptest.StatusOK)
 
-	e.GET("/weatherActiveStations").Expect().Status(httptest.StatusOK)
-
 }
 
 func TestRegister(t *testing.T) {
@@ -45,7 +43,15 @@ func TestRegister(t *testing.T) {
 	e.GET("/shiftingsRegister/28/2019-10-02 00:00/2019-10-06 23:59").Expect().Status(httptest.StatusOK)
 	e.GET("/shippedGoodsRegister/28/2019-10-02 00:00/2019-10-06 23:59").Expect().Status(httptest.StatusOK)
 	e.GET("/trafficListRegister/28/2019-10-02 00:00/2019-10-06 23:59").Expect().Status(httptest.StatusOK)
+}
+
+func TestMeteo(t *testing.T) {
+	Inst.StartInstance()
+	Inst.URLLoader()
+
+	app := Inst.App
+
+	e := httptest.New(t, app)
 
 	e.GET("/weatherActiveStations").Expect().Status(httptest.StatusOK)
-
 }

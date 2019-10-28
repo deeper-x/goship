@@ -334,7 +334,7 @@ func (r repository) GetTodayArrivals(idPortinformer string, idArrivalPrevision i
 	var result []map[string]string = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(r.db, "arrivals", idPortinformer, idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "arrivals", 10, 10, 10, 10, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)

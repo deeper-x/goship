@@ -60,7 +60,7 @@ func TestArrivalsToday(t *testing.T) {
 
 	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_description", "ts_last_ship_activity", "ship_current_activities.description", "anchorage_points.description", "type_acronym", "iso3", "gross_tonnage", "ships.length", "ships.width", "agencies.description", "shipped_goods_data.shipped_goods_row", "data_previsione_arrivo_nave.ts_mooring_time", "data_arrivo_in_rada.ts_readiness"})
 
-	mock.ExpectQuery(`SELECT id_control_unit_data AS id_trip,`).WithArgs("28", "28").WillReturnRows(expectedRows)
+	mock.ExpectQuery(`SELECT id_control_unit_data AS id_trip,`).WithArgs(10, 10, 10, 10, "28").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
 	mockDB.GetTodayArrivals("28", 12)
