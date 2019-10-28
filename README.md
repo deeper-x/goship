@@ -860,13 +860,10 @@ $ <CTRL+C>
 
 ____
 
-#### Integration Test (httpexpect)
+#### Integration Test (httpexpect) + Unit test [WIP]
 ```bash
 $ go test -v ./...
-=== RUN   TestMain
---- PASS: TestMain (0.44s)
-PASS
-ok  	github.com/deeper-x/goship/src	(cached)
+
 ```
 
 ____

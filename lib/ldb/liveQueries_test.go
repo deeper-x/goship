@@ -42,7 +42,7 @@ func TestAllMoored(t *testing.T) {
 	mock.ExpectQuery(`SELECT id_control_unit_data, ship_description`).WithArgs("28", "28").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
-	mockDB.GetAllRoadstead("28")
+	mockDB.GetAllMoored("28")
 
 	if err := mock.ExpectationsWereMet(); err != nil {
 		t.Errorf("testing error: %s", err)
