@@ -8,16 +8,13 @@ import (
 )
 
 // GetAllRoadstead todo doc
-func GetAllRoadstead(idPortinformer string) []map[string]string {
-	var idControlUnitData sql.NullString
-	var shipName, anchoringTime, currentActivity, shippedGoods, tsReadiness sql.NullString
-	var shipType, iso3, grossTonnage, anchoragePoint, length, width, agency, tsPlannedMooring sql.NullString
-	var result []map[string]string = []map[string]string{}
-
-	connector := Connect()
+func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
+	var idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage sql.NullString
+	var length, width, agency, shippedGoods, tsPlannedMooring, tsReadiness sql.NullString
+	var result []map[string]string
 
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "all-anchored", idPortinformer, idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "all-anchored", idPortinformer, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)
@@ -26,13 +23,13 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(
-			&idControlUnitData,
+		rows.Scan(
+			&idTrip,
 			&shipName,
+			&shipType,
 			&anchoringTime,
 			&currentActivity,
 			&anchoragePoint,
-			&shipType,
 			&iso3,
 			&grossTonnage,
 			&length,
@@ -43,14 +40,8 @@ func GetAllRoadstead(idPortinformer string) []map[string]string {
 			&tsReadiness,
 		)
 
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		idControlUnitDataStr := idControlUnitData
-
 		tmpDict := map[string]string{
-			"id_trip":            idControlUnitDataStr.String,
+			"id_trip":            idTrip.String,
 			"ship":               shipName.String,
 			"ship_type":          shipType.String,
 			"anchoring_time":     anchoringTime.String,
@@ -278,17 +269,15 @@ func GetDeparturePrevisions(idPortinformer string) []map[string]string {
 }
 
 //GetAllMoored todo doc
-func GetAllMoored(idPortinformer string) []map[string]string {
+func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
 	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
 	var agency, tsETD sql.NullString
 
 	var result []map[string]string
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PLiveSQL)
-	rows, err := mapper.resource.Query(connector, "all-moored", idPortinformer, idPortinformer)
+	rows, err := mapper.resource.Query(r.db, "all-moored", idPortinformer, idPortinformer)
 
 	if err != nil {
 		log.Fatal(err)

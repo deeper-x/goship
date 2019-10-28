@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/deeper-x/goship/lib/db"
+	"github.com/deeper-x/goship/lib/ldb"
 	"github.com/kataras/iris"
 )
 
@@ -13,14 +13,22 @@ func (objPortinformer Portinformer) Home(ctx iris.Context) {
 // MooredNow todo description
 func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allMoored := ldb.GetAllMoored(idPortinformer)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allMoored := r.GetAllMoored(idPortinformer)
 	ctx.JSON(allMoored)
 }
 
 // RoadsteadNow todo description
 func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
-	allAnchoring := ldb.GetAllRoadstead(idPortinformer)
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allAnchoring := r.GetAllRoadstead(idPortinformer)
 	ctx.JSON(allAnchoring)
 }
 

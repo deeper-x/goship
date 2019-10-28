@@ -22,6 +22,21 @@ type dotMapper struct {
 	resource *dotsql.DotSql
 }
 
+type repository struct {
+	db *sql.DB
+}
+
+// ResServer calls interface
+type ResServer interface {
+	GetAllRoadstead(idPortinformer string) []map[string]string
+	GetAllMoored(idPortinformer string) []map[string]string
+}
+
+// NewRepository connector builder
+func NewRepository(db *sql.DB) ResServer {
+	return &repository{db: db}
+}
+
 var mapper = &dotMapper{}
 var objConn connection
 
