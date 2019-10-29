@@ -863,7 +863,10 @@ ____
 #### Integration Test + Unit test
 ```bash
 $ go test -v ./...
-?   	github.com/deeper-x/goship/conf	[no test files]
+=== RUN   TestParameters
+--- PASS: TestParameters (0.00s)
+PASS
+ok  	github.com/deeper-x/goship/conf	0.002s
 === RUN   TestAllRoadstead
 --- PASS: TestAllRoadstead (0.01s)
 === RUN   TestAllMoored
@@ -877,15 +880,15 @@ $ go test -v ./...
 === RUN   TestShippedGoods
 --- PASS: TestShippedGoods (0.01s)
 === RUN   TestTrafficList
---- PASS: TestTrafficList (0.01s)
+--- PASS: TestTrafficList (0.00s)
 === RUN   TestShiftingPrevisionsToday
---- PASS: TestShiftingPrevisionsToday (0.00s)
+--- PASS: TestShiftingPrevisionsToday (0.01s)
 === RUN   TestDeparturePrevisionsToday
 --- PASS: TestDeparturePrevisionsToday (0.01s)
 === RUN   TestShiftingsToday
 --- PASS: TestShiftingsToday (0.01s)
 === RUN   TestArrivalsRegister
---- PASS: TestArrivalsRegister (0.00s)
+--- PASS: TestArrivalsRegister (0.01s)
 === RUN   TestMooredRegister
 --- PASS: TestMooredRegister (0.00s)
 === RUN   TestAnchoredRegister
@@ -899,7 +902,9 @@ $ go test -v ./...
 === RUN   TestTrafficListRegister
 --- PASS: TestTrafficListRegister (0.00s)
 PASS
-ok  	github.com/deeper-x/goship/lib/ldb	0.132s
+ok  	github.com/deeper-x/goship/lib/ldb	0.108s
+?   	github.com/deeper-x/goship/lib/webserver	[no test files]
+?   	github.com/deeper-x/goship/services	[no test files]
 === RUN   TestLive
 --- PASS: TestLive (0.41s)
 === RUN   TestRegister
@@ -907,8 +912,8 @@ ok  	github.com/deeper-x/goship/lib/ldb	0.132s
 === RUN   TestMeteo
 --- PASS: TestMeteo (0.01s)
 PASS
-ok  	github.com/deeper-x/goship/src	0.710s
-deeper-x@local-PC:~/go/src/github.com/deeper-x/goship$ 
+ok  	github.com/deeper-x/goship/src	0.706s
+
 
 
 ```
