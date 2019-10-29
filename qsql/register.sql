@@ -112,8 +112,7 @@ ORDER BY ts_main_event_field_val
 
 
 --name: moored-register
-(SELECT id_control_unit_data, 
-ship_description, type_description, ts_fine_ormeggio,
+(SELECT id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,
 countries.name as country, width, length, gross_tonnage, net_tonnage 
 FROM control_unit_data
 INNER JOIN data_ormeggio_nave
@@ -160,8 +159,7 @@ AND ts_fine_ormeggio BETWEEN $8 AND $9
 )
 
 --name: roadstead-register
-(SELECT id_control_unit_data, 
-ship_description, type_description, ts_anchor_drop,
+(SELECT id_control_unit_data, ship_description, type_description, ts_anchor_drop,
 countries.name as country, width, length, gross_tonnage, net_tonnage 
 FROM control_unit_data
 INNER JOIN data_arrivo_in_rada
@@ -256,8 +254,7 @@ AND ts_out_of_sight::TIMESTAMP BETWEEN $3 AND $4
 
 
 --name: shipped-goods-register
-SELECT
-id_control_unit_data AS id_trip,
+SELECT id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name,
 CASE WHEN quantity = '' THEN '0' ELSE quantity END,
 unit, goods_categories.description AS goods_category,

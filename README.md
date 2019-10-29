@@ -863,6 +863,55 @@ ____
 #### Integration Test (httpexpect) + Unit test [WIP]
 ```bash
 $ go test -v ./...
+?   	github.com/deeper-x/goship/conf	[no test files]
+=== RUN   TestAllRoadstead
+--- PASS: TestAllRoadstead (0.01s)
+=== RUN   TestAllMoored
+--- PASS: TestAllMoored (0.01s)
+=== RUN   TestArrivalsToday
+--- PASS: TestArrivalsToday (0.01s)
+=== RUN   TestDeparturesToday
+--- PASS: TestDeparturesToday (0.01s)
+=== RUN   TestArrivalPrevisionsToday
+--- PASS: TestArrivalPrevisionsToday (0.01s)
+=== RUN   TestShippedGoods
+--- PASS: TestShippedGoods (0.01s)
+=== RUN   TestTrafficList
+--- PASS: TestTrafficList (0.01s)
+=== RUN   TestShiftingPrevisionsToday
+--- PASS: TestShiftingPrevisionsToday (0.00s)
+=== RUN   TestDeparturePrevisionsToday
+--- PASS: TestDeparturePrevisionsToday (0.01s)
+=== RUN   TestShiftingsToday
+--- PASS: TestShiftingsToday (0.01s)
+=== RUN   TestArrivalsRegister
+--- PASS: TestArrivalsRegister (0.00s)
+=== RUN   TestMooredRegister
+--- PASS: TestMooredRegister (0.00s)
+=== RUN   TestAnchoredRegister
+--- PASS: TestAnchoredRegister (0.01s)
+=== RUN   TestDeparturesRegister
+--- PASS: TestDeparturesRegister (0.00s)
+=== RUN   TestShiftingsRegister
+--- PASS: TestShiftingsRegister (0.01s)
+=== RUN   TestShippedGoodsRegister
+--- PASS: TestShippedGoodsRegister (0.00s)
+=== RUN   TestTrafficListRegister
+--- PASS: TestTrafficListRegister (0.00s)
+PASS
+ok  	github.com/deeper-x/goship/lib/ldb	0.132s
+?   	github.com/deeper-x/goship/lib/webserver	[no test files]
+?   	github.com/deeper-x/goship/services	[no test files]
+=== RUN   TestLive
+--- PASS: TestLive (0.41s)
+=== RUN   TestRegister
+--- PASS: TestRegister (0.24s)
+=== RUN   TestMeteo
+--- PASS: TestMeteo (0.01s)
+PASS
+ok  	github.com/deeper-x/goship/src	0.710s
+deeper-x@local-PC:~/go/src/github.com/deeper-x/goship$ 
+
 
 ```
 

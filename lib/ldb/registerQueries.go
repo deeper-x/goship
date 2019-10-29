@@ -8,23 +8,21 @@ import (
 )
 
 // GetArrivalsRegister todo doc
-func GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start string, stop string) []map[string]string {
+func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsSighting, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
 	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "arrivals-register", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "arrivals-register", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -76,22 +74,20 @@ func GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start st
 }
 
 // GetShiftingsRegister todo doc
-func GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string {
+func (r repository) GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, tsSighting, imo, ship sql.NullString
 	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "shiftings-register", idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "shiftings-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -130,23 +126,22 @@ func GetShiftingsRegister(idPortinformer string, start string, stop string) []ma
 }
 
 // GetMooredRegister todo doc
-func GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
+func (r repository) GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "moored-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+
+	rows, err := mapper.resource.Query(r.db, "moored-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -186,23 +181,21 @@ func GetMooredRegister(idPortinformer string, start string, stop string) []map[s
 }
 
 // GetRoadsteadRegister todo doc
-func GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string {
+func (r repository) GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsAnchoring, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "roadstead-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -242,23 +235,21 @@ func GetRoadsteadRegister(idPortinformer string, start string, stop string) []ma
 }
 
 // GetShippedGoodsRegister todo description
-func GetShippedGoodsRegister(idPortinformer string, start string, stop string) []map[string]string {
+func (r repository) GetShippedGoodsRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, quantity sql.NullString
 	var unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, groupCategory, macroCategory sql.NullString
 
 	result := []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "shipped-goods-register", idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "shipped-goods-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -304,23 +295,21 @@ func GetShippedGoodsRegister(idPortinformer string, start string, stop string) [
 }
 
 // GetDeparturesRegister todo description
-func GetDeparturesRegister(idPortinformer string, idDepartureState int, start string, stop string) []map[string]string {
+func (r repository) GetDeparturesRegister(idPortinformer string, idDepartureState int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsOutOfSight, shipFlag, shipWidth sql.NullString
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, draftAft, draftFwd, agency, lastPortOfCall, portDestination sql.NullString
 
 	var result []map[string]string = []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "departures-register", idDepartureState, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "departures-register", idDepartureState, idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer connector.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(
@@ -368,7 +357,7 @@ func GetDeparturesRegister(idPortinformer string, idDepartureState int, start st
 }
 
 //GetRegisterTrafficList todo doc
-func GetRegisterTrafficList(idPortinformer string, start string, stop string) []map[string]string {
+func (r repository) GetRegisterTrafficList(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, tsSighting sql.NullString
 	var numContainer, numPassengers, numCamion sql.NullString
 	var numFurgoni, numRimorchi, numAuto, numMoto, numCamper, tons sql.NullString
@@ -377,14 +366,14 @@ func GetRegisterTrafficList(idPortinformer string, start string, stop string) []
 
 	result := []map[string]string{}
 
-	connector := Connect()
-
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(connector, "traffic-list-register", idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "traffic-list-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		err := rows.Scan(

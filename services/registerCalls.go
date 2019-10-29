@@ -11,7 +11,10 @@ func (objPortinformer Portinformer) ArrivalsRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allArrivals := ldb.GetArrivalsRegister(idPortinformer, 10, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allArrivals := r.GetArrivalsRegister(idPortinformer, 10, start, stop)
 	ctx.JSON(allArrivals)
 }
 
@@ -21,7 +24,10 @@ func (objPortinformer Portinformer) DeparturesRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allDepartures := ldb.GetDeparturesRegister(idPortinformer, 26, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allDepartures := r.GetDeparturesRegister(idPortinformer, 26, start, stop)
 	ctx.JSON(allDepartures)
 }
 
@@ -31,7 +37,10 @@ func (objPortinformer Portinformer) RoadsteadRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allRoadstead := ldb.GetRoadsteadRegister(idPortinformer, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allRoadstead := r.GetRoadsteadRegister(idPortinformer, start, stop)
 	ctx.JSON(allRoadstead)
 }
 
@@ -41,7 +50,10 @@ func (objPortinformer Portinformer) MooredRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allMoored := ldb.GetMooredRegister(idPortinformer, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allMoored := r.GetMooredRegister(idPortinformer, start, stop)
 	ctx.JSON(allMoored)
 }
 
@@ -51,7 +63,10 @@ func (objPortinformer Portinformer) ShiftingsRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allShiftings := ldb.GetShiftingsRegister(idPortinformer, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allShiftings := r.GetShiftingsRegister(idPortinformer, start, stop)
 	ctx.JSON(allShiftings)
 }
 
@@ -61,7 +76,10 @@ func (objPortinformer Portinformer) ShippedGoodsRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	allShippedGoods := ldb.GetShippedGoodsRegister(idPortinformer, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allShippedGoods := r.GetShippedGoodsRegister(idPortinformer, start, stop)
 
 	ctx.JSON(allShippedGoods)
 }
@@ -72,6 +90,9 @@ func (objPortinformer Portinformer) TrafficListRegister(ctx iris.Context) {
 	start := ctx.Params().Get("start")
 	stop := ctx.Params().Get("stop")
 
-	trafficList := ldb.GetRegisterTrafficList(idPortinformer, start, stop)
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	trafficList := r.GetRegisterTrafficList(idPortinformer, start, stop)
 	ctx.JSON(trafficList)
 }

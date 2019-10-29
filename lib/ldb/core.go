@@ -38,6 +38,13 @@ type ResServer interface {
 	GetShiftingPrevisions(idPortinformer string) []map[string]string
 	GetDeparturePrevisions(idPortinformer string) []map[string]string
 	GetTodayShiftings(idPortinformer string) []map[string]string
+	GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start string, stop string) []map[string]string
+	GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string
+	GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string
+	GetDeparturesRegister(idPortinformer string, idDepartureState int, start string, stop string) []map[string]string
+	GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string
+	GetShippedGoodsRegister(idPortinformer string, start string, stop string) []map[string]string
+	GetRegisterTrafficList(idPortinformer string, start string, stop string) []map[string]string
 }
 
 // NewRepository connector builder
