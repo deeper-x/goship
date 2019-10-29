@@ -1,39 +1,66 @@
 package conf
 
 import (
-	"regexp"
+	"os"
 	"testing"
 )
 
+func fileExists(ifile string) bool {
+	info, err := os.Stat(ifile)
+
+	if os.IsNotExist(err) {
+		return false
+	}
+
+	return !info.IsDir()
+}
+
+func isDir(path string) bool {
+	info, err := os.Stat(path)
+
+	if err != nil {
+		return false
+	}
+
+	return info.IsDir()
+}
+
 func TestParameters(t *testing.T) {
-	matched, _ := regexp.MatchString(`.*/src/github.com/deeper-x/goship`, ProjectRoot)
 
-	if !matched {
-		t.Error("ProjectRoot")
+	gopath := os.Getenv("GOPATH")
+
+	if len(gopath) == 0 {
+		t.Error("gopath not set")
 	}
 
-	matched, _ = regexp.MatchString(`.*/\.env`, EnvFile)
+	pr := isDir(ProjectRoot)
 
-	if !matched {
-		t.Error("EnvFile")
+	if !pr {
+		t.Errorf("%s doesn't exists", ProjectRoot)
 	}
 
-	matched, _ = regexp.MatchString(`.*/qsql/register.sql`, PRegisterSQL)
+	ef := fileExists(EnvFile)
 
-	if !matched {
-		t.Error("ProjectRoot")
+	if !ef {
+		t.Errorf("%s doesn't exists", EnvFile)
 	}
 
-	matched, _ = regexp.MatchString(`.*/qsql/realtime.sql`, PLiveSQL)
+	prs := fileExists(PRegisterSQL)
 
-	if !matched {
-		t.Error("ProjectRoot")
+	if !prs {
+		t.Errorf("%s doesn't exists", PRegisterSQL)
 	}
 
-	matched, _ = regexp.MatchString(`.*/qsql/meteo.sql`, PMeteoSQL)
+	pls := fileExists(PLiveSQL)
 
-	if !matched {
-		t.Error("ProjectRoot")
+	if !pls {
+		t.Errorf("%s doesn't exists", PLiveSQL)
+	}
+
+	pms := fileExists(PMeteoSQL)
+
+	if !pms {
+		t.Errorf("%s doesn't exists", PMeteoSQL)
 	}
 
 }
