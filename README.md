@@ -2,7 +2,7 @@
 
 Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
 
-__Version: v0.2.12__
+__Version: v0.2.13__
 
 ____
 
@@ -903,8 +903,6 @@ ok  	github.com/deeper-x/goship/conf	0.002s
 --- PASS: TestTrafficListRegister (0.00s)
 PASS
 ok  	github.com/deeper-x/goship/lib/ldb	0.108s
-?   	github.com/deeper-x/goship/lib/webserver	[no test files]
-?   	github.com/deeper-x/goship/services	[no test files]
 === RUN   TestLive
 --- PASS: TestLive (0.41s)
 === RUN   TestRegister
