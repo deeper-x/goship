@@ -905,8 +905,6 @@ ok  	github.com/deeper-x/goship/conf	0.003s
 --- PASS: TestTrafficListRegister (0.00s)
 PASS
 ok  	github.com/deeper-x/goship/lib/ldb	0.137s
-?   	github.com/deeper-x/goship/lib/webserver	[no test files]
-?   	github.com/deeper-x/goship/services	[no test files]
 === RUN   TestLive
 --- PASS: TestLive (0.42s)
 === RUN   TestRegister
