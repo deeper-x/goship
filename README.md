@@ -860,7 +860,7 @@ $ <CTRL+C>
 
 ____
 
-#### Integration Test (httpexpect) + Unit test [WIP]
+#### Integration Test + Unit test
 ```bash
 $ go test -v ./...
 ?   	github.com/deeper-x/goship/conf	[no test files]
@@ -900,8 +900,6 @@ $ go test -v ./...
 --- PASS: TestTrafficListRegister (0.00s)
 PASS
 ok  	github.com/deeper-x/goship/lib/ldb	0.132s
-?   	github.com/deeper-x/goship/lib/webserver	[no test files]
-?   	github.com/deeper-x/goship/services	[no test files]
 === RUN   TestLive
 --- PASS: TestLive (0.41s)
 === RUN   TestRegister
