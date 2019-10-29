@@ -1,8 +1,11 @@
 package conf
 
 import (
+	"log"
 	"os"
 	"testing"
+
+	"github.com/joho/godotenv"
 )
 
 func fileExists(ifile string) bool {
@@ -25,13 +28,26 @@ func isDir(path string) bool {
 	return info.IsDir()
 }
 
-func TestParameters(t *testing.T) {
+func TestEnv(t *testing.T) {
+	err := godotenv.Load(EnvFile)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	gopath := os.Getenv("GOPATH")
 
 	if len(gopath) == 0 {
 		t.Error("gopath not set")
 	}
+
+	dbdsn := os.Getenv("DB_DSN")
+
+	if len(dbdsn) == 0 {
+		t.Error("DB_DSN not set")
+	}
+}
+
+func TestParameters(t *testing.T) {
 
 	pr := isDir(ProjectRoot)
 
