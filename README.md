@@ -48,7 +48,7 @@ Meteo data:
 
 [E2 - Active stations](#e2-active-meteo-stations)
   
-  ____
+____
 
 ## A - LIVE DATA SERVICES
 
@@ -760,7 +760,7 @@ ____
 
 ## D - BUSINESS INTELLIGENCE SERVICES
 
-## D1. __Shiftings/maneuverings [per quay/berth]__
+## D1. __Shiftings/maneuverings (per quay/berth)__
 
 Request:
 
@@ -796,7 +796,7 @@ Request:
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## E2. __Active meteo stations__:
+## E2. __Active meteo stations__
 
 Request:
 

@@ -206,7 +206,7 @@ func (r repository) GetDeparturePrevisions(idPortinformer string) []map[string]s
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
 	var agency, destinationPort, startingQuayBerth, startingRoadstead, cargoOnBoard sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "departure-previsions", idPortinformer)

@@ -131,7 +131,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, agency sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 
