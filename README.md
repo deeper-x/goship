@@ -280,7 +280,7 @@ res := map[string]string{
 
 ```
 
-## A8. __RO/RO + RO/PAX__: [*OK]
+## A8. __RO/RO + RO/PAX__
 
 *Description:* RO/RO RO/PAX operations in trips with with sighting date == ${TODAY}
 
@@ -320,7 +320,7 @@ res := map[string]string{
 
 ```
 
-## A9. __Shifting previsions__: [*OK]
+## A9. __Shifting previsions__
 
 *Description:* trips with shifting prevision date == ${TODAY}
 
@@ -361,7 +361,7 @@ res := map[string]string{
 
 ```
 
-## A10. __Departure previsions__: [*OK]
+## A10. __Departure previsions__
 
 *Description:* trips with departure prevision's date == ${TODAY}
 
@@ -398,7 +398,7 @@ res := map[string]string{
 
 ```
 
-## A11. __Shiftings:__ [OK]
+## A11. __Shiftings:__
 
 *Description:* trips' where starting shifting's date == ${TODAY}  
 
@@ -434,7 +434,7 @@ ____
 
 ## B - ARCHIVE DATA SERVICES
 
-## B1. __Trips archive [global recap, one row per trip]__: [*MP]
+## B1. __Trips archive [global recap, one row per trip]__
 
 Request:
 
@@ -442,7 +442,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B2. __Trips archive [global recap, one row per commercial operation]__: [*SB]
+## B2. __Trips archive [global recap, one row per commercial operation]__
 
 Request:
 
@@ -450,7 +450,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B3. __Trip data archive__ [shipreport core]: [*SB]
+## B3. __Trip data archive__ [shipreport core]
 
 Request:
 
@@ -458,7 +458,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B4. __Trip data archive detailed__ [shipreport]: [*SB]
+## B4. __Trip data archive detailed__ [shipreport]
 
 Request:
 
@@ -466,7 +466,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B5. __Arrivals archive__: [*MP]
+## B5. __Arrivals archive__
 
 Request:
 
@@ -474,7 +474,7 @@ Request:
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>
 ```
 
-## B6. __Departures archive__: [*MP]
+## B6. __Departures archive__
 
 Request:
 
@@ -482,7 +482,7 @@ Request:
 http://<REMOTE_IP>:8000/departuresArchive?id_portinformer=<id_portinformer>
 ```
 
-## B7. __Shipped goods archive__: [*MP]
+## B7. __Shipped goods archive__
 
 Request:
 
@@ -490,7 +490,7 @@ Request:
 http://<REMOTE_IP>:8000/shippedGoodsArchive?id_portinformer=<id_portinformer>
 ```
 
-## B8. __Traffic list archive__: [*MP]
+## B8. __Traffic list archive__
 
 Request:
 
@@ -504,7 +504,7 @@ ____
 
 These calls get the last trip activity in range, according with criteria
 
-## C1. __Arrivals:__ [*OK]
+## C1. __Arrivals:__
 
 *Description:* trips with sighting's date in range
 
@@ -543,7 +543,7 @@ res := map[string]string{
 
 ```
 
-## C2. __Moored:__ [*OK]
+## C2. __Moored:__
 
 *Description:* trips with the last activity as mooring in range (whatever form has been used)
 
@@ -574,7 +574,7 @@ res := map[string]string{
     }
 ```
 
-## C3. __Roadstead:__ [*OK]
+## C3. __Roadstead:__
 
 *Description:* trips with the last activity as anchoring in range (whatever form has been used)
 
@@ -605,7 +605,7 @@ res := map[string]string{
     }
 ```
 
-## C4. __Departures:__ [*OK]
+## C4. __Departures:__
 
 *Description:* trips with out of sight in range (whatever form has been used)
 
@@ -641,7 +641,7 @@ res := map[string]string{
     }
 ```
 
-## C5. __Shiftings:__ [OK]
+## C5. __Shiftings:__
 
 *Description:* trips' starting shifting in passed range  
 
@@ -673,7 +673,7 @@ res := map[string]string{
 
 ```
 
-## C6. __Arrival previsions:__ [*MP]
+## C6. __Arrival previsions:__
 
 Request:
 
@@ -681,7 +681,7 @@ Request:
 http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## C7. __Shipped goods:__ [*MP]
+## C7. __Shipped goods:__
 
 *Description:* commercial operations trips with sighting date in range (whatever form has been used)
 
@@ -715,7 +715,7 @@ res := map[string]string{
 }
 ```
 
-## C8. __RO/RO + RO/PAX:__ [*MP]
+## C8. __RO/RO + RO/PAX:__
 
 *Description:* RO/RO + RO/PAX operations trips with sighting date in range (whatever form has been used)
 
@@ -776,7 +776,7 @@ Request:
 http://<REMOTE_IP>:8000/shippedGoodsRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## D3. __RO/RO + RO/PAX recap:__ [*MP]
+## D3. __RO/RO + RO/PAX recap:__
 
 Request:
 
@@ -796,7 +796,7 @@ Request:
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## E2. __Active meteo stations__: [OK]
+## E2. __Active meteo stations__:
 
 Request:
 
