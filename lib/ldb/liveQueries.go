@@ -518,7 +518,7 @@ func (r repository) GetTodayShiftings(idPortinformer string) []map[string]string
 	var idTrip, tsSighting, imo, ship sql.NullString
 	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "shiftings", idPortinformer)

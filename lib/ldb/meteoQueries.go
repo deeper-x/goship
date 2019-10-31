@@ -10,7 +10,7 @@ import (
 // GetActiveStations todo doc
 func GetActiveStations() []map[string]string {
 	var portinformerCode, idPortinformer, tsFirstCreated, isActive sql.NullString
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	connector := Connect()
 
