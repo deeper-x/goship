@@ -398,7 +398,7 @@ res := map[string]string{
 
 ```
 
-## A11. __Shiftings:__
+## A11. __Shiftings__
 
 *Description:* trips' where starting shifting's date == ${TODAY}  
 
@@ -574,7 +574,7 @@ res := map[string]string{
     }
 ```
 
-## C3. __Roadstead:__
+## C3. __Roadstead__
 
 *Description:* trips with the last activity as anchoring in range (whatever form has been used)
 
@@ -605,7 +605,7 @@ res := map[string]string{
     }
 ```
 
-## C4. __Departures:__
+## C4. __Departures__
 
 *Description:* trips with out of sight in range (whatever form has been used)
 
@@ -641,7 +641,7 @@ res := map[string]string{
     }
 ```
 
-## C5. __Shiftings:__
+## C5. __Shiftings__
 
 *Description:* trips' starting shifting in passed range  
 
@@ -673,7 +673,7 @@ res := map[string]string{
 
 ```
 
-## C6. __Arrival previsions:__
+## C6. __Arrival previsions__
 
 Request:
 
@@ -681,7 +681,7 @@ Request:
 http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## C7. __Shipped goods:__
+## C7. __Shipped goods__
 
 *Description:* commercial operations trips with sighting date in range (whatever form has been used)
 
@@ -715,7 +715,7 @@ res := map[string]string{
 }
 ```
 
-## C8. __RO/RO + RO/PAX:__
+## C8. __RO/RO + RO/PAX__
 
 *Description:* RO/RO + RO/PAX operations trips with sighting date in range (whatever form has been used)
 
@@ -760,7 +760,7 @@ ____
 
 ## D - BUSINESS INTELLIGENCE SERVICES
 
-## D1. __Shiftings/maneuverings [per quay/berth]:__
+## D1. __Shiftings/maneuverings [per quay/berth]__
 
 Request:
 
