@@ -8,45 +8,45 @@ ____
 
 Real time data:
 
-- [A2 - Currently at roadstead]  (#a2-at-roadstead-ok)
+[A2 - Currently at roadstead](#a2-at-roadstead-ok) 
 
-- [A3 - Currently at mooring]  (#a3-moored-ok)
+[A3 - Currently at mooring](#a3-moored-ok)
 
-- [A4 - Ships arrived today]  (#a4-arrivals-ok)
+[A4 - Ships arrived today](#a4-arrivals-ok)
 
-- [A5 - Ships departed today]  (#a5-departures-ok)
+[A5 - Ships departed today](#a5-departures-ok)
 
-- [A6 - Today's arrivals previsions]  (#a6-arrival-previsions-ok)
+[A6 - Today's arrivals previsions](#a6-arrival-previsions-ok)
   
-- [A7 - Shipped goods for active trips]  (#a7-shipped-goods-ok)
+[A7 - Shipped goods for active trips](#a7-shipped-goods-ok)
 
-- [A8 . Traffic list for active trips]  (#a8-roro--ropax-ok)
+[A8 . Traffic list for active trips](#a8-roro--ropax-ok)
 
-- [A9 - Today's shifting previsions]  (#a9-shifting-previsions-ok)
+[A9 - Today's shifting previsions](#a9-shifting-previsions-ok)
 
-- [A10 - Today's departure previsions]  (#a10-departure-previsions-ok)
+[A10 - Today's departure previsions](#a10-departure-previsions-ok)
 
-- [A11 - Today's shiftings]  (#a11-shiftings-ok)
+[A11 - Today's shiftings](#a11-shiftings-ok)
 
 Register data (with dynamic range):
 
-- [C1 - Arrivals]  (#c1-arrivals-ok)
+[C1 - Arrivals](#c1-arrivals-ok)
   
-- [C2 - Moored]  (#c2-moored-ok)
+[C2 - Moored](#c2-moored-ok)
 
-- [C3 - At roadstead]  (#c3-roadstead-ok)
+[C3 - At roadstead](#c3-roadstead-ok)
 
-- [C4 - Departures]  (#c4-departures-ok)
+[C4 - Departures](#c4-departures-ok)
 
-- [C5 - Shiftings]  (#c5-shiftings-ok)
+[C5 - Shiftings](#c5-shiftings-ok)
 
-- [C7 - Shipped goods]  (#c7-shipped-goods-mp)
+[C7 - Shipped goods](#c7-shipped-goods-mp)
 
-- [C8 - Traffic list]  (#c8-roro--ropax-mp)
+[C8 - Traffic list](#c8-roro--ropax-mp)
   
 Meteo data:
 
-- [E2 - Active stations]  (#e2-active-meteo-stations)
+[E2 - Active stations](#e2-active-meteo-stations)
   
   ____
 
