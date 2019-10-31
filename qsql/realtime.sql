@@ -196,8 +196,7 @@ ORDER BY ts_main_event_field_val
 
 
 --name: shifting-previsions
-SELECT 
-ship_description AS ship, 
+SELECT ship_description AS ship, 
 ts_shifting_prevision,
 ship_types.type_acronym AS ship_type,  
 countries.iso3 AS ship_flag,
@@ -427,8 +426,7 @@ WHERE control_unit_data.fk_portinformer = $1
 AND control_unit_data.is_active = true;
 
 --name: traffic-list
-SELECT
-control_unit_data.id_control_unit_data AS id_trip,
+SELECT control_unit_data.id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name, 
 num_container, num_passengers, num_camion, 
 num_furgoni, num_rimorchi, num_auto, num_moto, num_camper, tons,

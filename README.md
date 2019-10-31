@@ -1,60 +1,58 @@
-# GSW - Goship Shipreporting Webservice 
+# GSW - Goship Shipreporting Webservice
 
-Note: calls marked w/ [*MP] are marked for porting. Those w/ [*OK] are completed, deployed and available for production. Calls w/ [*SB] are in stand-by, candidated to be rejected.
-
-__Version: v0.2.13__
+Version: v0.2.13
 
 ____
 
-#### REST services:
+## REST services
 
 Real time data:
 
-- [A2 - Currently at roadstead](#a2-at-roadstead-ok): 
+- [A2 - Currently at roadstead]  (#a2-at-roadstead-ok)
 
-- [A3 - Currently at mooring](#a3-moored-ok)
+- [A3 - Currently at mooring]  (#a3-moored-ok)
 
-- [A4 - Ships arrived today](#a4-arrivals-ok)
+- [A4 - Ships arrived today]  (#a4-arrivals-ok)
 
-- [A5 - Ships departed today](#a5-departures-ok)
+- [A5 - Ships departed today]  (#a5-departures-ok)
 
-- [A6 - Today's arrivals previsions](#a6-arrival-previsions-ok)
+- [A6 - Today's arrivals previsions]  (#a6-arrival-previsions-ok)
   
-- [A7 - Shipped goods for active trips](#a7-shipped-goods-ok)
+- [A7 - Shipped goods for active trips]  (#a7-shipped-goods-ok)
 
-- [A8 . Traffic list for active trips](#a8-roro--ropax-ok)
+- [A8 . Traffic list for active trips]  (#a8-roro--ropax-ok)
 
-- [A9 - Today's shifting previsions](#a9-shifting-previsions-ok)
+- [A9 - Today's shifting previsions]  (#a9-shifting-previsions-ok)
 
-- [A10 - Today's departure previsions](#a10-departure-previsions-ok)
+- [A10 - Today's departure previsions]  (#a10-departure-previsions-ok)
 
-- [A11 - Today's shiftings](#a11-shiftings-ok)
+- [A11 - Today's shiftings]  (#a11-shiftings-ok)
 
 Register data (with dynamic range):
 
-- [C1 - Arrivals](#c1-arrivals-ok)
+- [C1 - Arrivals]  (#c1-arrivals-ok)
   
-- [C2 - Moored](#c2-moored-ok)
+- [C2 - Moored]  (#c2-moored-ok)
 
-- [C3 - At roadstead](#c3-roadstead-ok)
+- [C3 - At roadstead]  (#c3-roadstead-ok)
 
-- [C4 - Departures](#c4-departures-ok)
+- [C4 - Departures]  (#c4-departures-ok)
 
-- [C5 - Shiftings](#c5-shiftings-ok)
+- [C5 - Shiftings]  (#c5-shiftings-ok)
 
-- [C7 - Shipped goods](#c7-shipped-goods-mp)
+- [C7 - Shipped goods]  (#c7-shipped-goods-mp)
 
-- [C8 - Traffic list](#c8-roro--ropax-mp)
+- [C8 - Traffic list]  (#c8-roro--ropax-mp)
   
 Meteo data:
 
-- [E2 - Active stations](#e2-active-meteo-stations)
+- [E2 - Active stations]  (#e2-active-meteo-stations)
   
   ____
 
-#### A - LIVE DATA SERVICES:
+## A - LIVE DATA SERVICES
 
-#### A1. __Active trips__: [*SB] ##
+## A1. __Active trips__: [*SB]
 
 Request:
 
@@ -62,7 +60,7 @@ Request:
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-#### A2. __At roadstead__: [*OK] ##
+## A2. __At roadstead__: [*OK]
 
 *Description:* trips currently in state of anchoring
 
@@ -99,7 +97,7 @@ res := map[string]string{
 
 ```
 
-#### A3. __Moored__: [*OK] ##
+## A3. __Moored__: [*OK]
 
 *Description:* trips currently in state of mooring
 
@@ -134,7 +132,7 @@ res := map[string]string{
 
 ```
 
-#### A4. __Arrivals__: [*OK] ##
+## A4. __Arrivals__: [*OK]
 
 *Description:* trips with sighting date == ${TODAY}
 
@@ -173,7 +171,7 @@ res := map[string]string{
 
 ```
 
-#### A5. __Departures__: [*OK] ##
+## A5. __Departures__: [*OK]
 
 *Description:* trips with out of sight date == ${TODAY}
 
@@ -209,7 +207,7 @@ res := map[string]string{
     }
 ```
 
-#### A6. __Arrival previsions__: [*OK] ##
+## A6. __Arrival previsions__: [*OK]
 
 *Description:* trips with out_of_sight date == ${TODAY}
 
@@ -247,7 +245,7 @@ res := map[string]string{
 
 ```
 
-#### A7. __Shipped goods__: [*OK] ##
+## A7. __Shipped goods__: [*OK]
 
 *Description:* shipped goods in trips with sighting date == ${TODAY}
 
@@ -282,7 +280,7 @@ res := map[string]string{
 
 ```
 
-#### A8. __RO/RO + RO/PAX__: [*OK]
+## A8. __RO/RO + RO/PAX__: [*OK]
 
 *Description:* RO/RO RO/PAX operations in trips with with sighting date == ${TODAY}
 
@@ -322,7 +320,7 @@ res := map[string]string{
 
 ```
 
-#### A9. __Shifting previsions__: [*OK]
+## A9. __Shifting previsions__: [*OK]
 
 *Description:* trips with shifting prevision date == ${TODAY}
 
@@ -363,7 +361,7 @@ res := map[string]string{
 
 ```
 
-#### A10. __Departure previsions__: [*OK]
+## A10. __Departure previsions__: [*OK]
 
 *Description:* trips with departure prevision's date == ${TODAY}
 
@@ -400,7 +398,7 @@ res := map[string]string{
 
 ```
 
-#### A11. __Shiftings:__ [OK]
+## A11. __Shiftings:__ [OK]
 
 *Description:* trips' where starting shifting's date == ${TODAY}  
 
@@ -418,26 +416,25 @@ Response:
 # data := [idTrip, tsSighting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
 
 res := map[string]string{
-	"id_trip":     idTrip.String,
-	"ts_sighting": tsSighting.String,
-	"imo":         imo.String,
-	"ship":        ship.String,
-	"ship_type":   shipType.String,
-	"iso3":        iso3.String,
-	"from_quay":   fromQuay.String,
-	"to_quay":     toQuay.String,
-	"from_anch":   fromAnch.String,
-	"to_anch":     toAnch.String,
+    "id_trip":     idTrip.String,
+    "ts_sighting": tsSighting.String,
+    "imo":         imo.String,
+    "ship":        ship.String,
+    "ship_type":   shipType.String,
+    "iso3":        iso3.String,
+    "from_quay":   fromQuay.String,
+    "to_quay":     toQuay.String,
+    "from_anch":   fromAnch.String,
+    "to_anch":     toAnch.String,
 }
 
 ```
 
-
 ____
 
-#### B - ARCHIVE DATA SERVICES:
+## B - ARCHIVE DATA SERVICES
 
-#### B1. __Trips archive [global recap, one row per trip]__: [*MP]
+## B1. __Trips archive [global recap, one row per trip]__: [*MP]
 
 Request:
 
@@ -445,7 +442,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B2. __Trips archive [global recap, one row per commercial operation]__: [*SB]
+## B2. __Trips archive [global recap, one row per commercial operation]__: [*SB]
 
 Request:
 
@@ -453,7 +450,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B3. __Trip data archive__ [shipreport core]: [*SB]
+## B3. __Trip data archive__ [shipreport core]: [*SB]
 
 Request:
 
@@ -461,7 +458,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B4. __Trip data archive detailed__ [shipreport]: [*SB]
+## B4. __Trip data archive detailed__ [shipreport]: [*SB]
 
 Request:
 
@@ -469,7 +466,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportDetails?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### B5. __Arrivals archive__: [*MP]
+## B5. __Arrivals archive__: [*MP]
 
 Request:
 
@@ -477,7 +474,7 @@ Request:
 http://<REMOTE_IP>:8000/arrivalsArchive?id_portinformer=<id_portinformer>
 ```
 
-#### B6. __Departures archive__: [*MP]
+## B6. __Departures archive__: [*MP]
 
 Request:
 
@@ -485,7 +482,7 @@ Request:
 http://<REMOTE_IP>:8000/departuresArchive?id_portinformer=<id_portinformer>
 ```
 
-#### B7. __Shipped goods archive__: [*MP]
+## B7. __Shipped goods archive__: [*MP]
 
 Request:
 
@@ -493,7 +490,7 @@ Request:
 http://<REMOTE_IP>:8000/shippedGoodsArchive?id_portinformer=<id_portinformer>
 ```
 
-#### B8. __Traffic list archive__: [*MP]
+## B8. __Traffic list archive__: [*MP]
 
 Request:
 
@@ -503,11 +500,11 @@ http://<REMOTE_IP>:8000/trafficListArchive?id_portinformer=<id_portinformer>
 
 ____
 
-#### C - DAILY REGISTER SERVICES:
+## C - DAILY REGISTER SERVICES
 
 These calls get the last trip activity in range, according with criteria
 
-#### C1. __Arrivals:__ [*OK]
+## C1. __Arrivals:__ [*OK]
 
 *Description:* trips with sighting's date in range
 
@@ -546,7 +543,7 @@ res := map[string]string{
 
 ```
 
-#### C2. __Moored:__ [*OK]
+## C2. __Moored:__ [*OK]
 
 *Description:* trips with the last activity as mooring in range (whatever form has been used)
 
@@ -577,7 +574,7 @@ res := map[string]string{
     }
 ```
 
-#### C3. __Roadstead:__ [*OK]
+## C3. __Roadstead:__ [*OK]
 
 *Description:* trips with the last activity as anchoring in range (whatever form has been used)
 
@@ -608,7 +605,7 @@ res := map[string]string{
     }
 ```
 
-#### C4. __Departures:__ [*OK]
+## C4. __Departures:__ [*OK]
 
 *Description:* trips with out of sight in range (whatever form has been used)
 
@@ -644,7 +641,7 @@ res := map[string]string{
     }
 ```
 
-#### C5. __Shiftings:__ [OK]
+## C5. __Shiftings:__ [OK]
 
 *Description:* trips' starting shifting in passed range  
 
@@ -662,21 +659,21 @@ Response:
 # data := [idTrip, tsSighting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
 
 res := map[string]string{
-	"id_trip":     idTrip.String,
-	"ts_sighting": tsSighting.String,
-	"imo":         imo.String,
-	"ship":        ship.String,
-	"ship_type":   shipType.String,
-	"iso3":        iso3.String,
-	"from_quay":   fromQuay.String,
-	"to_quay":     toQuay.String,
-	"from_anch":   fromAnch.String,
-	"to_anch":     toAnch.String,
+    "id_trip":     idTrip.String,
+    "ts_sighting": tsSighting.String,
+    "imo":         imo.String,
+    "ship":        ship.String,
+    "ship_type":   shipType.String,
+    "iso3":        iso3.String,
+    "from_quay":   fromQuay.String,
+    "to_quay":     toQuay.String,
+    "from_anch":   fromAnch.String,
+    "to_anch":     toAnch.String,
 }
 
 ```
 
-#### C6. __Arrival previsions:__ [*MP]
+## C6. __Arrival previsions:__ [*MP]
 
 Request:
 
@@ -684,7 +681,7 @@ Request:
 http://<REMOTE_IP>:8000/registerPlannedArrivals?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### C7. __Shipped goods:__ [*MP]
+## C7. __Shipped goods:__ [*MP]
 
 *Description:* commercial operations trips with sighting date in range (whatever form has been used)
 
@@ -718,10 +715,9 @@ res := map[string]string{
 }
 ```
 
-#### C8. __RO/RO + RO/PAX:__ [*MP]
+## C8. __RO/RO + RO/PAX:__ [*MP]
 
 *Description:* RO/RO + RO/PAX operations trips with sighting date in range (whatever form has been used)
-
 
 Request:
 
@@ -759,11 +755,12 @@ res := map[string]string{
 
 
 ```
+
 ____
 
-#### D - BUSINESS INTELLIGENCE SERVICES: ####
+## D - BUSINESS INTELLIGENCE SERVICES
 
-#### D1. __Shiftings/maneuverings [per quay/berth]:__ [*MP] ####
+## D1. __Shiftings/maneuverings [per quay/berth]:__
 
 Request:
 
@@ -771,7 +768,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsManeuverings?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### D2. __Shipped goods recap:__ [*MP] ####
+## D2. __Shipped goods recap:__
 
 Request:
 
@@ -779,19 +776,19 @@ Request:
 http://<REMOTE_IP>:8000/shippedGoodsRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### D3. __RO/RO + RO/PAX recap:__ [*MP]
+## D3. __RO/RO + RO/PAX recap:__ [*MP]
 
 Request:
 
 ```bash
 http://<REMOTE_IP>:8000/trafficListRecap?id_portinformer=<ID_PORTINFORMER>
 ```
+
 ____
 
-#### E - METEO DATA ####
+## E - METEO DATA
 
-
-#### E1. __Meteo data archive__: [*MP]
+## E1. __Meteo data archive__
 
 Request:
 
@@ -799,7 +796,7 @@ Request:
 http://<REMOTE_IP>:8000/meteoArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-#### E2. __Active meteo stations__: [OK]
+## E2. __Active meteo stations__: [OK]
 
 Request:
 
@@ -824,51 +821,50 @@ res := map[string]string{
 
 ____
 
-
-#### Install Go and (first) run 
-ref. https://golang.org/doc/install?download=go1.12.10.linux-386.tar.gz
+## Install Go and (first) run
 
 ```bash
 $ go version
 go version go1.12.10 linux/amd64
 
-$ export PATH=${PATH}:/usr/local/go/bin/ ## FIX w/ your installation path
+export PATH=${PATH}:/usr/local/go/bin/ ## FIX w/ your installation path
 
 ## Pass vars at runtime or add to .bash_profile
-$ export GOPATH=${HOME}/go
-$ export GOBIN=${GOPATH}/bin
-$ export PATH=${PATH}:${GOBIN}
+export GOPATH=${HOME}/go
+export GOBIN=${GOPATH}/bin
+export PATH=${PATH}:${GOBIN}
 
 ## Get goship and deploy
-$ go get github.com/deeper-x/goship
+go get github.com/deeper-x/goship
 
-$ cd ${GOPATH}/src/github.com/deeper-x/goship
-$ cat > .env <<HEREDOC 
+cd ${GOPATH}/src/github.com/deeper-x/goship
+cat > .env <<HEREDOC
 DB_DSN="postgres://<user>:<passwd>@127.0.0.1/<db>"
 HEREDOC
 
-$ go get -d ./...    
-$ go install src/goship.go 
-$ goship ## RUN FOR TEST
+go get -d ./...
+go install src/goship.go
+goship ## RUN FOR TEST
 Now listening on: http://localhost:8000
 Application started. Press CTRL+C to shut down.
 
 ## Close test instance
-$ <CTRL+C>  
+<CTRL+C>  
 
 ```
 
 ____
 
-#### Integration Test + Unit test
+## Integration Test + Unit test
+
 ```bash
-$ go test -v ./...
+go test -v ./...
 === RUN   TestEnv
 --- PASS: TestEnv (0.00s)
 === RUN   TestParameters
 --- PASS: TestParameters (0.00s)
 PASS
-ok  	github.com/deeper-x/goship/conf	0.003s
+ok  github.com/deeper-x/goship/conf 0.003s
 === RUN   TestAllRoadstead
 --- PASS: TestAllRoadstead (0.01s)
 === RUN   TestAllMoored
@@ -904,7 +900,6 @@ ok  	github.com/deeper-x/goship/conf	0.003s
 === RUN   TestTrafficListRegister
 --- PASS: TestTrafficListRegister (0.00s)
 PASS
-ok  	github.com/deeper-x/goship/lib/ldb	0.137s
 === RUN   TestLive
 --- PASS: TestLive (0.42s)
 === RUN   TestRegister
@@ -912,18 +907,19 @@ ok  	github.com/deeper-x/goship/lib/ldb	0.137s
 === RUN   TestMeteo
 --- PASS: TestMeteo (0.01s)
 PASS
-ok  	github.com/deeper-x/goship/src	0.723s
+ok  github.com/deeper-x/goship/src 0.723s
 
 ```
 
 ____
 
-#### Systemd configuration
+## Systemd configuration
 
 ```bash
-## Service install instructions: 
-## This is a service file template you can start from 
-$ sudo cat > /usr/lib/systemd/system/goship.service <<HEREDOC
+## Service install instructions:
+## This is a service file template you can start from
+
+sudo cat > /usr/lib/systemd/system/goship.service <<HEREDOC
 
 [Unit]
 Description=Shipreporting service middleware
@@ -943,5 +939,3 @@ WantedBy=multi-user.target
 
 HEREDOC
 ```
-
-
