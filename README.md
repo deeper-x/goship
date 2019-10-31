@@ -2,6 +2,8 @@
 
 Version: v0.2.13
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5ce3fa36326e4c0aaef0570db6a5dd23)](https://www.codacy.com/manual/deeper-x/goship?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=deeper-x/goship&amp;utm_campaign=Badge_Grade)
+
 ____
 
 ## REST services
