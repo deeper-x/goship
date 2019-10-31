@@ -397,7 +397,7 @@ func (r repository) GetTodayDepartures(idPortinformer string, idDepartureState i
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, draftAft, draftFwd, agency, lastPortOfCall, portDestination sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "departures", idDepartureState, idPortinformer)

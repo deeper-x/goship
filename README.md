@@ -52,7 +52,7 @@ Meteo data:
 
 ## A - LIVE DATA SERVICES
 
-## A1. __Active trips__: [*SB]
+## A1. __Active trips__
 
 Request:
 
@@ -60,7 +60,7 @@ Request:
 http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
 ```
 
-## A2. __At roadstead__: [*OK]
+## A2. __At roadstead__
 
 *Description:* trips currently in state of anchoring
 
@@ -97,7 +97,7 @@ res := map[string]string{
 
 ```
 
-## A3. __Moored__: [*OK]
+## A3. __Moored__
 
 *Description:* trips currently in state of mooring
 
@@ -132,7 +132,7 @@ res := map[string]string{
 
 ```
 
-## A4. __Arrivals__: [*OK]
+## A4. __Arrivals__
 
 *Description:* trips with sighting date == ${TODAY}
 
@@ -171,7 +171,7 @@ res := map[string]string{
 
 ```
 
-## A5. __Departures__: [*OK]
+## A5. __Departures__
 
 *Description:* trips with out of sight date == ${TODAY}
 
@@ -207,7 +207,7 @@ res := map[string]string{
     }
 ```
 
-## A6. __Arrival previsions__: [*OK]
+## A6. __Arrival previsions__
 
 *Description:* trips with out_of_sight date == ${TODAY}
 
@@ -245,7 +245,7 @@ res := map[string]string{
 
 ```
 
-## A7. __Shipped goods__: [*OK]
+## A7. __Shipped goods__
 
 *Description:* shipped goods in trips with sighting date == ${TODAY}
 
@@ -434,7 +434,7 @@ ____
 
 ## B - ARCHIVE DATA SERVICES
 
-## B1. __Trips archive [global recap, one row per trip]__
+## B1. __Trips archive (global recap, one row per trip)__
 
 Request:
 
@@ -442,7 +442,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchive?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B2. __Trips archive [global recap, one row per commercial operation]__
+## B2. __Trips archive (global recap, one row per commercial operation)__
 
 Request:
 
@@ -450,7 +450,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsArchiveMultiRows?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B3. __Trip data archive__ [shipreport core]
+## B3. __Trip data archive__ (shipreport core)
 
 Request:
 
@@ -458,7 +458,7 @@ Request:
 http://<REMOTE_IP>:8000/shipReportList?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## B4. __Trip data archive detailed__ [shipreport]
+## B4. __Trip data archive detailed__ (shipreport)
 
 Request:
 
@@ -504,7 +504,7 @@ ____
 
 These calls get the last trip activity in range, according with criteria
 
-## C1. __Arrivals:__
+## C1. __Arrivals__
 
 *Description:* trips with sighting's date in range
 
@@ -543,7 +543,7 @@ res := map[string]string{
 
 ```
 
-## C2. __Moored:__
+## C2. __Moored__
 
 *Description:* trips with the last activity as mooring in range (whatever form has been used)
 
@@ -768,7 +768,7 @@ Request:
 http://<REMOTE_IP>:8000/tripsManeuverings?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## D2. __Shipped goods recap:__
+## D2. __Shipped goods recap__
 
 Request:
 
@@ -776,7 +776,7 @@ Request:
 http://<REMOTE_IP>:8000/shippedGoodsRecap?id_portinformer=<ID_PORTINFORMER>
 ```
 
-## D3. __RO/RO + RO/PAX recap:__
+## D3. __RO/RO + RO/PAX recap__
 
 Request:
 
