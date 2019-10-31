@@ -13,7 +13,7 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
 	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 	rows, err := mapper.resource.Query(r.db, "arrivals-register", idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idArrivalPrevision, idPortinformer, start, stop)
