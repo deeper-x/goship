@@ -74,7 +74,7 @@ func (r repository) GetArrivalPrevisions(idPortinformer string) []map[string]str
 	var destinationQuayBerth sql.NullString
 	var destinationRoadstead sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "arrival-previsions", idPortinformer)

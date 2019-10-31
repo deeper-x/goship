@@ -78,7 +78,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 	var idTrip, tsSighting, imo, ship sql.NullString
 	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 	rows, err := mapper.resource.Query(r.db, "shiftings-register", idPortinformer, start, stop)
