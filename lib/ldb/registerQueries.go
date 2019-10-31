@@ -186,7 +186,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 	var shipLength, grossTonnage sql.NullString
 	var netTonnage, agency sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
