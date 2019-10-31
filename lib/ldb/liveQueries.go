@@ -141,7 +141,7 @@ func (r repository) GetShiftingPrevisions(idPortinformer string) []map[string]st
 	var shipLength, grossTonnage, netTonnage, draftAft, draftFwd sql.NullString
 	var agency, destinationPort, startingQuayBerth, startingRoadstead, stopQuayBerth, stopRoadstead, cargoOnBoard sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "shifting-previsions", idPortinformer)
@@ -331,7 +331,7 @@ func (r repository) GetTodayArrivals(idPortinformer string, idArrivalPrevision i
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
 	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
 
-	var result []map[string]string = []map[string]string{}
+	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PLiveSQL)
 	rows, err := mapper.resource.Query(r.db, "arrivals", 10, 10, 10, 10, idPortinformer)
