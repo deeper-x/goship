@@ -5,6 +5,7 @@ Version: v0.2.13
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5ce3fa36326e4c0aaef0570db6a5dd23)](https://www.codacy.com/manual/deeper-x/goship?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=deeper-x/goship&amp;utm_campaign=Badge_Grade)
 [![Go Report Card](https://goreportcard.com/badge/github.com/deeper-x/goship)](https://goreportcard.com/report/github.com/deeper-x/goship)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/deeper-x/goship)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/deeper-x/goship?sort=semver)
 
 ____
 
