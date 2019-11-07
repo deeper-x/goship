@@ -12,6 +12,8 @@ func (objPortinformer Portinformer) ArrivalPrevisions(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allArrivals := r.GetArrivalPrevisions(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allArrivals)
 }
 
@@ -23,6 +25,8 @@ func (objPortinformer Portinformer) DeparturePrevisions(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allDepartures := r.GetDeparturePrevisions(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allDepartures)
 }
 
@@ -34,5 +38,7 @@ func (objPortinformer Portinformer) ShiftingPrevisions(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allShiftings := r.GetShiftingPrevisions(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allShiftings)
 }

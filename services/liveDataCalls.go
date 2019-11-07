@@ -18,6 +18,8 @@ func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allMoored := r.GetAllMoored(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allMoored)
 }
 
@@ -29,6 +31,8 @@ func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allAnchoring := r.GetAllRoadstead(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allAnchoring)
 }
 
@@ -40,6 +44,8 @@ func (objPortinformer Portinformer) ArrivalsToday(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	arrivals := r.GetTodayArrivals(idPortinformer, 10)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(arrivals)
 }
 
@@ -51,6 +57,8 @@ func (objPortinformer Portinformer) DeparturesToday(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	departures := r.GetTodayDepartures(idPortinformer, 26)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(departures)
 }
 
@@ -62,6 +70,8 @@ func (objPortinformer Portinformer) ShippedGoods(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	shippedGoods := r.GetTodayShippedGoods(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(shippedGoods)
 }
 
@@ -72,6 +82,8 @@ func (objPortinformer Portinformer) ShiftingsToday(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	shiftings := r.GetTodayShiftings(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(shiftings)
 }
 
@@ -82,5 +94,7 @@ func (objPortinformer Portinformer) TrafficListToday(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	trafficList := r.GetTodayTrafficList(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(trafficList)
 }

@@ -8,5 +8,7 @@ import (
 // ActiveStations todo doc
 func (objPortinformer Portinformer) ActiveStations(ctx iris.Context) {
 	activeStations := ldb.GetActiveStations()
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(activeStations)
 }
