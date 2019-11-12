@@ -353,7 +353,6 @@ res := map[string]string{
     "draftAft":             draftAft.String,
     "draftFwd":             draftFwd.String,
     "agency":               agency.String,
-    "destinationPort":      destinationPort.String,
     "startingQuayBerth":    startingQuayBerth.String,
     "startingRoadstead":    stopRoadstead.String,
     "stopQuayBerth":        stopQuayBerth.String,
@@ -416,13 +415,13 @@ Response:
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
-# data := [idTrip, tsSighting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
+# data := [idTrip, tsShifting, imo, ship, shipType, iso3, fromQuay, toQuay, fromAnch, toAnch]
 
 res := map[string]string{
     "id_trip":     idTrip.String,
-    "ts_sighting": tsSighting.String,
+    "ts_shifting": tsShifting.String,
     "imo":         imo.String,
-    "ship":        ship.String,
+    "ship_name":        ship.String,
     "ship_type":   shipType.String,
     "iso3":        iso3.String,
     "from_quay":   fromQuay.String,

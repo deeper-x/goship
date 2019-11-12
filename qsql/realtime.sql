@@ -148,9 +148,13 @@ AND planned_arrivals.fk_portinformer = $1;
 
 
 --name: shiftings
-SELECT control_unit_data.fk_portinformer, ts_main_event_field_val, 
-imo, ship_description AS ship_name, 
-type_acronym AS ship_type, iso3 AS country, 
+SELECT 
+id_control_unit_data AS id_trip, 
+ts_main_event_field_val AS ts_shifting, 
+imo, 
+ship_description AS ship_name, 
+type_acronym AS ship_type, 
+iso3 AS country, 
 start_quay.description||'/'||start_berth.description as FROM_QUAY,
 stop_quay.description||'/'||stop_berth.description as TO_QUAY,
 start_anchorage.description as FROM_ANCH,
@@ -214,6 +218,7 @@ ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 planned_shiftings.draft_aft, planned_shiftings.draft_fwd,
 agencies.description AS agency,
+
 start_quay.description AS starting_quay_berth,
 start_anchorage_point.description AS starting_roadstead,
 stop_quay.description AS stop_quay_berth,
@@ -259,7 +264,8 @@ AND planned_shiftings.is_active = true
 AND planned_shiftings.fk_portinformer = $1;
 
 --name: departure-previsions
-SELECT ship_description AS ship, ts_departure_prevision,
+SELECT ship_description AS ship, 
+ts_departure_prevision,
 ship_types.type_acronym AS ship_type,  
 countries.iso3 AS ship_flag,
 ships.width AS ship_width,
@@ -436,9 +442,19 @@ AND control_unit_data.is_active = true;
 --name: traffic-list
 SELECT control_unit_data.id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name, 
-num_container, num_passengers, num_camion, 
-num_furgoni, num_rimorchi, num_auto, num_moto, num_camper, tons,
-num_bus, num_minibus, traffic_list_mvnt_type, traffic_list_categories.description,
+num_container, 
+num_passengers, 
+num_camion, 
+num_furgoni, 
+num_rimorchi, 
+num_auto, 
+num_moto, 
+num_camper, 
+tons,
+num_bus, 
+num_minibus, 
+traffic_list_mvnt_type, 
+traffic_list_categories.description,
 quays.description AS quay
 FROM traffic_list INNER JOIN control_unit_data
 ON fk_control_unit_data = id_control_unit_data

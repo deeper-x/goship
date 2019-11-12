@@ -515,7 +515,7 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 
 // GetTodayShiftings todo doc
 func (r repository) GetTodayShiftings(idPortinformer string) []map[string]string {
-	var idTrip, tsSighting, imo, ship sql.NullString
+	var idTrip, tsShifting, imo, ship sql.NullString
 	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
 
 	var result = []map[string]string{}
@@ -532,7 +532,7 @@ func (r repository) GetTodayShiftings(idPortinformer string) []map[string]string
 	for rows.Next() {
 		err := rows.Scan(
 			&idTrip,
-			&tsSighting,
+			&tsShifting,
 			&imo,
 			&ship,
 			&shipType,
@@ -548,7 +548,7 @@ func (r repository) GetTodayShiftings(idPortinformer string) []map[string]string
 
 		tmpDict := map[string]string{
 			"id_trip":     idTrip.String,
-			"ts_sighting": tsSighting.String,
+			"ts_shifting": tsShifting.String,
 			"imo":         imo.String,
 			"ship":        ship.String,
 			"ship_type":   shipType.String,
