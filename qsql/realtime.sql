@@ -1,13 +1,18 @@
 --name: all-anchored
-SELECT id_control_unit_data, ship_description, 
-ts_last_ship_activity, 
+SELECT 
+id_control_unit_data, 
+ship_description,
+type_acronym as ship_type, 
+ts_last_ship_activity AS anchoring_time, 
 ship_current_activities.description AS current_activity,
 anchorage_points.description AS anchorage_point,
-type_acronym as ship_type, iso3, gross_tonnage, 
-ships.length, ships.width,
+iso3, 
+gross_tonnage, 
+ships.length, 
+ships.width,
 agencies.description as agency,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
-data_previsione_arrivo_nave.ts_mooring_time AS planned_mooring,
+data_previsione_arrivo_nave.ts_mooring_time AS ts_planned_mooring,
 data_arrivo_in_rada.ts_readiness AS ts_readiness
 FROM control_unit_data 
 INNER JOIN ships
