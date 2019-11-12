@@ -106,14 +106,17 @@ AND control_unit_data.fk_portinformer = $2;
 
 
 --name: arrival-previsions
-SELECT ship_description AS ship, ts_arrival_prevision,
+SELECT id_control_unit_data AS id_trip,
+ship_description AS ship, 
+ts_arrival_prevision,
 ship_types.type_acronym AS ship_type,  
 countries.iso3 AS ship_flag,
 ships.width AS ship_width,
 ships.length AS ship_length,
 ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
-draft_aft, draft_fwd,
+draft_aft, 
+draft_fwd,
 agencies.description AS agency,
 last_port_of_call.port_name||'('||last_port_of_call.port_country||')' AS last_port_of_call,
 quays.description AS destination_quay_berth,
@@ -353,7 +356,7 @@ AND ts_avvistamento::DATE = current_date;
 
 --name: departures
 SELECT id_control_unit_data AS id_trip, 
-	ships.ship_description AS ship_name, 
+ships.ship_description AS ship_name, 
 ship_types.type_acronym AS ship_type,  
 data_fuori_dal_porto.ts_out_of_sight AS ts_out_of_sight, 
 countries.iso3 AS ship_flag,
