@@ -485,7 +485,7 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 			&netTonnage,
 			&groupCategory,
 			&macroCategory,
-			&goodsMvmntType
+			&goodsMvmntType,
 		)
 
 		if err != nil {
@@ -506,7 +506,7 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 			"net_tonnage":    netTonnage.String,
 			"group_category": groupCategory.String,
 			"macro_category": macroCategory.String,
-			"goods_mvmnt_type": goodsMvmntType
+			"goods_mvmnt_type": goodsMvmntType.String,
 		}
 
 		result = append(result, tmpDict)
