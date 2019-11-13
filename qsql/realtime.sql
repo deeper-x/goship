@@ -421,7 +421,8 @@ ships.length AS ship_length,
 ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 groups_categories.description AS group_category,
-macro_categories.description AS macro_category                 
+macro_categories.description AS macro_category,
+goods_mvmnt_type
 FROM shipped_goods INNER JOIN control_unit_data
 ON fk_control_unit_data = id_control_unit_data
 INNER JOIN goods_categories
