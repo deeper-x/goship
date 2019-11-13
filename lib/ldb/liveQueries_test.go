@@ -102,7 +102,7 @@ func TestArrivalPrevisionsToday(t *testing.T) {
 
 	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_description", "ts_last_ship_activity", "ship_current_activities.description", "anchorage_points.description", "type_acronym", "iso3", "gross_tonnage", "ships.length", "ships.width", "agencies.description", "shipped_goods_data.shipped_goods_row", "data_previsione_arrivo_nave.ts_mooring_time", "data_arrivo_in_rada.ts_readiness"})
 
-	mock.ExpectQuery(`SELECT ship_description AS ship, ts_arrival_prevision,`).WithArgs("28").WillReturnRows(expectedRows)
+	mock.ExpectQuery(`SELECT`).WithArgs("28").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
 	mockDB.GetArrivalPrevisions("28")
@@ -207,7 +207,7 @@ func TestShiftingsToday(t *testing.T) {
 
 	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_description", "ts_last_ship_activity", "ship_current_activities.description", "anchorage_points.description", "type_acronym", "iso3", "gross_tonnage", "ships.length", "ships.width", "agencies.description", "shipped_goods_data.shipped_goods_row", "data_previsione_arrivo_nave.ts_mooring_time", "data_arrivo_in_rada.ts_readiness"})
 
-	mock.ExpectQuery(`control_unit_data.fk_portinformer, ts_main_event_field_val,`).WithArgs("28").WillReturnRows(expectedRows)
+	mock.ExpectQuery(`SELECT id_control_unit_data AS id_trip, ts_main_event_field_val AS ts_shifting`).WithArgs("28").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
 	mockDB.GetTodayShiftings("28")

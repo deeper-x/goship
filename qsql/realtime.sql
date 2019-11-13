@@ -106,7 +106,7 @@ AND control_unit_data.fk_portinformer = $2;
 
 
 --name: arrival-previsions
-SELECT id_control_unit_data AS id_trip,
+SELECT
 ship_description AS ship, 
 ts_arrival_prevision,
 ship_types.type_acronym AS ship_type,  

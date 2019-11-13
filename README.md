@@ -228,7 +228,6 @@ Response:
 # data := [ship, tsArrivalPrevision, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
-    "id_trip":                idControlUnitDataStr.String,
     "ship":                   shipName.String,
     "ts_arrival_prevision":   tsArrivalPrevision.String,
     "ship_type":              shipType.String,
