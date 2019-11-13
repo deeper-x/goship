@@ -455,7 +455,7 @@ func (r repository) GetTodayDepartures(idPortinformer string, idDepartureState i
 
 // GetTodayShippedGoods todo doc
 func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]string {
-	var idTrip, shipName, quantity sql.NullString
+	var idTrip, shipName, quantity, goodsMvmntType sql.NullString
 	var unit, goodsCategory, shipType, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, groupCategory, macroCategory sql.NullString
 
@@ -485,6 +485,7 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 			&netTonnage,
 			&groupCategory,
 			&macroCategory,
+			&goodsMvmntType
 		)
 
 		if err != nil {
@@ -505,6 +506,7 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 			"net_tonnage":    netTonnage.String,
 			"group_category": groupCategory.String,
 			"macro_category": macroCategory.String,
+			"goods_mvmnt_type": goodsMvmntType
 		}
 
 		result = append(result, tmpDict)
