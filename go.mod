@@ -1,6 +1,6 @@
 module github.com/deeper-x/goship
 
-go 1.12
+go 1.13
 
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
@@ -25,7 +25,7 @@ require (
 	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/kataras/golog v0.0.0-20190624001437-99c81de45f40 // indirect
-	github.com/kataras/iris v11.1.1+incompatible
+        github.com/kataras/iris/v12 v12.0.1 
 	github.com/kataras/pio v0.0.0-20190103105442-ea782b38602d // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
