@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/deeper-x/goship)](https://goreportcard.com/report/github.com/deeper-x/goship)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/deeper-x/goship)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/deeper-x/goship?sort=semver)
-
+[![CircleCI](https://circleci.com/gh/deeper-x/goship.svg?style=svg)](https://circleci.com/gh/deeper-x/goship)
 ____
 
 ## REST services
@@ -228,7 +228,6 @@ Response:
 # data := [ship, tsArrivalPrevision, shipType, shipFlag, shipWidth, shipLength, grossTonnage, netTonnage, draftAft, draftFwd, agency, LPC, destinationQuayBerth, destinationRoadstead, cargoOnBoard]
 
 res := map[string]string{
-    "id_trip":                idControlUnitDataStr.String,
     "ship":                   shipName.String,
     "ts_arrival_prevision":   tsArrivalPrevision.String,
     "ship_type":              shipType.String,

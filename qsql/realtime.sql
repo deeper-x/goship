@@ -106,7 +106,7 @@ AND control_unit_data.fk_portinformer = $2;
 
 
 --name: arrival-previsions
-SELECT id_control_unit_data AS id_trip,
+SELECT
 ship_description AS ship, 
 ts_arrival_prevision,
 ship_types.type_acronym AS ship_type,  
@@ -421,7 +421,8 @@ ships.length AS ship_length,
 ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 groups_categories.description AS group_category,
-macro_categories.description AS macro_category                 
+macro_categories.description AS macro_category,
+goods_mvmnt_type
 FROM shipped_goods INNER JOIN control_unit_data
 ON fk_control_unit_data = id_control_unit_data
 INNER JOIN goods_categories
@@ -456,16 +457,16 @@ num_minibus,
 traffic_list_mvnt_type, 
 traffic_list_categories.description,
 quays.description AS quay
-FROM traffic_list INNER JOIN control_unit_data
+FROM traffic_list LEFT JOIN control_unit_data
 ON fk_control_unit_data = id_control_unit_data
-INNER JOIN traffic_list_categories
+LEFT JOIN traffic_list_categories
 ON fk_traffic_list_category = id_traffic_list_category
-INNER JOIN ships
+RIGHT JOIN ships
 ON control_unit_data.fk_ship = id_ship
-INNER JOIN maneuverings
+LEFT JOIN maneuverings
 ON maneuverings.fk_control_unit_data = control_unit_data.id_control_unit_data
 AND maneuverings.fk_state = 17
-INNER JOIN quays
+LEFT JOIN quays
 ON maneuverings.fk_stop_quay = quays.id_quay
 WHERE control_unit_data.fk_portinformer = $1
 AND control_unit_data.is_active = true;
