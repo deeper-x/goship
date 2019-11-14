@@ -1,9 +1,6 @@
 package webserver
 
-import (
-	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
-)
+import "github.com/kataras/iris/v12"
 
 // Instance of webserver
 type Instance struct {
@@ -11,7 +8,7 @@ type Instance struct {
 }
 
 // URLRequest router method on app
-func (objInstance Instance) URLRequest(passedPath string, resHandler context.Handler) {
+func (objInstance Instance) URLRequest(passedPath string, resHandler iris.Handler) {
 	objInstance.App.Get(passedPath, resHandler)
 }
 
