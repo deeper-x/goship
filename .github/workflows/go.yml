@@ -26,4 +26,7 @@ jobs:
 
     - name: Build
       run: go install src/goship.go
+    
+    - name: Test
+      run: go test ./lib/... ./conf/...
 
