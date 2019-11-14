@@ -5,6 +5,8 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/deeper-x/goship)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/deeper-x/goship?sort=semver)
 [![CircleCI](https://circleci.com/gh/deeper-x/goship.svg?style=svg)](https://circleci.com/gh/deeper-x/goship)
+![Actions Badge](https://github.com/deeper-x/goship/workflows/Go/badge.svg)
+
 ____
 
 ## REST services
