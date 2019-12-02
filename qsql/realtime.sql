@@ -57,7 +57,7 @@ AND control_unit_data.fk_portinformer = $2;
 
 --name: all-moored
 SELECT id_control_unit_data, ship_description, 
-data_ormeggio_nave.ts_etd, 
+data_ormeggio_nave.ts_mooring_time, 
 ship_current_activities.description AS current_activity, 
 quays.description AS quay,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
