@@ -63,7 +63,7 @@ quays.description AS quay,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
 iso3, gross_tonnage, ships.length, ships.width, type_acronym,
 agencies.description AS agency,
-data_ormeggio_nave.ts_etd  
+data_ormeggio_nave.ts_fine_ormeggio  
 FROM control_unit_data 
 INNER JOIN ships
 ON fk_ship = id_ship
