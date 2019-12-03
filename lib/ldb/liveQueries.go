@@ -268,7 +268,6 @@ func (r repository) GetDeparturePrevisions(idPortinformer string) []map[string]s
 func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
 	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
-	var agency, tsETD sql.NullString
 
 	var result []map[string]string
 
@@ -294,8 +293,6 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			&length,
 			&width,
 			&shipType,
-			&agency,
-			&tsETD,
 		)
 
 		if err != nil {
@@ -316,8 +313,6 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			"ships_length":     length.String,
 			"ships_width":      width.String,
 			"ship_type":        shipType.String,
-			"agency":           agency.String,
-			"ts_etd":           tsETD.String,
 		}
 		result = append(result, tmpDict)
 	}
@@ -493,19 +488,19 @@ func (r repository) GetTodayShippedGoods(idPortinformer string) []map[string]str
 		}
 
 		tmpDict := map[string]string{
-			"id_trip":        idTrip.String,
-			"ship_name":      shipName.String,
-			"quantity":       quantity.String,
-			"unit":           unit.String,
-			"goods_category": goodsCategory.String,
-			"ship_type":      shipType.String,
-			"ship_flag":      shipFlag.String,
-			"ship_width":     shipWidth.String,
-			"ship_length":    shipLength.String,
-			"gross_tonnage":  grossTonnage.String,
-			"net_tonnage":    netTonnage.String,
-			"group_category": groupCategory.String,
-			"macro_category": macroCategory.String,
+			"id_trip":          idTrip.String,
+			"ship_name":        shipName.String,
+			"quantity":         quantity.String,
+			"unit":             unit.String,
+			"goods_category":   goodsCategory.String,
+			"ship_type":        shipType.String,
+			"ship_flag":        shipFlag.String,
+			"ship_width":       shipWidth.String,
+			"ship_length":      shipLength.String,
+			"gross_tonnage":    grossTonnage.String,
+			"net_tonnage":      netTonnage.String,
+			"group_category":   groupCategory.String,
+			"macro_category":   macroCategory.String,
 			"goods_mvmnt_type": goodsMvmntType.String,
 		}
 
