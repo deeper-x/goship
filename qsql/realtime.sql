@@ -61,9 +61,7 @@ data_ormeggio_nave.ts_fine_ormeggio,
 ship_current_activities.description AS current_activity, 
 quays.description AS quay,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
-iso3, gross_tonnage, ships.length, ships.width, type_acronym,
-agencies.description AS agency,
-data_ormeggio_nave.ts_etd  
+iso3, gross_tonnage, ships.length, ships.width, type_acronym
 FROM control_unit_data 
 INNER JOIN ships
 ON fk_ship = id_ship
@@ -84,7 +82,7 @@ GROUP BY fk_control_unit_data
 ) as shipped_goods_data
 ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
 INNER JOIN (  
-SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
+SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time
 FROM trips_logs
 WHERE fk_portinformer = $1
 AND fk_state in (17, 18, 20, 21, 22)
@@ -95,8 +93,6 @@ INNER JOIN countries
 ON countries.id_country = ships.fk_country_flag
 INNER JOIN ship_types
 ON ships.fk_ship_type = ship_types.id_ship_type
-INNER JOIN agencies
-ON RES.fk_agency = agencies.id_agency
 LEFT JOIN data_ormeggio_nave
 ON data_ormeggio_nave.fk_control_unit_data = id_control_unit_data 
 WHERE fk_ship_current_activity = 5
