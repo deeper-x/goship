@@ -94,10 +94,8 @@ res := map[string]string{
     "gross_tonnage":    grossTonnage.String,
     "length":           length.String,
     "width":            width.String,
-    "agency":           agency.String,
     "shipped_goods":    shipped_goods.String,
-    "ts_planned_mooring": tsPlannedMooring.String,
-    "ts_readiness":       tsReadiness.String,
+    "ts_planned_mooring": tsPlannedMooring.String
     }
 
 ```
@@ -131,8 +129,6 @@ res := map[string]string{
     "ships_length":     length.String,
     "ships_width":      width.String,
     "ship_type":        shipType.String,
-    "agency":           agency.String,
-    "ts_etd":           tsETD.String,
 }
 
 ```
