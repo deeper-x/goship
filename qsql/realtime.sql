@@ -3,17 +3,15 @@ SELECT
 id_control_unit_data, 
 ship_description,
 type_acronym as ship_type, 
-ts_last_ship_activity AS anchoring_time, 
+RES.ts_anchoring_time, 
 ship_current_activities.description AS current_activity,
 anchorage_points.description AS anchorage_point,
 iso3, 
 gross_tonnage, 
 ships.length, 
 ships.width,
-agencies.description as agency,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
-data_previsione_arrivo_nave.ts_mooring_time AS ts_planned_mooring,
-data_arrivo_in_rada.ts_readiness AS ts_readiness
+data_previsione_arrivo_nave.ts_mooring_time AS ts_planned_mooring
 FROM control_unit_data 
 INNER JOIN ships
 ON fk_ship = id_ship
@@ -28,15 +26,13 @@ ON ships.fk_ship_type = ship_types.id_ship_type
 INNER JOIN countries
 ON countries.id_country = ships.fk_country_flag
 INNER JOIN (  
-	SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS max_time, fk_agency
+	SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS ts_anchoring_time
 	FROM trips_logs
 	WHERE fk_portinformer = $1
 	AND fk_state IN (16, 19, 27)
-	GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
+	GROUP BY fk_control_unit_data, fk_portinformer
 	) AS RES
 ON id_control_unit_data = RES.fk_control_unit_data
-INNER JOIN agencies
-ON RES.fk_agency = agencies.id_agency
 LEFT JOIN (
 	SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description||' ('||quantity||' '||unit::TEXT||')', ', ') AS shipped_goods_row
 	FROM shipped_goods
@@ -49,8 +45,6 @@ LEFT JOIN (
 ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
 LEFT JOIN data_previsione_arrivo_nave
 ON data_previsione_arrivo_nave.fk_control_unit_data = control_unit_data.id_control_unit_data
-LEFT JOIN data_arrivo_in_rada
-ON data_arrivo_in_rada.fk_control_unit_data = control_unit_data.id_control_unit_data
 WHERE fk_ship_current_activity = 2
 AND is_active = true 
 AND control_unit_data.fk_portinformer = $2;

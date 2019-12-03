@@ -10,7 +10,7 @@ import (
 // GetAllRoadstead todo doc
 func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage sql.NullString
-	var length, width, agency, shippedGoods, tsPlannedMooring, tsReadiness sql.NullString
+	var length, width, shippedGoods, tsPlannedMooring sql.NullString
 	var result []map[string]string
 
 	mapper.GenResource(conf.PLiveSQL)
@@ -34,10 +34,8 @@ func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 			&grossTonnage,
 			&length,
 			&width,
-			&agency,
 			&shippedGoods,
 			&tsPlannedMooring,
-			&tsReadiness,
 		)
 
 		tmpDict := map[string]string{
@@ -51,10 +49,8 @@ func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 			"gross_tonnage":      grossTonnage.String,
 			"length":             length.String,
 			"width":              width.String,
-			"agency":             agency.String,
 			"shipped_goods":      shippedGoods.String,
 			"ts_planned_mooring": tsPlannedMooring.String,
-			"ts_readiness":       tsReadiness.String,
 		}
 
 		result = append(result, tmpDict)
