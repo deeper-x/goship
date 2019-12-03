@@ -90,22 +90,13 @@ WHERE fk_portinformer = $1
 AND fk_state in (17, 18, 20, 21, 22)
 GROUP BY fk_control_unit_data, fk_portinformer, fk_agency
 ) AS RES
-ON id_control_unit_data = RES.fk_control_unit_data
-INNER JOIN (  
-SELECT fk_agency, fk_control_unit_data
-FROM trips_logs
-WHERE fk_portinformer = $1
-AND fk_state in (17, 18, 20, 21, 22)
-ORDER BY ts_main_event_field_val DESC
-LIMIT 1
-) AS RES_AGE
-ON id_control_unit_data = RES_AGE.fk_control_unit_data
+ON id_control_unit_data = RES.fk_control_unit_data 
 INNER JOIN countries
 ON countries.id_country = ships.fk_country_flag
 INNER JOIN ship_types
 ON ships.fk_ship_type = ship_types.id_ship_type
 INNER JOIN agencies
-ON RES_AGE.fk_agency = agencies.id_agency
+ON RES.fk_agency = agencies.id_agency
 LEFT JOIN data_ormeggio_nave
 ON data_ormeggio_nave.fk_control_unit_data = id_control_unit_data 
 WHERE fk_ship_current_activity = 5
