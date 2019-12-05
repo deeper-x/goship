@@ -4,7 +4,8 @@ ships.ship_description AS ship_name,
 ship_types.type_description||'('||ship_types.type_acronym||')' AS ship_type,
 ships.length AS length, ships.width AS width, ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
-ship_current_activities.description||': '||last_trip_ts AS details 
+ship_current_activities.description AS current_activity,
+last_trip_ts AS timestamp 
 FROM control_unit_data INNER JOIN ships
 ON fk_ship = id_ship
 INNER JOIN ship_current_activities
