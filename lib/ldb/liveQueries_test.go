@@ -28,6 +28,27 @@ func TestAllRoadstead(t *testing.T) {
 	}
 }
 
+func TestAllActiveTrips(t *testing.T) {
+	db, mock, err := sqlmock.New()
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	defer db.Close()
+
+	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_name", "ship_type", "length", "width", "gross_tonnage", "net_tonnage", "details"})
+
+	mock.ExpectQuery(`SELECT id_control_unit_data, ships.ship_description AS ship_name`).WithArgs("28").WillReturnRows(expectedRows)
+
+	mockDB := NewRepository(db)
+	mockDB.GetActiveTrips("28")
+
+	if err := mock.ExpectationsWereMet(); err != nil {
+		t.Errorf("testing error: %s", err)
+	}
+}
+
 func TestAllMoored(t *testing.T) {
 	db, mock, err := sqlmock.New()
 

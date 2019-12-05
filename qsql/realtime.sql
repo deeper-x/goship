@@ -1,3 +1,28 @@
+--name: all-active-trips
+SELECT id_control_unit_data,
+ships.ship_description AS ship_name,
+ship_types.type_description||'('||ship_types.type_acronym||')' AS ship_type,
+ships.length AS length, ships.width AS width, ships.gross_tonnage AS gross_tonnage,
+ships.net_tonnage AS net_tonnage,
+ship_current_activities.description||': '||last_trip_ts AS details 
+FROM control_unit_data INNER JOIN ships
+ON fk_ship = id_ship
+INNER JOIN ship_current_activities
+ON fk_ship_current_activity = id_activity
+INNER JOIN (
+    SELECT fk_control_unit_data, MAX(ts_main_event_field_val) AS last_trip_ts
+        FROM trips_logs INNER JOIN control_unit_data
+        ON id_control_unit_data = fk_control_unit_data
+        WHERE control_unit_data.fk_portinformer = $1
+        GROUP BY fk_control_unit_data
+    ) as last_trip_log
+ ON last_trip_log.fk_control_unit_data = id_control_unit_data
+ INNER JOIN ship_types
+ ON ships.fk_ship_type = ship_types.id_ship_type
+ WHERE is_active  = true
+ AND fk_portinformer = $1
+
+
 --name: all-anchored
 SELECT 
 id_control_unit_data, 

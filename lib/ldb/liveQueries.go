@@ -260,6 +260,55 @@ func (r repository) GetDeparturePrevisions(idPortinformer string) []map[string]s
 	return result
 }
 
+// GetActiveTrips todo doc
+func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
+	var idControlUnitData, length, width, shipType sql.NullString
+	var shipName, currentActivity, grossTonnage, netTonnage sql.NullString
+
+	var result []map[string]string
+
+	mapper.GenResource(conf.PLiveSQL)
+	rows, err := mapper.resource.Query(r.db, "all-active-trips", idPortinformer)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&idControlUnitData,
+			&shipName,
+			&shipType,
+			&length,
+			&width,
+			&grossTonnage,
+			&netTonnage,
+			&currentActivity,
+		)
+
+		if err != nil {
+			log.Println(err)
+		}
+
+		tmpDict := map[string]string{
+			"id_control_unit_data": idControlUnitData.String,
+			"ship_name":            shipName.String,
+			"ship_type":            shipType.String,
+			"length":               length.String,
+			"width":                width.String,
+			"gross_tonnage":        grossTonnage.String,
+			"net_tonnage":          netTonnage.String,
+			"current_activity":     currentActivity.String,
+		}
+
+		result = append(result, tmpDict)
+	}
+
+	return result
+}
+
 //GetAllMoored todo doc
 func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString

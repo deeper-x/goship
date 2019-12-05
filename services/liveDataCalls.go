@@ -23,6 +23,19 @@ func (objPortinformer Portinformer) MooredNow(ctx iris.Context) {
 	ctx.JSON(allMoored)
 }
 
+// ActiveNow todo description
+func (objPortinformer Portinformer) ActiveNow(ctx iris.Context) {
+	idPortinformer := ctx.Params().Get("id_portinformer")
+
+	conn := ldb.Connect()
+	r := ldb.NewRepository(conn)
+
+	allActive := r.GetActiveTrips(idPortinformer)
+
+	ctx.Header("Access-Control-Allow-Origin", "*")
+	ctx.JSON(allActive)
+}
+
 // RoadsteadNow todo description
 func (objPortinformer Portinformer) RoadsteadNow(ctx iris.Context) {
 	idPortinformer := ctx.Params().Get("id_portinformer")
