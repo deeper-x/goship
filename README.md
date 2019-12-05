@@ -72,7 +72,7 @@ Response:
 ```bash
 # Content-Type: application/json; charset=UTF-8
 
-data := [idControlUnitData, length, width, shipType, shipName, currentActivity, grossTonnage, netTonnage] 
+# data := [idControlUnitData, length, width, shipType, shipName, currentActivity, grossTonnage, netTonnage] 
 
 tmpDict := map[string]string{
 			"id_control_unit_data": idControlUnitData.String,
