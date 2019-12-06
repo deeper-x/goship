@@ -22,6 +22,7 @@ INNER JOIN (
  ON ships.fk_ship_type = ship_types.id_ship_type
  WHERE is_active  = true
  AND fk_portinformer = $1
+ ORDER BY timestamp ASC
 
 
 --name: all-anchored
