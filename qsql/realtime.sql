@@ -22,7 +22,7 @@ INNER JOIN (
  ON ships.fk_ship_type = ship_types.id_ship_type
  WHERE is_active  = true
  AND fk_portinformer = $1
- ORDER BY timestamp ASC
+ ORDER BY timestamp DESC;
 
 
 --name: all-anchored
@@ -74,7 +74,8 @@ LEFT JOIN data_previsione_arrivo_nave
 ON data_previsione_arrivo_nave.fk_control_unit_data = control_unit_data.id_control_unit_data
 WHERE fk_ship_current_activity = 2
 AND is_active = true 
-AND control_unit_data.fk_portinformer = $2;
+AND control_unit_data.fk_portinformer = $2
+ORDER BY RES.ts_anchoring_time DESC;
 
 --name: all-moored
 SELECT id_control_unit_data, ship_description, 
@@ -116,8 +117,8 @@ INNER JOIN ship_types
 ON ships.fk_ship_type = ship_types.id_ship_type
 WHERE fk_ship_current_activity = 5
 AND control_unit_data.is_active = true 
-AND control_unit_data.fk_portinformer = $2;
-
+AND control_unit_data.fk_portinformer = $2
+ORDER BY RES.ts_fine_ormeggio DESC;
 
 
 --name: arrival-previsions
@@ -159,7 +160,8 @@ LEFT JOIN anchorage_points
 ON planned_arrivals.fk_stop_anchorage_point = anchorage_points.id_anchorage_point	
 WHERE LENGTH(planned_arrivals.ts_arrival_prevision) > 0 
 AND planned_arrivals.is_active = true
-AND planned_arrivals.fk_portinformer = $1;
+AND planned_arrivals.fk_portinformer = $1
+ORDER BY ts_arrival_prevision DESC;
 
 
 --name: shiftings
@@ -219,7 +221,8 @@ WHERE control_unit_data.fk_portinformer = $1
 AND trips_logs.fk_state IN (18, 19, 20, 21, 22, 27)
 AND LENGTH(ts_main_event_field_val) = 16
 AND ts_main_event_field_val::date = now()::date
-ORDER BY ts_main_event_field_val 
+ORDER BY ts_main_event_field_val DESC;
+
 
 
 --name: shifting-previsions
@@ -233,7 +236,6 @@ ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 planned_shiftings.draft_aft, planned_shiftings.draft_fwd,
 agencies.description AS agency,
-
 start_quay.description AS starting_quay_berth,
 start_anchorage_point.description AS starting_roadstead,
 stop_quay.description AS stop_quay_berth,
@@ -276,7 +278,9 @@ LEFT JOIN (
 ON planned_shiftings.fk_stop_anchorage_point = stop_anchorage_point.id_anchorage_point	
 WHERE LENGTH(planned_shiftings.ts_shifting_prevision) > 0
 AND planned_shiftings.is_active = true
-AND planned_shiftings.fk_portinformer = $1;
+AND planned_shiftings.fk_portinformer = $1
+ORDER BY ts_shifting_prevision DESC;
+
 
 --name: departure-previsions
 SELECT ship_description AS ship, 
@@ -317,7 +321,8 @@ LEFT JOIN anchorage_points
 ON planned_departures.fk_start_anchorage_point = anchorage_points.id_anchorage_point	
 WHERE LENGTH(planned_departures.ts_departure_prevision) > 0 
 AND planned_departures.is_active = true
-AND planned_departures.fk_portinformer = $1;
+AND planned_departures.fk_portinformer = $1
+ORDER BY ts_departure_prevision DESC;
 
 --name: arrivals
 SELECT id_control_unit_data AS id_trip, 
@@ -420,7 +425,9 @@ WHERE control_unit_data.fk_portinformer = $2
 AND ts_out_of_sight IS NOT NULL
 AND ts_out_of_sight != 'None'
 AND LENGTH(ts_out_of_sight) > 0
-AND ts_out_of_sight::DATE = current_date;
+AND ts_out_of_sight::DATE = current_date
+ORDER BY ts_out_of_sight DESC;
+
 
 --name: shipped-goods
 SELECT
@@ -454,6 +461,7 @@ INNER JOIN macro_categories
 ON groups_categories.fk_macro_category = macro_categories.id_macro_category     
 WHERE control_unit_data.fk_portinformer = $1
 AND control_unit_data.is_active = true;
+
 
 --name: traffic-list
 SELECT control_unit_data.id_control_unit_data AS id_trip,
