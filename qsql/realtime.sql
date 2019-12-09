@@ -15,6 +15,7 @@ INNER JOIN (
         FROM trips_logs INNER JOIN control_unit_data
         ON id_control_unit_data = fk_control_unit_data
         WHERE control_unit_data.fk_portinformer = $1
+	AND fk_state = ANY('{13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28}')
         GROUP BY fk_control_unit_data
     ) as last_trip_log
  ON last_trip_log.fk_control_unit_data = id_control_unit_data
