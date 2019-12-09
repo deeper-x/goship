@@ -262,7 +262,7 @@ func (r repository) GetDeparturePrevisions(idPortinformer string) []map[string]s
 
 // GetActiveTrips todo doc
 func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
-	var idControlUnitData, length, width, shipType sql.NullString
+	var idControlUnitData, length, width, shipType, shipping sql.NullString
 	var shipName, currentActivity, timestamp, grossTonnage, netTonnage sql.NullString
 
 	var result []map[string]string
@@ -287,6 +287,7 @@ func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
 			&netTonnage,
 			&currentActivity,
 			&timestamp,
+			&shipping,
 		)
 
 		if err != nil {
@@ -303,6 +304,7 @@ func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
 			"net_tonnage":          netTonnage.String,
 			"current_activity":     currentActivity.String,
 			"timestamp":            timestamp.String,
+			"shipping":             shipping.String,
 		}
 
 		result = append(result, tmpDict)
