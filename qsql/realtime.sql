@@ -5,9 +5,20 @@ ship_types.type_description||'('||ship_types.type_acronym||')' AS ship_type,
 ships.length AS length, ships.width AS width, ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 ship_current_activities.description AS current_activity,
-last_trip_ts AS timestamp 
+last_trip_ts AS timestamp,
+shipped_goods_data.shipped_goods_row AS shipping
 FROM control_unit_data INNER JOIN ships
 ON fk_ship = id_ship
+LEFT JOIN (
+SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description||' ('||quantity||' '||unit::TEXT||')', ', ') AS shipped_goods_row
+FROM shipped_goods
+INNER JOIN goods_categories
+ON goods_categories.id_goods_category = shipped_goods.fk_goods_category
+INNER JOIN groups_categories
+ON groups_categories.id_group = goods_categories.fk_group_category
+GROUP BY fk_control_unit_data        
+) as shipped_goods_data
+ON shipped_goods_data.fk_control_unit_data = control_unit_data.id_control_unit_data
 INNER JOIN ship_current_activities
 ON fk_ship_current_activity = id_activity
 INNER JOIN (
