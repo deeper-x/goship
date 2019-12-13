@@ -39,6 +39,6 @@ jobs:
         mv $(pwd)/* $GOPATH/src/github.com/$GITHUB_REPOSITORY
         cd $GOPATH/src/github.com/$GITHUB_REPOSITORY
         touch .env
-        echo "DB_DSN=DB_DSN=user=XXXXXXXX port=5432 password=XXXXXXX host=127.0.0.1 dbname=XXXXXXXX sslmode=disable" > .env 
+        echo "DB_DSN=user=XXXXXXXX port=5432 password=XXXXXXX host=127.0.0.1 dbname=XXXXXXXX sslmode=disable" > .env 
         go test ./lib/... ./conf/...
 
