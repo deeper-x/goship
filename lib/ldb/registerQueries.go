@@ -191,7 +191,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)

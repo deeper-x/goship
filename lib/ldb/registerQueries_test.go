@@ -40,7 +40,7 @@ func TestMooredRegister(t *testing.T) {
 
 	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_description", "ts_last_ship_activity", "ship_current_activities.description", "anchorage_points.description", "type_acronym", "iso3", "gross_tonnage", "ships.length", "ships.width", "agencies.description", "shipped_goods_data.shipped_goods_row", "data_previsione_arrivo_nave.ts_mooring_time", "data_arrivo_in_rada.ts_readiness"})
 
-	mock.ExpectQuery(`SELECT id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,`).WithArgs("28", "2019-01-10 01:00", "2019-02-10 01:00", "28", "2019-01-10 01:00", "2019-02-10 01:00", "28", "2019-01-10 01:00", "2019-02-10 01:00").WillReturnRows(expectedRows)
+	mock.ExpectQuery(`SELECT id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,`).WithArgs("28", "2019-01-10 01:00", "2019-02-10 01:00").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
 	mockDB.GetMooredRegister("28", "2019-01-10 01:00", "2019-02-10 01:00")
@@ -62,7 +62,7 @@ func TestAnchoredRegister(t *testing.T) {
 
 	expectedRows := sqlmock.NewRows([]string{"id_control_unit_data", "ship_description", "ts_last_ship_activity", "ship_current_activities.description", "anchorage_points.description", "type_acronym", "iso3", "gross_tonnage", "ships.length", "ships.width", "agencies.description", "shipped_goods_data.shipped_goods_row", "data_previsione_arrivo_nave.ts_mooring_time", "data_arrivo_in_rada.ts_readiness"})
 
-	mock.ExpectQuery(`SELECT id_control_unit_data, ship_description, type_description, ts_anchor_drop,`).WithArgs("28", "2019-01-10 01:00", "2019-02-10 01:00", "28", "2019-01-10 01:00", "2019-02-10 01:00", "28", "2019-01-10 01:00", "2019-02-10 01:00").WillReturnRows(expectedRows)
+	mock.ExpectQuery(`SELECT id_control_unit_data, ship_description, type_description, ts_anchor_drop,`).WithArgs("28", "2019-01-10 01:00", "2019-02-10 01:00").WillReturnRows(expectedRows)
 
 	mockDB := NewRepository(db)
 	mockDB.GetRoadsteadRegister("28", "2019-01-10 01:00", "2019-02-10 01:00")

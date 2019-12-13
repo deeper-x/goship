@@ -236,8 +236,8 @@ UNION
 	ON fk_ship_type = id_ship_type
 	INNER JOIN countries
 	ON fk_country_flag = id_country
-	WHERE control_unit_data.fk_portinformer = $4 
-	AND ts_anchor_drop BETWEEN $5 AND $6)
+	WHERE control_unit_data.fk_portinformer = $1 
+	AND ts_anchor_drop BETWEEN $2 AND $3)
 UNION
 (
 SELECT id_control_unit_data, 
@@ -252,8 +252,8 @@ INNER JOIN ship_types
 ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
-WHERE control_unit_data.fk_portinformer = $7 
-AND ts_anchor_drop BETWEEN $8 AND $9
+WHERE control_unit_data.fk_portinformer = $1 
+AND ts_anchor_drop BETWEEN $2 AND $3
 )
 
 --name: departures-register
