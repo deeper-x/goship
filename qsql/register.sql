@@ -113,7 +113,7 @@ ORDER BY ts_main_event_field_val
 
 --name: moored-register
 (SELECT id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,
-countries.name as country, width, length, gross_tonnage, net_tonnage 
+countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay 
 FROM control_unit_data
 INNER JOIN data_ormeggio_nave
 ON fk_control_unit_data = id_control_unit_data
@@ -123,12 +123,29 @@ INNER JOIN ship_types
 ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
+LEFT JOIN (
+	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+	FROM trips_logs 
+	INNER JOIN maneuverings
+	ON trips_logs.fk_maneuvering = id_maneuvering
+	INNER JOIN quays 
+	ON maneuverings.fk_stop_quay = id_quay
+	INNER JOIN data_ormeggio_nave
+	ON trips_logs.fk_control_unit_data = data_ormeggio_nave.fk_control_unit_data 
+	WHERE ts_main_event_field_val BETWEEN $2 AND $3
+	AND trips_logs.data_table_id::INTEGER = data_ormeggio_nave.id_data_ormeggio_nave
+	AND trips_logs.fk_portinformer = $1
+	AND fk_maneuvering IS NOT NULL
+	AND maneuverings.fk_stop_quay != 0
+	ORDER BY ts_main_event_field_val ASC
+) AS position_data
+ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_fine_ormeggio BETWEEN $2 AND $3)
 UNION
 (SELECT id_control_unit_data, 
 	ship_description, type_description, ts_fine_ormeggio,
-	countries.name as country, width, length, gross_tonnage, net_tonnage 
+	countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay
 	FROM control_unit_data
 	INNER JOIN data_da_ormeggio_a_ormeggio
 	ON fk_control_unit_data = id_control_unit_data
@@ -138,13 +155,30 @@ UNION
 	ON fk_ship_type = id_ship_type
 	INNER JOIN countries
 	ON fk_country_flag = id_country
-	WHERE control_unit_data.fk_portinformer = $4 
-	AND ts_fine_ormeggio BETWEEN $5 AND $6)
+	LEFT JOIN (
+		SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+		FROM trips_logs 
+		INNER JOIN maneuverings
+		ON trips_logs.fk_maneuvering = id_maneuvering
+		INNER JOIN quays 
+		ON maneuverings.fk_stop_quay = id_quay
+		INNER JOIN data_da_ormeggio_a_ormeggio
+		ON trips_logs.fk_control_unit_data = data_da_ormeggio_a_ormeggio.fk_control_unit_data 
+		WHERE ts_main_event_field_val BETWEEN $2 AND $3
+		AND trips_logs.data_table_id::INTEGER = data_da_ormeggio_a_ormeggio.id_data_da_ormeggio_a_ormeggio
+		AND trips_logs.fk_portinformer = $1
+		AND fk_maneuvering IS NOT NULL
+		AND maneuverings.fk_stop_quay != 0
+		ORDER BY ts_main_event_field_val ASC
+	) AS position_data
+	ON id_control_unit_data = position_data.id_trip_data
+	WHERE control_unit_data.fk_portinformer = $1 
+	AND ts_fine_ormeggio BETWEEN $2 AND $3)
 UNION
 (
 SELECT id_control_unit_data, 
 ship_description, type_description, ts_fine_ormeggio,
-countries.name as country, width, length, gross_tonnage, net_tonnage 
+countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay
 FROM control_unit_data
 INNER JOIN data_da_rada_a_ormeggio
 ON fk_control_unit_data = id_control_unit_data
@@ -154,8 +188,25 @@ INNER JOIN ship_types
 ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
-WHERE control_unit_data.fk_portinformer = $7 
-AND ts_fine_ormeggio BETWEEN $8 AND $9
+LEFT JOIN (
+	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+	FROM trips_logs 
+	INNER JOIN maneuverings
+	ON trips_logs.fk_maneuvering = id_maneuvering
+	INNER JOIN quays 
+	ON maneuverings.fk_stop_quay = id_quay
+	INNER JOIN data_da_rada_a_ormeggio
+	ON trips_logs.fk_control_unit_data = data_da_rada_a_ormeggio.fk_control_unit_data 	
+	WHERE ts_main_event_field_val BETWEEN $2 AND $3
+	AND trips_logs.data_table_id::INTEGER = data_da_rada_a_ormeggio.id_data_da_rada_a_ormeggio
+	AND trips_logs.fk_portinformer = $1
+	AND fk_maneuvering IS NOT NULL
+	AND maneuverings.fk_stop_quay != 0
+	ORDER BY ts_main_event_field_val ASC
+) AS position_data
+ON id_control_unit_data = position_data.id_trip_data
+WHERE control_unit_data.fk_portinformer = $1 
+AND ts_fine_ormeggio BETWEEN $2 AND $3
 )
 
 --name: roadstead-register

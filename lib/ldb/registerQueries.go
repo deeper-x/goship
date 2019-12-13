@@ -128,14 +128,14 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 // GetMooredRegister todo doc
 func (r repository) GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth sql.NullString
-	var shipLength, grossTonnage sql.NullString
+	var shipLength, grossTonnage, stopQuay sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 
-	rows, err := mapper.resource.Query(r.db, "moored-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "moored-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
@@ -154,6 +154,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			&shipLength,
 			&grossTonnage,
 			&netTonnage,
+			&stopQuay,
 		)
 
 		if err != nil {
@@ -171,6 +172,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			"gross_tonnage": grossTonnage.String,
 			"net_tonnage":   netTonnage.String,
 			"agency":        agency.String,
+			"stop_quay":     stopQuay.String,
 		}
 
 		result = append(result, tmpDict)
