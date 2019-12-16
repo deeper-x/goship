@@ -185,7 +185,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 // GetRoadsteadRegister todo doc
 func (r repository) GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsAnchoring, shipFlag, shipWidth sql.NullString
-	var shipLength, grossTonnage sql.NullString
+	var shipLength, grossTonnage, roadstead sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result = []map[string]string{}
@@ -210,6 +210,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 			&shipLength,
 			&grossTonnage,
 			&netTonnage,
+			&roadstead,
 		)
 
 		if err != nil {
@@ -227,6 +228,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 			"gross_tonnage": grossTonnage.String,
 			"net_tonnage":   netTonnage.String,
 			"agency":        agency.String,
+			"roadstead":     roadstead.String,
 		}
 
 		result = append(result, tmpDict)
