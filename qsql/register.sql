@@ -211,7 +211,7 @@ AND ts_fine_ormeggio BETWEEN $2 AND $3
 
 --name: roadstead-register
 (SELECT id_control_unit_data, ship_description, type_description, ts_anchor_drop,
-countries.name as country, width, length, gross_tonnage, net_tonnage 
+countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead 
 FROM control_unit_data
 INNER JOIN data_arrivo_in_rada
 ON fk_control_unit_data = id_control_unit_data
@@ -221,12 +221,29 @@ INNER JOIN ship_types
 ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
+LEFT JOIN (
+	SELECT trips_logs.fk_control_unit_data AS id_trip_data, anchorage_points.description AS roadstead
+	FROM trips_logs 
+	INNER JOIN maneuverings
+	ON trips_logs.fk_maneuvering = id_maneuvering
+	INNER JOIN anchorage_points 
+	ON maneuverings.fk_stop_anchorage_point = id_anchorage_point
+	INNER JOIN data_arrivo_in_rada
+	ON trips_logs.fk_control_unit_data = data_arrivo_in_rada.fk_control_unit_data 	
+	WHERE ts_main_event_field_val BETWEEN $2 AND $3
+	AND trips_logs.data_table_id::INTEGER = data_arrivo_in_rada.id_data_arrivo_in_rada
+	AND trips_logs.fk_portinformer = $1
+	AND fk_maneuvering IS NOT NULL
+	AND maneuverings.fk_stop_anchorage_point != 0
+	ORDER BY ts_main_event_field_val ASC
+) AS position_data
+ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_anchor_drop BETWEEN $2 AND $3)
 UNION
 (SELECT id_control_unit_data, 
 	ship_description, type_description, ts_anchor_drop,
-	countries.name as country, width, length, gross_tonnage, net_tonnage 
+	countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead 
 	FROM control_unit_data
 	INNER JOIN data_da_ormeggio_a_rada
 	ON fk_control_unit_data = id_control_unit_data
@@ -236,13 +253,30 @@ UNION
 	ON fk_ship_type = id_ship_type
 	INNER JOIN countries
 	ON fk_country_flag = id_country
+	LEFT JOIN (
+		SELECT trips_logs.fk_control_unit_data AS id_trip_data, anchorage_points.description AS roadstead
+		FROM trips_logs 
+		INNER JOIN maneuverings
+		ON trips_logs.fk_maneuvering = id_maneuvering
+		INNER JOIN anchorage_points 
+		ON maneuverings.fk_stop_anchorage_point = id_anchorage_point
+		INNER JOIN data_da_ormeggio_a_rada
+		ON trips_logs.fk_control_unit_data = data_da_ormeggio_a_rada.fk_control_unit_data 	
+		WHERE ts_main_event_field_val BETWEEN $2 AND $3
+		AND trips_logs.data_table_id::INTEGER = data_da_ormeggio_a_rada.id_data_da_ormeggio_a_rada
+		AND trips_logs.fk_portinformer = $1
+		AND fk_maneuvering IS NOT NULL
+		AND maneuverings.fk_stop_anchorage_point != 0
+		ORDER BY ts_main_event_field_val ASC
+) AS position_data
+ON id_control_unit_data = position_data.id_trip_data
 	WHERE control_unit_data.fk_portinformer = $1 
 	AND ts_anchor_drop BETWEEN $2 AND $3)
 UNION
 (
 SELECT id_control_unit_data, 
 ship_description, type_description, ts_anchor_drop,
-countries.name as country, width, length, gross_tonnage, net_tonnage 
+countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead 
 FROM control_unit_data
 INNER JOIN data_da_rada_a_rada
 ON fk_control_unit_data = id_control_unit_data
@@ -252,6 +286,23 @@ INNER JOIN ship_types
 ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
+	LEFT JOIN (
+		SELECT trips_logs.fk_control_unit_data AS id_trip_data, anchorage_points.description AS roadstead
+		FROM trips_logs 
+		INNER JOIN maneuverings
+		ON trips_logs.fk_maneuvering = id_maneuvering
+		INNER JOIN anchorage_points 
+		ON maneuverings.fk_stop_anchorage_point = id_anchorage_point
+		INNER JOIN data_da_rada_a_rada
+		ON trips_logs.fk_control_unit_data = data_da_rada_a_rada.fk_control_unit_data 	
+		WHERE ts_main_event_field_val BETWEEN $2 AND $3
+		AND trips_logs.data_table_id::INTEGER = data_da_rada_a_rada.id_data_da_rada_a_rada
+		AND trips_logs.fk_portinformer = $1
+		AND fk_maneuvering IS NOT NULL
+		AND maneuverings.fk_stop_anchorage_point != 0
+		ORDER BY ts_main_event_field_val ASC
+) AS position_data
+ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_anchor_drop BETWEEN $2 AND $3
 )
