@@ -53,6 +53,7 @@ AND maneuverings.fk_state = $4
 WHERE control_unit_data.fk_portinformer = $5
 AND LENGTH(ts_avvistamento) > 0
 AND ts_avvistamento::TIMESTAMP BETWEEN $6 AND $7
+ORDER BY id_trip;
 
 --name: shiftings-register
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ts_main_event_field_val, 
@@ -116,7 +117,7 @@ WHERE control_unit_data.fk_portinformer = $1
 AND trips_logs.fk_state IN (18, 19, 20, 21, 22, 27)
 AND ts_main_event_field_val 
 BETWEEN $2 AND $3 
-ORDER BY ts_main_event_field_val 
+ORDER BY id_control_unit_data, ts_main_event_field_val;
 
 
 
@@ -153,7 +154,8 @@ LEFT JOIN (
 ) AS position_data
 ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
-AND ts_fine_ormeggio BETWEEN $2 AND $3)
+AND ts_fine_ormeggio BETWEEN $2 AND $3
+ORDER BY id_control_unit_data)
 UNION
 (SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 	ship_description, type_description, ts_fine_ormeggio,
@@ -188,7 +190,8 @@ UNION
 	) AS position_data
 	ON id_control_unit_data = position_data.id_trip_data
 	WHERE control_unit_data.fk_portinformer = $1 
-	AND ts_fine_ormeggio BETWEEN $2 AND $3)
+	AND ts_fine_ormeggio BETWEEN $2 AND $3
+	ORDER BY id_control_unit_data)
 UNION
 (
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
@@ -225,7 +228,8 @@ LEFT JOIN (
 ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_fine_ormeggio BETWEEN $2 AND $3
-)
+ORDER BY id_control_unit_data
+);
 
 --name: roadstead-register
 (SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, type_description, ts_anchor_drop,
@@ -260,7 +264,8 @@ LEFT JOIN (
 ) AS position_data
 ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
-AND ts_anchor_drop BETWEEN $2 AND $3)
+AND ts_anchor_drop BETWEEN $2 AND $3
+ORDER BY id_control_unit_data)
 UNION
 (SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 	ship_description, type_description, ts_anchor_drop,
@@ -295,7 +300,8 @@ UNION
 ) AS position_data
 ON id_control_unit_data = position_data.id_trip_data
 	WHERE control_unit_data.fk_portinformer = $1 
-	AND ts_anchor_drop BETWEEN $2 AND $3)
+	AND ts_anchor_drop BETWEEN $2 AND $3
+	ORDER BY id_control_unit_data)
 UNION
 (
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
@@ -332,7 +338,8 @@ ON fk_country_flag = id_country
 ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_anchor_drop BETWEEN $2 AND $3
-)
+ORDER BY id_control_unit_data
+);
 
 --name: departures-register
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
@@ -380,10 +387,11 @@ AND ts_out_of_sight IS NOT NULL
 AND ts_out_of_sight != 'None'
 AND LENGTH(ts_out_of_sight) > 0
 AND ts_out_of_sight::TIMESTAMP BETWEEN $3 AND $4
+ORDER BY id_control_unit_data;
 
 
 --name: shipped-goods-register
-SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip,
+SELECT id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name,
 CASE WHEN quantity = '' THEN '0' ELSE quantity END,
 unit, goods_categories.description AS goods_category,
@@ -395,7 +403,6 @@ ships.gross_tonnage AS gross_tonnage,
 ships.net_tonnage AS net_tonnage,
 groups_categories.description AS group_category,
 macro_categories.description AS macro_category
-                 
 FROM shipped_goods INNER JOIN control_unit_data
 ON fk_control_unit_data = id_control_unit_data
 INNER JOIN data_avvistamento_nave

@@ -43,7 +43,7 @@ INNER JOIN (
  ON ships.fk_ship_type = ship_types.id_ship_type
  WHERE is_active  = true
  AND fk_portinformer = $1
- ORDER BY timestamp DESC;
+ ORDER BY id_control_unit_data, timestamp DESC;
 
 
 --name: all-anchored
@@ -99,7 +99,7 @@ ON agencies.id_agency = data_previsione_arrivo_nave.fk_agency
 WHERE fk_ship_current_activity = 2
 AND is_active = true 
 AND control_unit_data.fk_portinformer = $2
-ORDER BY RES.ts_anchoring_time DESC;
+ORDER BY id_control_unit_data, RES.ts_anchoring_time DESC;
 
 --name: all-moored
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, 
@@ -151,7 +151,7 @@ ON ships.fk_ship_type = ship_types.id_ship_type
 WHERE fk_ship_current_activity = 5
 AND control_unit_data.is_active = true 
 AND control_unit_data.fk_portinformer = $2
-ORDER BY RES.ts_fine_ormeggio DESC;
+ORDER BY id_control_unit_data, RES.ts_fine_ormeggio DESC;
 
 
 --name: arrival-previsions
@@ -263,7 +263,7 @@ WHERE control_unit_data.fk_portinformer = $1
 AND trips_logs.fk_state IN (18, 19, 20, 21, 22, 27)
 AND LENGTH(ts_main_event_field_val) = 16
 AND ts_main_event_field_val::date = now()::date
-ORDER BY ts_main_event_field_val DESC;
+ORDER BY id_control_unit_data, ts_main_event_field_val DESC;
 
 
 
@@ -420,7 +420,8 @@ ON maneuverings.fk_stop_anchorage_point = anchorage_points.id_anchorage_point
 AND maneuverings.fk_state = $4
 WHERE control_unit_data.fk_portinformer = $5
 AND LENGTH(ts_avvistamento) > 0
-AND ts_avvistamento::DATE = current_date;
+AND ts_avvistamento::DATE = current_date
+ORDER BY id_control_unit_data;
 
 --name: departures
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
@@ -468,7 +469,7 @@ AND ts_out_of_sight IS NOT NULL
 AND ts_out_of_sight != 'None'
 AND LENGTH(ts_out_of_sight) > 0
 AND ts_out_of_sight::DATE = current_date
-ORDER BY ts_out_of_sight DESC;
+ORDER BY id_control_unit_data, ts_out_of_sight DESC;
 
 
 --name: shipped-goods
