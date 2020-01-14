@@ -1,5 +1,5 @@
 --name:arrivals-register
-SELECT id_control_unit_data AS id_trip, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
 ships.ship_description AS ship_name, 
 ship_types.type_acronym AS ship_type,  
 data_avvistamento_nave.ts_avvistamento AS ts_sighting, 
@@ -55,7 +55,7 @@ AND LENGTH(ts_avvistamento) > 0
 AND ts_avvistamento::TIMESTAMP BETWEEN $6 AND $7
 
 --name: shiftings-register
-SELECT id_control_unit_data, ts_main_event_field_val, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ts_main_event_field_val, 
 imo, ship_description AS ship_name, 
 type_acronym AS ship_type, iso3 AS country, 
 start_quay.description||'/'||start_berth.description as FROM_QUAY,
@@ -121,7 +121,7 @@ ORDER BY ts_main_event_field_val
 
 
 --name: moored-register
-(SELECT id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,
+(SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
 agencies.description as agency
 FROM control_unit_data
@@ -155,7 +155,7 @@ ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_fine_ormeggio BETWEEN $2 AND $3)
 UNION
-(SELECT id_control_unit_data, 
+(SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 	ship_description, type_description, ts_fine_ormeggio,
 	countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
 	agencies.description as agency
@@ -191,7 +191,7 @@ UNION
 	AND ts_fine_ormeggio BETWEEN $2 AND $3)
 UNION
 (
-SELECT id_control_unit_data, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 ship_description, type_description, ts_fine_ormeggio,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
 agencies.description as agency
@@ -228,7 +228,7 @@ AND ts_fine_ormeggio BETWEEN $2 AND $3
 )
 
 --name: roadstead-register
-(SELECT id_control_unit_data, ship_description, type_description, ts_anchor_drop,
+(SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, type_description, ts_anchor_drop,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead,
 agencies.description as agency 
 FROM control_unit_data
@@ -262,7 +262,7 @@ ON id_control_unit_data = position_data.id_trip_data
 WHERE control_unit_data.fk_portinformer = $1 
 AND ts_anchor_drop BETWEEN $2 AND $3)
 UNION
-(SELECT id_control_unit_data, 
+(SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 	ship_description, type_description, ts_anchor_drop,
 	countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead,
 	agencies.description as agency 
@@ -298,7 +298,7 @@ ON id_control_unit_data = position_data.id_trip_data
 	AND ts_anchor_drop BETWEEN $2 AND $3)
 UNION
 (
-SELECT id_control_unit_data, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 ship_description, type_description, ts_anchor_drop,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.roadstead,
 agencies.description as agency 
@@ -335,7 +335,7 @@ AND ts_anchor_drop BETWEEN $2 AND $3
 )
 
 --name: departures-register
-SELECT id_control_unit_data AS id_trip, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
 ships.ship_description AS ship_name, 
 ship_types.type_acronym AS ship_type,  
 data_fuori_dal_porto.ts_out_of_sight AS ts_out_of_sight, 
@@ -383,7 +383,7 @@ AND ts_out_of_sight::TIMESTAMP BETWEEN $3 AND $4
 
 
 --name: shipped-goods-register
-SELECT id_control_unit_data AS id_trip,
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name,
 CASE WHEN quantity = '' THEN '0' ELSE quantity END,
 unit, goods_categories.description AS goods_category,
@@ -417,7 +417,7 @@ AND ts_avvistamento BETWEEN $2 AND $3;
 
 --name: traffic-list-register
 SELECT
-control_unit_data.id_control_unit_data AS id_trip,
+DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip,
 ships.ship_description AS ship_name, 
 ts_avvistamento AS ts_sighting,
 num_container, num_passengers, num_camion, 

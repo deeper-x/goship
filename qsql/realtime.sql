@@ -1,5 +1,5 @@
 --name: all-active-trips
-SELECT id_control_unit_data,
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data,
 ships.ship_description AS ship_name,
 ship_types.type_description||'('||ship_types.type_acronym||')' AS ship_type,
 ships.length AS length, ships.width AS width, ships.gross_tonnage AS gross_tonnage,
@@ -48,7 +48,7 @@ INNER JOIN (
 
 --name: all-anchored
 SELECT 
-id_control_unit_data, 
+DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 ship_description,
 type_acronym as ship_type, 
 RES.ts_anchoring_time, 
@@ -102,7 +102,7 @@ AND control_unit_data.fk_portinformer = $2
 ORDER BY RES.ts_anchoring_time DESC;
 
 --name: all-moored
-SELECT id_control_unit_data, ship_description, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, 
 RES.ts_fine_ormeggio, 
 ship_current_activities.description AS current_activity, 
 quays.description AS quay,
@@ -199,7 +199,7 @@ ORDER BY ts_arrival_prevision DESC;
 
 --name: shiftings
 SELECT 
-id_control_unit_data AS id_trip, 
+DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
 ts_main_event_field_val AS ts_shifting, 
 imo, 
 ship_description AS ship_name, 
@@ -367,7 +367,7 @@ AND planned_departures.fk_portinformer = $1
 ORDER BY ts_departure_prevision DESC;
 
 --name: arrivals
-SELECT id_control_unit_data AS id_trip, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
 ships.ship_description AS ship_name, 
 ship_types.type_acronym AS ship_type,  
 data_avvistamento_nave.ts_avvistamento AS ts_sighting, 
@@ -423,7 +423,7 @@ AND LENGTH(ts_avvistamento) > 0
 AND ts_avvistamento::DATE = current_date;
 
 --name: departures
-SELECT id_control_unit_data AS id_trip, 
+SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data AS id_trip, 
 ships.ship_description AS ship_name, 
 ship_types.type_acronym AS ship_type,  
 data_fuori_dal_porto.ts_out_of_sight AS ts_out_of_sight, 
