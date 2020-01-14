@@ -6,9 +6,18 @@ ships.length AS length, ships.width AS width, ships.gross_tonnage AS gross_tonna
 ships.net_tonnage AS net_tonnage,
 ship_current_activities.description AS current_activity,
 last_trip_ts AS timestamp,
-shipped_goods_data.shipped_goods_row AS shipping
+shipped_goods_data.shipped_goods_row AS shipping,
+agency_data.agency
 FROM control_unit_data INNER JOIN ships
 ON fk_ship = id_ship
+INNER JOIN ( 
+	SELECT DISTINCT ON (fk_control_unit_data) agencies.description AS agency, fk_control_unit_data
+	FROM trips_logs
+	INNER JOIN agencies
+	ON trips_logs.fk_agency = id_agency
+	ORDER BY fk_control_unit_data, ts_main_event_field_val DESC
+) AS agency_data
+ON agency_data.fk_control_unit_data = id_control_unit_data
 LEFT JOIN (
 SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description||' ('||quantity||' '||unit::TEXT||')', ', ') AS shipped_goods_row
 FROM shipped_goods
