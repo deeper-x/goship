@@ -10,7 +10,7 @@ import (
 // GetAllRoadstead todo doc
 func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 	var idTrip, shipName, anchoringTime, currentActivity, anchoragePoint, shipType, iso3, grossTonnage sql.NullString
-	var length, width, shippedGoods, tsPlannedMooring sql.NullString
+	var length, width, shippedGoods, tsPlannedMooring, agency sql.NullString
 	var result []map[string]string
 
 	mapper.GenResource(conf.PLiveSQL)
@@ -36,6 +36,7 @@ func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 			&width,
 			&shippedGoods,
 			&tsPlannedMooring,
+			&agency,
 		)
 
 		tmpDict := map[string]string{
@@ -51,6 +52,7 @@ func (r repository) GetAllRoadstead(idPortinformer string) []map[string]string {
 			"width":              width.String,
 			"shipped_goods":      shippedGoods.String,
 			"ts_planned_mooring": tsPlannedMooring.String,
+			"agency":             agency.String,
 		}
 
 		result = append(result, tmpDict)
@@ -316,7 +318,7 @@ func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
 //GetAllMoored todo doc
 func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
-	var shipName, mooringTime, currentActivity, quay, shippedGoods sql.NullString
+	var shipName, mooringTime, currentActivity, quay, shippedGoods, agency sql.NullString
 
 	var result []map[string]string
 
@@ -342,6 +344,7 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			&length,
 			&width,
 			&shipType,
+			&agency,
 		)
 
 		if err != nil {
@@ -362,6 +365,7 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			"ships_length":     length.String,
 			"ships_width":      width.String,
 			"ship_type":        shipType.String,
+			"agency":           agency.String,
 		}
 		result = append(result, tmpDict)
 	}

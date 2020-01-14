@@ -76,7 +76,7 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 // GetShiftingsRegister todo doc
 func (r repository) GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, tsSighting, imo, ship sql.NullString
-	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
+	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch, agency sql.NullString
 
 	var result = []map[string]string{}
 
@@ -101,6 +101,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 			&toQuay,
 			&fromAnch,
 			&toAnch,
+			&agency,
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -117,6 +118,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 			"to_quay":     toQuay.String,
 			"from_anch":   fromAnch.String,
 			"to_anch":     toAnch.String,
+			"agency":      agency.String,
 		}
 
 		result = append(result, tmpDict)
@@ -155,6 +157,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			&grossTonnage,
 			&netTonnage,
 			&stopQuay,
+			&agency,
 		)
 
 		if err != nil {
@@ -211,6 +214,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 			&grossTonnage,
 			&netTonnage,
 			&roadstead,
+			&agency,
 		)
 
 		if err != nil {
