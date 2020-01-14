@@ -199,7 +199,8 @@ iso3 AS country,
 start_quay.description||'/'||start_berth.description as FROM_QUAY,
 stop_quay.description||'/'||stop_berth.description as TO_QUAY,
 start_anchorage.description as FROM_ANCH,
-stop_anchorage.description as TO_ANCH
+stop_anchorage.description as TO_ANCH,
+agency_data.agency AS agency
 FROM control_unit_data 
 INNER JOIN trips_logs
 ON id_control_unit_data = trips_logs.fk_control_unit_data
@@ -241,6 +242,14 @@ INNER JOIN (
     FROM anchorage_points
 ) AS stop_anchorage
 ON stop_anchorage.id_anchorage_point = maneuverings.fk_stop_anchorage_point
+INNER JOIN ( 
+	SELECT DISTINCT ON (fk_control_unit_data) agencies.description AS agency, fk_control_unit_data
+	FROM trips_logs
+	INNER JOIN agencies
+	ON trips_logs.fk_agency = id_agency
+	ORDER BY fk_control_unit_data, ts_main_event_field_val DESC
+) AS agency_data
+ON agency_data.fk_control_unit_data = id_control_unit_data
 WHERE control_unit_data.fk_portinformer = $1
 AND trips_logs.fk_state IN (18, 19, 20, 21, 22, 27)
 AND LENGTH(ts_main_event_field_val) = 16
