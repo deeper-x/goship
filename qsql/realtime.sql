@@ -171,7 +171,7 @@ draft_aft,
 draft_fwd,
 agencies.description AS agency,
 last_port_of_call.port_name||'('||last_port_of_call.port_country||')' AS last_port_of_call,
-quays.description AS destination_quay_berth,
+quays.description||'-'||berths.description AS destination_quay_berth,
 anchorage_points.description AS destination_roadstead,
 cargo_on_board
 FROM planned_arrivals
