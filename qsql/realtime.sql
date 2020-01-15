@@ -106,6 +106,7 @@ SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description
 RES.ts_fine_ormeggio, 
 ship_current_activities.description AS current_activity, 
 quays.description AS quay,
+berths.description AS berth,
 shipped_goods_data.shipped_goods_row AS shipped_goods_data,
 iso3, gross_tonnage, ships.length, ships.width, type_acronym,
 agency_data.agency AS agency
@@ -118,6 +119,8 @@ INNER JOIN latest_maneuverings
 ON latest_maneuverings.fk_control_unit_data = id_control_unit_data
 INNER JOIN quays
 ON latest_maneuverings.fk_stop_quay = id_quay
+INNER JOIN berths
+ON latest_maneuverings.fk_stop_berth = id_berth
 LEFT JOIN (
 SELECT fk_control_unit_data, string_agg(goods_mvmnt_type||':'||goods_categories.description::TEXT||'-'||groups_categories.description||' ('||quantity||' '||unit::TEXT||')', ', ') AS shipped_goods_row
 FROM shipped_goods
@@ -381,7 +384,7 @@ maneuverings.draft_fwd AS draft_fwd,
 agencies.description AS agency,
 last_port_of_call.port_name||'('||last_port_of_call.port_country||')' AS last_port_of_call,
 port_destination.port_name||'('||port_destination.port_country||')' AS port_destination,
-quays.description AS destination_quay_berth,
+quays.description||'-'||berths.description AS destination_quay_berth,
 anchorage_points.description AS destination_roadstead
 FROM control_unit_data
 INNER JOIN data_avvistamento_nave

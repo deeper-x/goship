@@ -320,7 +320,7 @@ func (r repository) GetActiveTrips(idPortinformer string) []map[string]string {
 //GetAllMoored todo doc
 func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 	var idControlUnitData, iso3, grossTonnage, length, width, shipType sql.NullString
-	var shipName, mooringTime, currentActivity, quay, shippedGoods, agency sql.NullString
+	var shipName, mooringTime, currentActivity, quay, berth, shippedGoods, agency sql.NullString
 
 	var result []map[string]string
 
@@ -340,6 +340,7 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			&mooringTime,
 			&currentActivity,
 			&quay,
+			&berth,
 			&shippedGoods,
 			&iso3,
 			&grossTonnage,
@@ -361,6 +362,7 @@ func (r repository) GetAllMoored(idPortinformer string) []map[string]string {
 			"mooring_time":     mooringTime.String,
 			"current_activity": currentActivity.String,
 			"quay":             quay.String,
+			"berth":            berth.String,
 			"shipped_goods":    shippedGoods.String,
 			"iso3":             iso3.String,
 			"gross_tonnage":    grossTonnage.String,

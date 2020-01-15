@@ -13,7 +13,7 @@ maneuverings.draft_fwd AS draft_fwd,
 agencies.description AS agency,
 last_port_of_call.port_name||'('||last_port_of_call.port_country||')' AS last_port_of_call,
  port_destination.port_name||'('||port_destination.port_country||')' AS port_destination,
-quays.description AS destination_quay_berth,
+quays.description||'-'||berths.description AS destination_quay_berth,
 anchorage_points.description AS destination_roadstead
 FROM control_unit_data
 INNER JOIN data_avvistamento_nave
@@ -124,7 +124,7 @@ ORDER BY id_control_unit_data, ts_main_event_field_val;
 --name: moored-register
 (SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, ship_description, type_description, ts_fine_ormeggio,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
-agencies.description as agency
+position_data.berth AS stop_berth, agencies.description as agency
 FROM control_unit_data
 INNER JOIN data_ormeggio_nave
 ON fk_control_unit_data = id_control_unit_data
@@ -137,12 +137,14 @@ ON fk_country_flag = id_country
 INNER JOIN agencies
 ON data_ormeggio_nave.fk_agency = id_agency
 LEFT JOIN (
-	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay, berths.description AS berth
 	FROM trips_logs 
 	INNER JOIN maneuverings
 	ON trips_logs.fk_maneuvering = id_maneuvering
 	INNER JOIN quays 
 	ON maneuverings.fk_stop_quay = id_quay
+	INNER JOIN berths
+	ON maneuverings.fk_stop_berth =id_berth
 	INNER JOIN data_ormeggio_nave
 	ON trips_logs.fk_control_unit_data = data_ormeggio_nave.fk_control_unit_data 
 	WHERE ts_main_event_field_val BETWEEN $2 AND $3
@@ -160,7 +162,7 @@ UNION
 (SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 	ship_description, type_description, ts_fine_ormeggio,
 	countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
-	agencies.description as agency
+	position_data.berth AS stop_berth, agencies.description as agency
 	FROM control_unit_data
 	INNER JOIN data_da_ormeggio_a_ormeggio
 	ON fk_control_unit_data = id_control_unit_data
@@ -173,12 +175,14 @@ UNION
 	INNER JOIN countries
 	ON fk_country_flag = id_country
 	LEFT JOIN (
-		SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+		SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay, berths.description AS berth
 		FROM trips_logs 
 		INNER JOIN maneuverings
 		ON trips_logs.fk_maneuvering = id_maneuvering
 		INNER JOIN quays 
 		ON maneuverings.fk_stop_quay = id_quay
+		INNER JOIN berths
+		ON maneuverings.fk_stop_berth =id_berth
 		INNER JOIN data_da_ormeggio_a_ormeggio
 		ON trips_logs.fk_control_unit_data = data_da_ormeggio_a_ormeggio.fk_control_unit_data 
 		WHERE ts_main_event_field_val BETWEEN $2 AND $3
@@ -197,7 +201,7 @@ UNION
 SELECT DISTINCT ON (id_control_unit_data) id_control_unit_data, 
 ship_description, type_description, ts_fine_ormeggio,
 countries.name as country, width, length, gross_tonnage, net_tonnage, position_data.quay AS stop_quay,
-agencies.description as agency
+position_data.berth AS stop_berth, agencies.description as agency
 FROM control_unit_data
 INNER JOIN data_da_rada_a_ormeggio
 ON fk_control_unit_data = id_control_unit_data
@@ -210,12 +214,14 @@ ON fk_ship_type = id_ship_type
 INNER JOIN countries
 ON fk_country_flag = id_country
 LEFT JOIN (
-	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay
+	SELECT trips_logs.fk_control_unit_data AS id_trip_data, quays.description AS quay, berths.description AS berth
 	FROM trips_logs 
 	INNER JOIN maneuverings
 	ON trips_logs.fk_maneuvering = id_maneuvering
 	INNER JOIN quays 
 	ON maneuverings.fk_stop_quay = id_quay
+	INNER JOIN berths
+	ON maneuverings.fk_stop_berth =id_berth
 	INNER JOIN data_da_rada_a_ormeggio
 	ON trips_logs.fk_control_unit_data = data_da_rada_a_ormeggio.fk_control_unit_data 	
 	WHERE ts_main_event_field_val BETWEEN $2 AND $3
