@@ -130,7 +130,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 // GetMooredRegister todo doc
 func (r repository) GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth sql.NullString
-	var shipLength, grossTonnage, stopQuay sql.NullString
+	var shipLength, grossTonnage, stopQuay, stopBerth sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result = []map[string]string{}
@@ -157,6 +157,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			&grossTonnage,
 			&netTonnage,
 			&stopQuay,
+			&stopBerth,
 			&agency,
 		)
 
@@ -176,6 +177,7 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			"net_tonnage":   netTonnage.String,
 			"agency":        agency.String,
 			"stop_quay":     stopQuay.String,
+			"stop_berth":    stopBerth.String,
 		}
 
 		result = append(result, tmpDict)
