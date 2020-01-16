@@ -11,7 +11,7 @@ import (
 func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsSighting, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
-	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
+	var portDestination, destinationQuay, destinationBerth, destinationRoadstead sql.NullString
 
 	var result = []map[string]string{}
 
@@ -40,7 +40,8 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 			&agency,
 			&lastPortOfCall,
 			&portDestination,
-			&destinationQuayBerth,
+			&destinationQuay,
+			&destinationBerth,
 			&destinationRoadstead,
 		)
 
@@ -49,22 +50,23 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 		}
 
 		tmpDict := map[string]string{
-			"id_trip":                idTrip.String,
-			"ship_name":              shipName.String,
-			"ship_type":              shipType.String,
-			"ts_sighting":            tsSighting.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"last_port_of_call":      lastPortOfCall.String,
-			"port_destination":       portDestination.String,
-			"destination_quay_berth": destinationQuayBerth.String,
-			"destination_roadstead":  destinationRoadstead.String,
+			"id_trip":               idTrip.String,
+			"ship_name":             shipName.String,
+			"ship_type":             shipType.String,
+			"ts_sighting":           tsSighting.String,
+			"ship_flag":             shipFlag.String,
+			"ship_width":            shipWidth.String,
+			"ship_length":           shipLength.String,
+			"gross_tonnage":         grossTonnage.String,
+			"net_tonnage":           netTonnage.String,
+			"draft_aft":             draftAft.String,
+			"draft_fwd":             draftFwd.String,
+			"agency":                agency.String,
+			"last_port_of_call":     lastPortOfCall.String,
+			"port_destination":      portDestination.String,
+			"destination_quay":      destinationQuay.String,
+			"destination_berth":     destinationBerth.String,
+			"destination_roadstead": destinationRoadstead.String,
 		}
 
 		result = append(result, tmpDict)
