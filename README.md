@@ -854,6 +854,9 @@ Application started. Press CTRL+C to shut down.
 ## Close test instance
 <CTRL+C>  
 
+
+## Or you can use make...
+$ make
 ```
 
 ____
