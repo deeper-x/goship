@@ -875,7 +875,10 @@ Application started. Press CTRL+C to shut down.
 ## Or you can use make...
 $ make
 ```
-
+Targets are:
+- install
+- run
+- kill
 ____
 
 ## Integration Test + Unit test
