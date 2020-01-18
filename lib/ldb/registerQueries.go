@@ -11,7 +11,7 @@ import (
 func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevision int, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsSighting, shipFlag, shipWidth, shipLength sql.NullString
 	var grossTonnage, netTonnage, draftAft, draftFwd, agency, lastPortOfCall sql.NullString
-	var portDestination, destinationQuayBerth, destinationRoadstead sql.NullString
+	var portDestination, destinationQuay, destinationBerth, destinationRoadstead sql.NullString
 
 	var result = []map[string]string{}
 
@@ -40,7 +40,8 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 			&agency,
 			&lastPortOfCall,
 			&portDestination,
-			&destinationQuayBerth,
+			&destinationQuay,
+			&destinationBerth,
 			&destinationRoadstead,
 		)
 
@@ -49,22 +50,23 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 		}
 
 		tmpDict := map[string]string{
-			"id_trip":                idTrip.String,
-			"ship_name":              shipName.String,
-			"ship_type":              shipType.String,
-			"ts_sighting":            tsSighting.String,
-			"ship_flag":              shipFlag.String,
-			"ship_width":             shipWidth.String,
-			"ship_length":            shipLength.String,
-			"gross_tonnage":          grossTonnage.String,
-			"net_tonnage":            netTonnage.String,
-			"draft_aft":              draftAft.String,
-			"draft_fwd":              draftFwd.String,
-			"agency":                 agency.String,
-			"last_port_of_call":      lastPortOfCall.String,
-			"port_destination":       portDestination.String,
-			"destination_quay_berth": destinationQuayBerth.String,
-			"destination_roadstead":  destinationRoadstead.String,
+			"id_trip":               idTrip.String,
+			"ship_name":             shipName.String,
+			"ship_type":             shipType.String,
+			"ts_sighting":           tsSighting.String,
+			"ship_flag":             shipFlag.String,
+			"ship_width":            shipWidth.String,
+			"ship_length":           shipLength.String,
+			"gross_tonnage":         grossTonnage.String,
+			"net_tonnage":           netTonnage.String,
+			"draft_aft":             draftAft.String,
+			"draft_fwd":             draftFwd.String,
+			"agency":                agency.String,
+			"last_port_of_call":     lastPortOfCall.String,
+			"port_destination":      portDestination.String,
+			"destination_quay":      destinationQuay.String,
+			"destination_berth":     destinationBerth.String,
+			"destination_roadstead": destinationRoadstead.String,
 		}
 
 		result = append(result, tmpDict)
@@ -76,7 +78,7 @@ func (r repository) GetArrivalsRegister(idPortinformer string, idArrivalPrevisio
 // GetShiftingsRegister todo doc
 func (r repository) GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, tsSighting, imo, ship sql.NullString
-	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch sql.NullString
+	var shipType, iso3, fromQuay, toQuay, fromAnch, toAnch, agency sql.NullString
 
 	var result = []map[string]string{}
 
@@ -101,6 +103,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 			&toQuay,
 			&fromAnch,
 			&toAnch,
+			&agency,
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -117,6 +120,7 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 			"to_quay":     toQuay.String,
 			"from_anch":   fromAnch.String,
 			"to_anch":     toAnch.String,
+			"agency":      agency.String,
 		}
 
 		result = append(result, tmpDict)
@@ -128,14 +132,14 @@ func (r repository) GetShiftingsRegister(idPortinformer string, start string, st
 // GetMooredRegister todo doc
 func (r repository) GetMooredRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsMooring, shipFlag, shipWidth sql.NullString
-	var shipLength, grossTonnage sql.NullString
+	var shipLength, grossTonnage, stopQuay, stopBerth sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
 
-	rows, err := mapper.resource.Query(r.db, "moored-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "moored-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
@@ -154,6 +158,9 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			&shipLength,
 			&grossTonnage,
 			&netTonnage,
+			&stopQuay,
+			&stopBerth,
+			&agency,
 		)
 
 		if err != nil {
@@ -171,6 +178,8 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 			"gross_tonnage": grossTonnage.String,
 			"net_tonnage":   netTonnage.String,
 			"agency":        agency.String,
+			"stop_quay":     stopQuay.String,
+			"stop_berth":    stopBerth.String,
 		}
 
 		result = append(result, tmpDict)
@@ -183,13 +192,13 @@ func (r repository) GetMooredRegister(idPortinformer string, start string, stop 
 // GetRoadsteadRegister todo doc
 func (r repository) GetRoadsteadRegister(idPortinformer string, start string, stop string) []map[string]string {
 	var idTrip, shipName, shipType, tsAnchoring, shipFlag, shipWidth sql.NullString
-	var shipLength, grossTonnage sql.NullString
+	var shipLength, grossTonnage, roadstead sql.NullString
 	var netTonnage, agency sql.NullString
 
 	var result = []map[string]string{}
 
 	mapper.GenResource(conf.PRegisterSQL)
-	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop, idPortinformer, start, stop, idPortinformer, start, stop)
+	rows, err := mapper.resource.Query(r.db, "roadstead-register", idPortinformer, start, stop)
 
 	if err != nil {
 		log.Fatal(err)
@@ -208,6 +217,8 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 			&shipLength,
 			&grossTonnage,
 			&netTonnage,
+			&roadstead,
+			&agency,
 		)
 
 		if err != nil {
@@ -225,6 +236,7 @@ func (r repository) GetRoadsteadRegister(idPortinformer string, start string, st
 			"gross_tonnage": grossTonnage.String,
 			"net_tonnage":   netTonnage.String,
 			"agency":        agency.String,
+			"roadstead":     roadstead.String,
 		}
 
 		result = append(result, tmpDict)

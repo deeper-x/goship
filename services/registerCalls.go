@@ -15,6 +15,7 @@ func (objPortinformer Portinformer) ArrivalsRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allArrivals := r.GetArrivalsRegister(idPortinformer, 10, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allArrivals)
@@ -30,6 +31,7 @@ func (objPortinformer Portinformer) DeparturesRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allDepartures := r.GetDeparturesRegister(idPortinformer, 26, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allDepartures)
@@ -45,6 +47,7 @@ func (objPortinformer Portinformer) RoadsteadRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allRoadstead := r.GetRoadsteadRegister(idPortinformer, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allRoadstead)
@@ -60,6 +63,7 @@ func (objPortinformer Portinformer) MooredRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allMoored := r.GetMooredRegister(idPortinformer, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allMoored)
@@ -75,6 +79,7 @@ func (objPortinformer Portinformer) ShiftingsRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allShiftings := r.GetShiftingsRegister(idPortinformer, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allShiftings)
@@ -90,6 +95,7 @@ func (objPortinformer Portinformer) ShippedGoodsRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	allShippedGoods := r.GetShippedGoodsRegister(idPortinformer, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(allShippedGoods)
@@ -105,6 +111,7 @@ func (objPortinformer Portinformer) TrafficListRegister(ctx iris.Context) {
 	r := ldb.NewRepository(conn)
 
 	trafficList := r.GetRegisterTrafficList(idPortinformer, start, stop)
+	conn.Close()
 
 	ctx.Header("Access-Control-Allow-Origin", "*")
 	ctx.JSON(trafficList)

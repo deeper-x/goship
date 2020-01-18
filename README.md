@@ -59,10 +59,31 @@ ____
 
 ## A1. __Active trips__
 
+*Description:* trips currently managed
+
 Request:
 
 ```bash
-http://<REMOTE_IP>:8000/activeTripsNow?id_portinformer=<id_portinformer>
+http://<REMOTE_IP>:8000/activeTrips/<id_portinformer>
+```
+
+Response: 
+
+```bash
+# Content-Type: application/json; charset=UTF-8
+
+# data := [idControlUnitData, length, width, shipType, shipName, currentActivity, grossTonnage, netTonnage] 
+
+tmpDict := map[string]string{
+			"id_control_unit_data": idControlUnitData.String,
+			"ship_name":            shipName.String,
+			"ship_type":            shipType.String,
+			"length":               length.String,
+			"width":                width.String,
+			"gross_tonnage":        grossTonnage.String,
+			"net_tonnage":          netTonnage.String,
+			"current_activity":     currentActivity.String,
+		}
 ```
 
 ## A2. __At roadstead__
@@ -94,10 +115,8 @@ res := map[string]string{
     "gross_tonnage":    grossTonnage.String,
     "length":           length.String,
     "width":            width.String,
-    "agency":           agency.String,
     "shipped_goods":    shipped_goods.String,
-    "ts_planned_mooring": tsPlannedMooring.String,
-    "ts_readiness":       tsReadiness.String,
+    "ts_planned_mooring": tsPlannedMooring.String
     }
 
 ```
@@ -131,8 +150,6 @@ res := map[string]string{
     "ships_length":     length.String,
     "ships_width":      width.String,
     "ship_type":        shipType.String,
-    "agency":           agency.String,
-    "ts_etd":           tsETD.String,
 }
 
 ```

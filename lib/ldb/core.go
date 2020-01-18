@@ -45,15 +45,16 @@ type ResServer interface {
 	GetShiftingsRegister(idPortinformer string, start string, stop string) []map[string]string
 	GetShippedGoodsRegister(idPortinformer string, start string, stop string) []map[string]string
 	GetRegisterTrafficList(idPortinformer string, start string, stop string) []map[string]string
+	GetActiveTrips(idPortinformer string) []map[string]string
 }
+
+var mapper = &dotMapper{}
+var objConn connection
 
 // NewRepository connector builder
 func NewRepository(db *sql.DB) ResServer {
 	return &repository{db: db}
 }
-
-var mapper = &dotMapper{}
-var objConn connection
 
 // Connect to db
 func Connect() *sql.DB {
